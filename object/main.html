@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
+        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			#nav_main{
+				height:1.333333rem !important;
+			}
+			.nav-icon-hole{
+				position: absolute;
+				width:0.5rem;
+				height: 0.694444rem;
+				background-image: url(../imgs/tree.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				text-align: center;
+				top: 0;
+				left:1.458333rem;
+				text-align: center;
+			}
+			.nav-icon-forest{
+				position: absolute;
+				width:0.583333rem;
+				height: 0.708333rem;
+				background-image: url(../imgs/forest.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				text-align: center;
+				top: 0;
+				left:50%;
+				margin-left: -10px;
+			}
+			.nav-icon-me{
+				position: absolute;
+				width:0.513888rem;
+				height: 0.680555rem;
+				background-image: url(../imgs/me.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				text-align: center;
+				top: 0;
+				right:1.458333rem;
+			}
+			.hole-color{
+				background-image: url(../imgs/tree1.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+			.forest-color{
+				background-image: url(../imgs/forest-1.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+			.me-color{
+				background-image: url(../imgs/me1.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+			.nav-text{
+				position: absolute;
+				margin-top:0.694444rem;
+				color: #272727;
+				font-size: 0.361111rem;
+				left:-5px;
+			}
+			.text{
+				left: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav id="nav_main" class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="hole.html">
+				<div id="nav_hole" class="nav-icon-hole">
+					<div class="nav-text">树洞</div>
+				</div>	
+			</a>
+			<a class="mui-tab-item" href="forest.html">
+				<div id="nav_forest" class="nav-icon-forest">
+					<div class="nav-text">森林</div>
+				</div>
+				
+			</a>
+			<a class="mui-tab-item" href="me.html">
+				<div id="nav_me" class="nav-icon-me">
+					<div class="nav-text text">我</div>
+				</div>			
+			</a>
+		</nav>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			//初始化
+			//设置默认打开首页显示的子页序号；
+			var Index = 0;
+			sub_index = 0;
+			//把子页的路径写在数组里面
+			var subpage = ['hole.html','forest.html','me.html'];
+			var nav_hole = document.getElementById("nav_hole");
+			var nav_forest = document.getElementById("nav_forest");
+			var nav_me = document.getElementById("nav_me");
+			var nav_main = document.getElementById("nav_main");
+			var navheight= nav_main.offsetHeight+1 + 'px';
+				mui.plusReady(function() {
+					//获取当前页面所属的Webview窗口对象
+					var self = plus.webview.currentWebview();
+					for(var i = 0; i < subpage.length; i++) {
+						//创建webview子页
+						var sub = plus.webview.create(
+							subpage[i], //子页url
+							subpage[i], //子页id 
+							{
+								top: '0px', //设置距离顶部的距离
+								bottom: navheight //设置距离底部的距离
+							}
+						);
+						//如不是我们设置的默认的子页面则隐藏，否则添加到窗口中
+						if(i != Index) {
+							sub.hide();
+						}
+						//将webview对象填充到窗口
+						self.append(sub);
+					}
+					
+					//当前激活选项
+					var activeTab = subpage[Index];
+					//选项卡点击事件
+					mui('.mui-bar-tab').on('tap', 'a', function(e) {
+					    //获取目标子页的id
+					    var targetTab = this.getAttribute('href');
+					    if (targetTab == activeTab) {
+					        return;
+					    }
+					    //显示目标选项卡
+					    plus.webview.show(targetTab);
+					    //隐藏当前选项卡
+					    plus.webview.hide(activeTab);
+					    //更改当前活跃的选项卡
+					    activeTab = targetTab;
+						changeIcon();
+					});
+					changeIcon();
+					function changeIcon(){
+						if(activeTab == 'hole.html'){
+							nav_hole.classList.add('hole-color');
+							nav_forest.classList.remove('forest-color');
+							nav_me.classList.remove('me-color');
+						}else if(activeTab == 'forest.html'){
+							nav_hole.classList.remove('hole-color');
+							nav_forest.classList.add('forest-color');
+							nav_me.classList.remove('me-color');
+						}else{
+							nav_hole.classList.remove('hole-color');
+							nav_forest.classList.remove('forest-color');
+							nav_me.classList.add('me-color');
+						}						
+					}						
+				});		
+		</script>
+	</body>
+</html>

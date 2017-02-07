@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
+        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
+        <link href="../css/mui.min.css" rel="stylesheet" />
+        <style>
+        	body,html{
+        		background-color: #d1e991;
+        		height:auto;
+        		width: 90%;
+        		overflow: hidden;
+        	}
+        	.bg-pic{
+        		width: 100%;
+        		background-image: url(../imgs/trees/river.png);
+        		background-repeat: no-repeat;
+        		background-size:100%;
+        	}
+        	.tree{
+        		overflow: hidden;
+        		position: absolute;
+        		width: 1.597222rem;
+        		height:2.361111rem;
+        	}
+        	.tree img{
+        		width: 100%;
+        	}
+        	.tree-1{
+        		top: 2.152777rem;
+        		left:1.069444rem;
+        	}
+        	.tree-2{
+        		top:1.791666rem;
+        		left:5.486111rem;
+        	}
+        	.tree-3{
+        		top: 3.180555rem;
+        		left: 7.166666rem;
+        	}
+        	.tree-4{
+        		top:5.402777rem;
+        		left: 8.041666rem;
+        	}
+        	.tree-5{
+        		top:5.208333rem;
+        		left:6.5rem;
+        	}
+        	.tree-6{
+        		top:5.75rem;
+        		left:4.291666rem;
+        	}
+        	.tree-7{
+        		top:5.513888rem;
+        		left:1.888888rem;
+        	}
+        	.tree-8{
+        		top:8.458333rem;
+        		left:1.472222rem;
+        	}
+        	.tree-9{
+        		top:3.527777rem;
+        		left:3.083333rem;
+        	}
+        	.tree-10{
+        		top:7.819444rem;
+        		left:5.888888rem;
+        	}
+        	.tree-11{
+        		top:10.777777rem;
+        		left:3.930555rem;
+        	}
+        	.tree-12{
+        		top:13.319444rem;
+        		left:1.277777rem;
+        	}
+        	.tree-13{
+        		top:14.986111rem;
+        		left:2.625rem;
+        	}
+        	.tree-14{
+        		top:13.958333rem;
+        		left:6.555555rem;
+        	}
+        	.tree-15{
+        		top:12.319444rem;
+        		left:8.0rem;
+        	}
+        	.tree-16{
+        		top:10.125rem;
+        		left:8.125rem;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<div class="bg-pic" id="bg_box">
+			<div class="tree-box">
+				<div class="tree tree-1"><img src="../imgs/trees/tree5.png" /></div>
+				<div class="tree tree-2"><img src="../imgs/trees/tree3.png" /></div>
+				<div class="tree tree-3"><img src="../imgs/trees/tree7.png" /></div>
+				<div class="tree tree-4"><img src="../imgs/trees/tree2.png" /></div>
+				<div class="tree tree-5"><img src="../imgs/trees/tree4.png" /></div>
+				<div class="tree tree-6"><img src="../imgs/trees/tree1.png" /></div>
+				<div class="tree tree-7"><img src="../imgs/trees/tree4.png" /></div>
+				<div class="tree tree-8"><img src="../imgs/trees/tree7.png" /></div>
+				<div class="tree tree-9"><img src="../imgs/trees/tree1.png" /></div>
+				<div class="tree tree-10"><img src="../imgs/trees/tree9.png" /></div>
+				<div class="tree tree-11"><img src="../imgs/trees/tree6.png" /></div>
+				<div class="tree tree-12"><img src="../imgs/trees/tree5.png" /></div>
+				<div class="tree tree-13"><img src="../imgs/trees/tree4.png" /></div>
+				<div class="tree tree-14"><img src="../imgs/trees/tree1.png" /></div>
+				<div class="tree tree-15"><img src="../imgs/trees/tree2.png" /></div>
+				<div class="tree tree-16"><img src="../imgs/trees/tree3.png" /></div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">		
+			mui.plusReady(function(){
+				var height = plus.screen.resolutionHeight - 100;
+				var bg_box = document.getElementById("bg_box");
+				bg_box.style.height = height +'px';
+			})
+			mui.init();
+		</script>
+	</body>
+
+</html>

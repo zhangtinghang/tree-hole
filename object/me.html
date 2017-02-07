@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
+        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+		html,body{
+			margin: 0;
+			padding: 0;
+			background-color: white;
+		}
+			.me-head{		
+				margin: 0;
+				padding: 0;
+				width: 10rem;
+				height: 9.472222rem;
+				background-color: #FBD940;
+				box-sizing: border-box;
+				padding-top:1.208333rem;
+			}
+			
+			.head-box{
+				margin-left:1.791666rem;
+				width: 6.416666rem;
+				height: 6.416666rem;
+				border-radius:200px;
+				background-color: white;
+			}
+			.head-box img{
+				width: 4.347222rem;
+				height: 5.791666rem;
+				margin-top: 0.166666rem;
+				margin-left: 1.083333rem;
+			}
+			.head-title{
+				font-size: 0.527777rem;
+				color: #272727;
+				margin-left: 4.247222rem;
+				margin-top: 0.5rem;
+				font-weight: bolder;
+			}
+			.me-message{
+				margin-top: 0.402777rem;
+				height: 3.166666rem;
+				width: 10rem;
+				display: flex;
+			}
+			.message{
+				width: 4.95rem;
+				height:3.166666rem;
+				background: #FBD940;
+				position: relative;
+				border-right:0.05rem solid white;
+			}
+			.message img{
+				width: 0.805555rem;
+				height: 0.611111rem;
+				position: absolute;
+				top: 1.291666rem;
+				left: 0.486111rem;
+			}
+			.message-title{
+				position: absolute;
+				top: 1.277777rem;
+				left: 1.694444rem;
+				font-size: 0.638888rem;
+			}
+			.attention{
+				width: 5rem;
+				height:3.166666rem;
+				background: #FBD940;
+				position: relative;
+			}
+			.attention img{
+				width: 0.694444rem;
+				height: 0.777777rem;
+				position: absolute;
+				top:1.111111rem;
+				left:0.75rem;
+			}
+			.me-btn{
+				margin-top: 0.402777rem;
+			}
+			.me-btn button{
+				border: none;
+				background: #FBD940;
+				font-size:0.638888rem;
+				color: #272727;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="me-head">
+			<div class="head-box">
+				<img src="../imgs/me/tree.png" />
+			</div>
+			<div class="head-title">
+				子非鱼
+			</div>
+		</div>
+		<div class="me-message">
+			<div class="message">
+				<img src="../imgs/me/messagge.png" />
+				<div class="message-title">我的消息</div>
+			</div>
+			<div class="attention">
+				<img src="../imgs/me/medal.png" />
+				<div class="message-title">我的关注</div>
+			</div>
+		</div>
+		<div class="me-btn">
+			<button type="button" class="mui-btn mui-btn-block">退出树洞</button>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
