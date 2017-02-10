@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
+        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			a:hover{
+				text-decoration: none;
+			}
+			a{
+				color: black;
+			}
+			.mui-bar-nav{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+			}
+			.mui-bar{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+				background: #FBD940;
+			}
+			.mui-segmented-control{
+				background:#FBD940;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				color: beige;
+				border-bottom: none;
+				background:#FBD940;
+			}
+			.mui-icon{
+				color: #000000;
+			}
+			
+			.back-btn{
+				padding: 2px 8px;
+				border-radius:6px;
+			}
+			.media-title{
+				font-size: 20px;
+			}
+			.table-view{
+				padding:10px 10px;
+				border-bottom:1px solid #CCCCCC;
+			}
+			.comment-text{
+				font-size: 17px;
+				color:#272727;
+				padding-bottom: 5px;
+			}
+			.original-text{
+				color: #666666;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的消息</h1>
+		</header>
+		<div class="mui-content">
+			<div>
+				<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#item1">
+				评论
+			</a>
+					<a class="mui-control-item" href="#item2">
+				私信
+			</a>
+				</div>
+			</div>
+			<div>
+				<div id="item1" class="mui-control-content mui-active">
+				<ul class="mui-table-view">
+				<li class="table-view">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree1.png">
+						<div class="mui-media-body">
+							<span class="media-title">幸福</span><span class="mui-pull-right"><button type="button" class="mui-btn back-btn">回复</button></span><div>17-1-23</div>
+						</div>
+						<div class="comment-text">想要这样一间小木屋</div>
+						<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
+				</li>
+				<li class="table-view">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree2.png">
+						<div class="mui-media-body">
+							<span class="media-title">幸福</span><span class="mui-pull-right"><button type="button" class="mui-btn back-btn">回复</button></span><div>17-1-23</div>
+						</div>
+						<div class="comment-text">想要这样一间小木屋</div>
+						<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
+				</li>
+				<li class="table-view">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree3.png">
+						<div class="mui-media-body">
+							<span class="media-title">幸福</span><span class="mui-pull-right"><button type="button" class="mui-btn back-btn">回复</button></span><div>17-1-23</div>
+						</div>
+						<div class="comment-text">想要这样一间小木屋</div>
+						<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
+				</li>
+			</ul>
+				</div>
+				<div id="item2" class="mui-control-content">
+				<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree4.png">
+						<div class="mui-media-body">
+							<span class="media-title">幸福</span><span class="mui-pull-right">17-1-23</span>
+							<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree5.png">
+						<div class="mui-media-body">
+							<span class="media-title">木屋</span><span class="mui-pull-right">17-1-23</span>
+							<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree6.png">
+						<div class="mui-media-body">
+							<span class="media-title">CBD</span><span class="mui-pull-right">17-1-23</span>
+							<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+		</script>
+	</body>
+
+</html>
