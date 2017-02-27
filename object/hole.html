@@ -50,7 +50,7 @@
 			<div class="bg-pic">
 				<img src="../imgs/big-tree.png" />
 			</div>
-			<div class="bg-pic-down">
+			<div class="bg-pic-down" id="down_comment">
 				<img src="../imgs/arrows.png" />
 			</div>
 		</div>
@@ -58,6 +58,12 @@
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()
+			document.getElementById("down_comment").addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'comment.html', 
+			    id:'comment.html'
+			  });
+			})
 		</script>
 	</body>
 

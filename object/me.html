@@ -103,16 +103,16 @@
 			<div class="head-box">
 				<img src="../imgs/me/tree.png" />
 			</div>
-			<div class="head-title">
+			<div class="head-title" id="comment_message">
 				子非鱼
 			</div>
 		</div>
 		<div class="me-message">
-			<div class="message">
+			<div class="message" id="btn_message">
 				<img src="../imgs/me/messagge.png" />
 				<div class="message-title">我的消息</div>
 			</div>
-			<div class="attention">
+			<div class="attention" id="btn_attention">
 				<img src="../imgs/me/medal.png" />
 				<div class="message-title">我的关注</div>
 			</div>
@@ -122,7 +122,27 @@
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			var btn_message = document.getElementById("btn_message");
+			var btn_attention = document.getElementById("btn_attention");
+			var comment_message = document.getElementById("comment_message");
+			btn_message.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'myMess.html', 
+			    id:'myMess.html'
+			  });
+			});
+			btn_attention.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'myAttention.html', 
+			    id:'myAttention.html'
+			  });
+			})
+			comment_message.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'comment_message.html', 
+			    id:'comment_message.html'
+			  });
+			})
 		</script>
 	</body>
 

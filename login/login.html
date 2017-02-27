@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
+        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>			
+			body,html{
+        		background-color: #FBD940 !important;
+        	}
+			.mui-icon{
+				color: #000000;
+			}
+			a:hover{
+				text-decoration: none;
+			}
+			.mui-bar-nav{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+			}
+			.mui-bar{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+				background: #FBD940;
+			}
+			.mui-content>.mui-table-view:first-child{
+				margin-top: 0;
+			}
+			.header-title{
+				float: right;
+				font-size:0.416666rem;
+				margin-top: 0.42777rem;
+			}
+			
+			.content-img{
+				width: 3.833333rem;
+				height: 3.916666rem;
+				margin-top: 2.944444rem;
+				margin-left: 3.069444rem;
+			}
+			
+			.mui-content{
+				padding-top: 0 !important;
+				background: #FBD940;
+			}
+			
+			.mui-input-group .mui-input-row{
+				height: 1.236111rem;
+			}
+			
+			.input-icon{
+				width: 0.430555rem;
+			}
+			
+			.mui-input-row label{
+				width: 10% !important;
+			}
+			
+			.mui-input-row input{
+				width: 85% !important;
+			}
+			
+			.mui-input-clear{
+				height: 1.236111rem !important;
+				padding-left: 0.375rem !important;
+			}
+			
+			.mui-input-group{
+				margin: 0 1.277777rem;
+				border-radius:15px;
+				margin-top: -12px;
+			}
+			
+			.mui-btn{
+				margin:0 1.277777rem;
+				margin-top: 0.736111rem;
+				width: 75%;
+				border-radius:15px;
+			}
+			
+			.btn-register{
+				margin-top:1.361111rem;
+				text-align: center;
+				font-size: 0.527777rem;
+				color: #814203;
+				font-weight: 600;
+				font-family: "微软雅黑";
+			}
+			
+			.mui-btn-blue{
+				color: #a3a3a3 !important;
+				background-color: #535353;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="header-title">忘记密码</h1>
+		</header>
+		<div class="mui-content">
+			<img class="content-img" src="../imgs/login/bigtree.png" />
+			<form class="mui-input-group">
+			    <div class="mui-input-row">
+			        <label><img class="input-icon" src="../imgs/login/phono.png"/></label>
+			        <input type="text" class="mui-input-clear" placeholder="手机号码">
+			    </div>
+			    <div class="mui-input-row">
+			        <label><img class="input-icon" src="../imgs/login/code.png"/></label>
+			        <input type="text" class="mui-input-clear" placeholder="8-20位的数字或英文">
+			    </div>
+			</form>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block">按钮</button>		
+			<div class="btn-register">立即注册</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
