@@ -22,7 +22,7 @@
 				background-size: 100%;
 				background-repeat: no-repeat;
 				text-align: center;
-				top: 0;
+				top: 0.138888rem;
 				left:1.458333rem;
 				text-align: center;
 			}
@@ -34,7 +34,7 @@
 				background-size: 100%;
 				background-repeat: no-repeat;
 				text-align: center;
-				top: 0;
+				top: 0.138888rem;
 				left:50%;
 				margin-left: -10px;
 			}
@@ -46,13 +46,16 @@
 				background-size: 100%;
 				background-repeat: no-repeat;
 				text-align: center;
-				top: 0;
+				top: 0.138888rem;
 				right:1.458333rem;
 			}
 			.hole-color{
 				background-image: url(../imgs/tree1.png);
 				background-size: 100%;
 				background-repeat: no-repeat;
+			}
+			.text-color{
+				color: #FBD940 !important;
 			}
 			.forest-color{
 				background-image: url(../imgs/forest-1.png);
@@ -80,18 +83,18 @@
 		<nav id="nav_main" class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item mui-active" href="hole.html">
 				<div id="nav_hole" class="nav-icon-hole">
-					<div class="nav-text">树洞</div>
+					<div id="nav_hole_text" class="nav-text">树洞</div>
 				</div>	
 			</a>
 			<a class="mui-tab-item" href="forest.html">
 				<div id="nav_forest" class="nav-icon-forest">
-					<div class="nav-text">森林</div>
+					<div id="nav_forest_text" class="nav-text">森林</div>
 				</div>
 				
 			</a>
 			<a class="mui-tab-item" href="me.html">
 				<div id="nav_me" class="nav-icon-me">
-					<div class="nav-text text">我</div>
+					<div id="nav_me_text" class="nav-text text">我</div>
 				</div>			
 			</a>
 		</nav>
@@ -107,6 +110,9 @@
 			var nav_hole = document.getElementById("nav_hole");
 			var nav_forest = document.getElementById("nav_forest");
 			var nav_me = document.getElementById("nav_me");
+			var nav_hole_text = document.getElementById("nav_hole_text");
+			var nav_forest_text = document.getElementById("nav_forest_text");
+			var nav_me_text = document.getElementById("nav_me_text");
 			var nav_main = document.getElementById("nav_main");
 			var navheight= nav_main.offsetHeight+1 + 'px';
 				mui.plusReady(function() {
@@ -153,14 +159,23 @@
 							nav_hole.classList.add('hole-color');
 							nav_forest.classList.remove('forest-color');
 							nav_me.classList.remove('me-color');
+							nav_hole_text.classList.add('text-color');
+							nav_forest_text.classList.remove('text-color');
+							nav_me_text.classList.remove('text-color');
 						}else if(activeTab == 'forest.html'){
 							nav_hole.classList.remove('hole-color');
 							nav_forest.classList.add('forest-color');
 							nav_me.classList.remove('me-color');
+							nav_hole_text.classList.remove('text-color');
+							nav_forest_text.classList.add('text-color');
+							nav_me_text.classList.remove('text-color');
 						}else{
 							nav_hole.classList.remove('hole-color');
 							nav_forest.classList.remove('forest-color');
 							nav_me.classList.add('me-color');
+							nav_hole_text.classList.remove('text-color');
+							nav_forest_text.classList.remove('text-color');
+							nav_me_text.classList.add('text-color');
 						}						
 					}						
 				});		
