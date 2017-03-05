@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en" class="feedback">
 
 	<head>
 		<meta charset="UTF-8">
@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
 		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/feedback.css" />
 		<style>
 			html,
 			body {
@@ -60,6 +61,9 @@
 			#textarea{
 				border:none;
 			}
+			#contact{
+				border: 1px solid #ACACB4 !important;
+			}
 		</style>
 	</head>
 
@@ -74,8 +78,14 @@
 			<div class="mui-input-row">
 				<textarea id="textarea" rows="5" placeholder="说出你的小秘密..."></textarea>
 			</div>
+				<div id='image-list' class="row image-list"></div>
+			<div class="mui-input-row">
+				<input id='contact' type="text" class="mui-input-clear contact" placeholder="添加5-10字的关键字
+				" />
+			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src=" ../js/feedback.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init()
 		</script>

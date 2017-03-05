@@ -1,28 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta content="yes" name="apple-mobile-web-app-capable">
-        <meta content="yes" name="apple-touch-fullscreen">
-        <meta content="telephone=no,email=no" name="format-detection">
-        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
-        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
-        <link href="../css/mui.min.css" rel="stylesheet" />
-        <style>
-        	body,html{
-        		background-color: #d1e991;
-        		width: 90%;
-        	}
-        	.bg-pic{
-        		width: 100%;
-        		background-image: url(../imgs/trees/river.png);
-        		background-repeat: no-repeat;
-        		background-size:100%;
-        	}
-        	.tree{
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			a{
+				color: #272727;
+				text-decoration: none;
+			}
+			a:link{
+				color: #272727;
+			}
+			a:visited{
+				color: #272727;
+			}
+			.item-logo {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			.tree{
         		overflow: hidden;
         		position: absolute;
         		width: 1.597222rem;
@@ -95,39 +98,148 @@
         		top:8.125rem;
         		left:8.125rem;
         	}
-        </style>
+        	#popover{
+        		top: 2.777777rem !important;
+        		left: 50% !important;
+        		margin-left: -140px;
+        		background-color: rgba(247,247,247,0.7);
+        		
+        	}
+        	.mui-popover .mui-popover-arrow{
+        		display: none;
+        	}
+        	
+        	.popover-box{
+        		text-align: center;
+        		position: relative;
+        	}
+        	
+        	.popover-btn{
+        		position: absolute;
+        		width:0.763888rem !important;
+        		left: 0.138888rem;
+        		top: 0;
+        	}
+			.popover-box img{
+				width: 6.083333rem;
+				margin-top: 0.138888rem;
+			}
+			.popover-box p{
+				color: #272727;
+			}
+			.come-btn{
+				position: absolute;
+				width: 2.277777rem;
+				height: 2.277777rem;
+				background-image:url(../imgs/trees/circle.png);
+				background-size: 100% 100%;
+				z-index: 99999999;
+				top: 3.986111rem;
+				left:50%;
+				margin-left: -1.133333rem;
+				text-align: center;	
+				font-size: 20px;
+				font-weight: 700;
+				color: rgba(248,248,255,0.8);
+				line-height: 2.277777rem;
+			}
+		</style>
 	</head>
 
 	<body>
-		<div class="bg-pic" id="bg_box">
-			<div class="tree-box">
-				<div class="tree tree-1"><img src="../imgs/trees/tree5.png" /></div>
-				<div class="tree tree-2"><img src="../imgs/trees/tree3.png" /></div>
-				<div class="tree tree-3"><img src="../imgs/trees/tree7.png" /></div>
-				<div class="tree tree-4"><img src="../imgs/trees/tree2.png" /></div>
-				<div class="tree tree-5"><img src="../imgs/trees/tree4.png" /></div>
-				<div class="tree tree-6"><img src="../imgs/trees/tree1.png" /></div>
-				<div class="tree tree-7"><img src="../imgs/trees/tree4.png" /></div>
-				<div class="tree tree-8"><img src="../imgs/trees/tree7.png" /></div>
-				<div class="tree tree-9"><img src="../imgs/trees/tree1.png" /></div>
-				<div class="tree tree-10"><img src="../imgs/trees/tree9.png" /></div>
-				<div class="tree tree-11"><img src="../imgs/trees/tree6.png" /></div>
-				<div class="tree tree-12"><img src="../imgs/trees/tree5.png" /></div>
-				<div class="tree tree-13"><img src="../imgs/trees/tree4.png" /></div>
-				<div class="tree tree-14"><img src="../imgs/trees/tree1.png" /></div>
-				<div class="tree tree-15"><img src="../imgs/trees/tree2.png" /></div>
-				<div class="tree tree-16"><img src="../imgs/trees/tree3.png" /></div>
+		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: black;">
+			<div class="mui-slider-group">
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/1.png);">
+						<a href="#popover"><div class="tree tree-1"><img src="../imgs/trees/tree5.png" /></div></a>
+						<a href="#popover"><div class="tree tree-2"><img src="../imgs/trees/tree3.png" /></div></a>
+						<a href="#popover"><div class="tree tree-3"><img src="../imgs/trees/tree7.png" /></div></a>
+						<a href="#popover"><div class="tree tree-4"><img src="../imgs/trees/tree2.png" /></div></a>
+						<a href="#popover"><div class="tree tree-5"><img src="../imgs/trees/tree4.png" /></div></a>
+						<a href="#popover"><div class="tree tree-6"><img src="../imgs/trees/tree1.png" /></div></a>
+						<a href="#popover"><div class="tree tree-7"><img src="../imgs/trees/tree4.png" /></div></a>
+						<a href="#popover"><div class="tree tree-8"><img src="../imgs/trees/tree7.png" /></div></a>
+						<a href="#popover"><div class="tree tree-9"><img src="../imgs/trees/tree1.png" /></div></a>
+						<a href="#popover"><div class="tree tree-10"><img src="../imgs/trees/tree9.png" /></div></a>
+					</div>
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/2.png);">
+						<a href="#popover"><div class="tree tree-7"><img src="../imgs/trees/tree4.png" /></div></a>
+						<a href="#popover"><div class="tree tree-8"><img src="../imgs/trees/tree7.png" /></div></a>
+						<a href="#popover"><div class="tree tree-9"><img src="../imgs/trees/tree1.png" /></div></a>
+						<a href="#popover"><div class="tree tree-10"><img src="../imgs/trees/tree9.png" /></div></a>
+						<a href="#popover"><div class="tree tree-11"><img src="../imgs/trees/tree6.png" /></div></a>
+						<a href="#popover"><div class="tree tree-12"><img src="../imgs/trees/tree5.png" /></div></a>
+						<a href="#popover"><div class="tree tree-13"><img src="../imgs/trees/tree4.png" /></div></a>
+						<a href="#popover"><div class="tree tree-14"><img src="../imgs/trees/tree1.png" /></div></a>
+						<a href="#popover"><div class="tree tree-15"><img src="../imgs/trees/tree2.png" /></div></a>
+						<a href="#popover"><div class="tree tree-16"><img src="../imgs/trees/tree3.png" /></div></a>
+					</div>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/3.png);">
+						<a href="#popover"><div class="tree tree-1"><img src="../imgs/trees/tree5.png" /></div></a>
+						<a href="#popover"><div class="tree tree-2"><img src="../imgs/trees/tree3.png" /></div>
+						<a href="#popover"><div class="tree tree-3"><img src="../imgs/trees/tree7.png" /></div>
+						<a href="#popover"><div class="tree tree-4"><img src="../imgs/trees/tree2.png" /></div>
+						<a href="#popover"><div class="tree tree-5"><img src="../imgs/trees/tree4.png" /></div>
+						<a href="#popover"><div class="tree tree-6"><img src="../imgs/trees/tree1.png" /></div>
+						<a href="#popover"><div class="tree tree-7"><img src="../imgs/trees/tree4.png" /></div>
+						<a href="#popover"><div class="tree tree-8"><img src="../imgs/trees/tree7.png" /></div>
+						<a href="#popover"><div class="tree tree-9"><img src="../imgs/trees/tree1.png" /></div>
+						<a href="#popover"><div class="tree tree-10"><img src="../imgs/trees/tree9.png" /></div>
+					</div>
+				</div>
+				<!-- 第四张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/4.png);">
+						<div class="tree tree-7"><img src="../imgs/trees/tree4.png" /></div>
+						<div class="tree tree-8"><img src="../imgs/trees/tree7.png" /></div>
+						<div class="tree tree-9"><img src="../imgs/trees/tree1.png" /></div>
+						<div class="tree tree-10"><img src="../imgs/trees/tree9.png" /></div>
+						<div class="tree tree-11"><img src="../imgs/trees/tree6.png" /></div>
+						<div class="tree tree-12"><img src="../imgs/trees/tree5.png" /></div>
+						<div class="tree tree-13"><img src="../imgs/trees/tree4.png" /></div>
+						<div class="tree tree-14"><img src="../imgs/trees/tree1.png" /></div>
+						<div class="tree tree-15"><img src="../imgs/trees/tree2.png" /></div>
+						<div class="tree tree-16"><img src="../imgs/trees/tree3.png" /></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		
+				<div id="popover" class="mui-popover">
+					<a href="javascript:;">
+						<div class="popover-box">
+							<img id="povover_back" class="popover-btn" src="../imgs/trees/cancel.png" />
+							<h2>小狐狸的树</h2>
+							<p>关键字：狗狗离开了我</p>
+							<img src="../imgs/trees/tree-big.png" />
+							<div class="come-btn">
+								进入...
+							</div>
+						</div>	
+					</a>
+				</div>
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript">		
-			mui.plusReady(function(){
-				var height = plus.screen.resolutionHeight-71;
-				var bg_box = document.getElementById("bg_box");
-				bg_box.style.height = height +'px';
-			})
+		<script>
 			mui.init();
+			var popover = document.getElementById("popover");
+			var povover_back = document.getElementById("povover_back");
+			povover_back.addEventListener("tap", closeMask, false);
+			function closeMask(){			
+				var mask = mui.createMask();
+					mask.close();
+			}
+			//图片切换时，触发动画
+			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+			 	//注意slideNumber是从0开始的；
+			 	var index = event.detail.slideNumber;
+			});
 		</script>
 	</body>
 

@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: white;
+				overflow: hidden;
+			}
+			
+			.btn-box {
+				width: 10rem;
+				position: relative;
+			}
+			
+			.mui-content {
+				background-color: white;
+			}
+			
+			.btn-return {
+				position: absolute;
+				padding: 5px 20px;
+				border: 1px solid white;
+				border-radius: 10px;
+				background-color: white;
+				top: 5px;
+				font-size: 0.555555rem;
+				color: #272727;
+			}
+			
+			.btn-send {
+				position: absolute;
+				padding: 5px 20px;
+				border: 1px solid white;
+				border-radius: 10px;
+				background-color: white;
+				top: 5px;
+				right: 0.555555rem;
+				font-size: 0.555555rem;
+				color: #272727;
+			}
+			
+			.mui-bar-nav {
+				box-shadow: none;
+				background-color: #fbd940;
+			}
+			
+			.tree-box{
+				width:100%;
+				position: relative;
+				margin: 0;
+				padding: 0;
+				height: auto;
+				text-align: center;
+			}
+			.tree-ul{
+				width: 100%;
+				list-style: none;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.tree-ul li{
+				width: 50%;
+				float: left;
+				margin: 15px 0;
+				position: relative;
+			}
+			.tree-ul img{
+				width:1.555555rem;
+			}
+			.active{
+				background-image: url(../imgs/trees/true.png);
+				background-position: left top;
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				width: 0.680555rem;
+				height: 0.680555rem;
+				position: absolute;
+				right: 20%;
+				bottom: 2%;
+			}
+			.mui-input-row{
+				width: 98%;
+				margin-left: 1%;
+				border: 1px solid #999999;
+				border-radius:10px;
+				margin-top: 0.577777rem;
+			}
+			.mui-input-row label{
+				width: 20%;
+				text-align: center;
+				padding: 9px 0;
+				margin: 0;
+				font-size: 0.5rem;
+				color: #999999;
+				line-height:21px;
+			}
+			.mui-input-row input{
+				width: 80% !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="btn-box mui-action-back">
+				<div class="btn-return">取消</div>
+				<div class="btn-send">确认</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-row">
+				<label>昵称：</label>
+				<input id='contact' type="text" class="mui-input-clear contact" placeholder="添加5-10字的关键字" />
+			</div>
+			<div class="tree-box">
+				<ul class="tree-ul">
+					<a href="#javascript:;" data-list="1"><li><img src="../imgs/trees/tree1.png"/><div class="true active"></div></li></a>
+					<a href="#javascript:;" data-list="2"><li><img src="../imgs/trees/tree2.png"/><div class="true"></div></li></a>
+					<a href="#javascript:;" data-list="3"><li><img src="../imgs/trees/tree3.png"/><div class="true"></div></li></a>
+					<a href="#javascript:;" data-list="4"><li><img src="../imgs/trees/tree4.png"/><div class="true"></div></li></a>
+					<a href="#javascript:;" data-list="5"><li><img src="../imgs/trees/tree5.png"/><div class="true"></div></li></a>
+					<a href="#javascript:;" data-list="6"><li><img src="../imgs/trees/tree6.png"/><div class="true"></div></li></a>
+					<a href="#javascript:;" data-list="7"><li><img src="../imgs/trees/tree7.png"/><div class="true"></div></li></a>
+					<a href="#javascript:;" data-list="8"><li><img src="../imgs/trees/tree8.png"/><div class="true"></div></li></a>
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui(".tree-ul").on('tap','a',function(){
+				var inxex = 1;
+				var index = this.getAttribute("data-list");
+				var list = document.getElementsByClassName('true');
+				/*list.classList.add('active');*/
+				for(var i=0;i<list.length;i++){
+					list[i].classList.remove('active');
+				}
+				list[index-1].classList.add('active');
+			});
+			
+		</script>
+	</body>
+
+</html>

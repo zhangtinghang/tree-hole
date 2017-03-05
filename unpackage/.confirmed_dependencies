@@ -1,1 +1,52 @@
-null
+{
+  "object/main.html": {
+    "resources": [
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "object/hole.html",
+      "imgs/tree.png",
+      "imgs/forest-1.png",
+      "imgs/tree1.png",
+      "imgs/forest.png",
+      "imgs/me.png",
+      "imgs/me1.png"
+    ],
+    "refer": [
+      "object/hole.html",
+      "object/me.html",
+      "object/forest.html"
+    ]
+  },
+  "object/hole.html": {
+    "resources": [
+      "imgs/arrows.png",
+      "imgs/big-tree.png"
+    ]
+  },
+  "object/me.html": {
+    "resources": [
+      "imgs/me/tree.png",
+      "imgs/me/medal.png",
+      "imgs/me/messagge.png"
+    ]
+  },
+  "object/forest.html": {
+    "resources": [
+      "imgs/trees/tree5.png",
+      "imgs/trees/tree7.png",
+      "imgs/trees/4.png",
+      "imgs/trees/1.png",
+      "imgs/trees/tree6.png",
+      "imgs/trees/tree2.png",
+      "imgs/trees/tree3.png",
+      "imgs/trees/tree-big.png",
+      "imgs/trees/tree4.png",
+      "imgs/trees/3.png",
+      "imgs/trees/2.png",
+      "imgs/trees/tree1.png",
+      "imgs/trees/tree9.png"
+    ]
+  }
+}

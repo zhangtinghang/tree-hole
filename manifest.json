@@ -189,5 +189,95 @@
 				}
 			}
 		}
+	},
+	"dependencies": {
+		"pages": {
+			"object/main.html": {
+				"resources": [
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"css/mui.min.css",
+					"object/hole.html",
+					"imgs/tree.png",
+					"imgs/forest-1.png",
+					"imgs/tree1.png",
+					"imgs/forest.png",
+					"imgs/me.png",
+					"imgs/me1.png"
+				],
+				"refer": [
+					"object/me.html",
+					"object/forest.html"
+				],
+				"priority": 0
+			},
+			"object/hole.html": {
+				"resources": [
+					"imgs/arrows.png",
+					"imgs/big-tree.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"object/me.html": {
+				"resources": [
+					"imgs/me/tree.png",
+					"imgs/me/medal.png",
+					"imgs/me/messagge.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"object/forest.html": {
+				"resources": [
+					"imgs/trees/tree5.png",
+					"imgs/trees/tree7.png",
+					"imgs/trees/4.png",
+					"imgs/trees/1.png",
+					"imgs/trees/tree6.png",
+					"imgs/trees/tree2.png",
+					"imgs/trees/tree3.png",
+					"imgs/trees/tree-big.png",
+					"imgs/trees/tree4.png",
+					"imgs/trees/3.png",
+					"imgs/trees/2.png",
+					"imgs/trees/tree1.png",
+					"imgs/trees/tree9.png"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"imgs/comment_messgae/comment.png",
+				"login/register.html",
+				"css/feedback.css",
+				"imgs/login/verify.png",
+				"imgs/trees/cancel.png",
+				"fonts/mui.ttf",
+				"imgs/trees/tree.png",
+				"imgs/trees/river.png",
+				"object/comment.html",
+				"imgs/login/code.png",
+				"css/mui.css",
+				"js/zoom/flexible.debug.js",
+				"js/zoom/flexible_css.debug.js",
+				"imgs/trees/tree8.png",
+				"imgs/login/head.png",
+				"index.html",
+				"imgs/comment_messgae/arrows.png",
+				"login/login.html",
+				"login/information.html",
+				"object/myMess.html",
+				"js/mui.js",
+				"js/feedback.js",
+				"imgs/login/phono.png",
+				"imgs/login/bigtree.png",
+				"object/comment_message.html",
+				"object/myAttention.html"
+			]
+		}
 	}
 }
