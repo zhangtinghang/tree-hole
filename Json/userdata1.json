@@ -1,0 +1,23 @@
+{
+    "username": "user1",
+    "password": "123456",
+    "problem_id": 1,
+    "answer": "answer",
+    "Information": {
+        "avatar": 1, 					//头像ID
+        "nickname": "nickuser1",        //昵称
+        "following": [
+            "user2"						//关注谁
+        ],
+        "followed": [
+            "user2"						//被谁关注
+        ],
+        "treehole": [
+            "58bd6f617addb82e74985c24"  //该用户写的树洞
+        ]
+    },
+    "permission": {
+        "user": true
+    },
+    "admin": 0
+}

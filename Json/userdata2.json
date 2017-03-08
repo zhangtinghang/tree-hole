@@ -1,0 +1,21 @@
+{
+    "username": "user2",
+    "password": "123456",
+    "problem_id": 1,
+    "answer": "answer",
+    "Information": {
+        "avatar": 1,
+        "nickname": "nickuser2",
+        "following": [
+            "user1"
+        ],
+        "followed": [
+            "user1"
+        ],
+        "treehole": []
+    },
+    "permission": {
+        "user": true
+    },
+    "admin": 0
+}
