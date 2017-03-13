@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" class="feedback">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/feedback.css" />
+		<link rel="stylesheet" href="../css/headerStyle.css" />
+		<style>
+			html,
+			body {
+				background-color: white;
+				overflow: hidden;
+			}
+			
+			.mui-content {
+				background-color: white;
+			}
+			
+			.btn-box {
+				width: 10rem;
+				position: relative;
+			}
+			
+			.btn-return {
+				position: absolute;
+				padding: 5px 20px;
+				border: 1px solid white;
+				border-radius: 10px;
+				background-color: white;
+				top: 5px;
+				font-size: 0.555555rem;
+				color: #272727;
+			}
+			
+			.btn-send {
+				position: absolute;
+				padding: 5px 20px;
+				border: 1px solid white;
+				border-radius: 10px;
+				background-color: white;
+				top: 5px;
+				right: 0.555555rem;
+				font-size: 0.555555rem;
+				color: #272727;
+			}
+			
+			.mui-bar-nav {
+				box-shadow: none;
+				background-color: #fbd940;
+			}
+			.mui-input-row{
+				border:none;
+			}
+			#textarea{
+				border:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header_box" class="mui-bar mui-bar-nav">
+			<div id="header_content">
+			<div class="btn-box mui-action-back">
+				<div class="btn-return">取消</div>
+				<div class="btn-send">发送</div>
+			</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-row">
+				<textarea id="textarea" rows="5" placeholder="请回复..."></textarea>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

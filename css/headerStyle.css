@@ -1,0 +1,19 @@
+body,html{
+	overflow-x: hidden;
+}
+#header_content{
+	position: absolute;
+	width: 100%;
+	height: 44px;
+	bottom:0;	/*js动态计算*/
+}
+.mui-content{
+	position: relative;
+	padding-top:0 !important;
+}
+.mui-bar-nav{
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	position: relative;
+	padding-top:0; /*js动态计算*/
+}

@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
 		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/headerStyle.css" />
 		<style>
 			html,
 			body {
@@ -113,11 +114,13 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header  id="header_box" class="mui-bar mui-bar-nav">
+		<div id="header_content">
 			<div class="btn-box mui-action-back">
 				<div class="btn-return">取消</div>
-				<div class="btn-send">确认</div>
+				<div id="affirm" class="btn-send">确认</div>
 			</div>
+		</div>
 		</header>
 		<div class="mui-content">
 			<div class="mui-input-row">
@@ -126,31 +129,61 @@
 			</div>
 			<div class="tree-box">
 				<ul class="tree-ul">
-					<a href="#javascript:;" data-list="1"><li><img src="../imgs/trees/tree1.png"/><div class="true active"></div></li></a>
-					<a href="#javascript:;" data-list="2"><li><img src="../imgs/trees/tree2.png"/><div class="true"></div></li></a>
-					<a href="#javascript:;" data-list="3"><li><img src="../imgs/trees/tree3.png"/><div class="true"></div></li></a>
-					<a href="#javascript:;" data-list="4"><li><img src="../imgs/trees/tree4.png"/><div class="true"></div></li></a>
-					<a href="#javascript:;" data-list="5"><li><img src="../imgs/trees/tree5.png"/><div class="true"></div></li></a>
-					<a href="#javascript:;" data-list="6"><li><img src="../imgs/trees/tree6.png"/><div class="true"></div></li></a>
-					<a href="#javascript:;" data-list="7"><li><img src="../imgs/trees/tree7.png"/><div class="true"></div></li></a>
-					<a href="#javascript:;" data-list="8"><li><img src="../imgs/trees/tree8.png"/><div class="true"></div></li></a>
+					<a style="display: none;" href="#javascript:;" data-list="0"><li><img src="../imgs/trees/tree0.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="1"><li><img src="../imgs/trees/tree1.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="2"><li><img src="../imgs/trees/tree2.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="3"><li><img src="../imgs/trees/tree3.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="4"><li><img src="../imgs/trees/tree4.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="5"><li><img src="../imgs/trees/tree5.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="6"><li><img src="../imgs/trees/tree6.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="7"><li><img src="../imgs/trees/tree7.png"/><div class="tree_active"></div></li></a>
+					<a href="#javascript:;" data-list="8"><li><img src="../imgs/trees/tree8.png"/><div class="tree_active"></div></li></a>
 				</ul>
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/immersion.js"></script>
 		<script type="text/javascript">
-			mui.init();
+			var index;
+			if(localStorage.head_num){
+				index = localStorage.head_num;
+			}else{
+				index = 0;
+			}
+			//点击更改
 			mui(".tree-ul").on('tap','a',function(){
-				var inxex = 1;
-				var index = this.getAttribute("data-list");
-				var list = document.getElementsByClassName('true');
+				index = this.getAttribute("data-list");	
+				localStorage.setItem("head_num",index);
+				console.log(index)
+				choose();
+			});
+			choose();
+			//自定义函数，用于传递选中头像
+			var detailPage = null;
+			var affirm = document.getElementById("affirm");
+			affirm.addEventListener('tap',function(){
+				//获得页面
+				if(!detailPage){
+				  detailPage = plus.webview.getWebviewById('me.html');
+				}
+				//触发页面的newsId事件
+				mui.fire(detailPage,'headId',{
+				  num:index
+				});		
+				//打开页面          
+				  mui.openWindow({
+				    id:'me.html'
+				  });
+			});		
+
+			function choose(){				
+				var list = document.getElementsByClassName('tree_active');
 				/*list.classList.add('active');*/
 				for(var i=0;i<list.length;i++){
 					list[i].classList.remove('active');
 				}
-				list[index-1].classList.add('active');
-			});
-			
+				list[index].classList.add('active');
+			}
 		</script>
 	</body>
 

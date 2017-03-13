@@ -11,6 +11,7 @@
         <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
         <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/headerStyle.css" />
 		<style>
 			a:hover{
 				text-decoration: none;
@@ -62,9 +63,11 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header id="header_box" class="mui-bar mui-bar-nav">
+			<div id="header_content">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">我的消息</h1>
+			</div>
 		</header>
 		<div class="mui-content">
 			<div>
@@ -140,10 +143,25 @@
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script>
 			mui.init({
 				swipeBack:true //启用右滑关闭功能
 			});
+			
+			mui('#item1').on('tap','.back-btn',function(){
+				mui.openWindow({
+				    id:'reply.html',
+				    url:'reply.html'
+				  });
+			})
+			
+			mui('#item2').on('tap','.mui-table-view-cell',function(){
+				mui.openWindow({
+				    id:'/chat/im_chat.html',
+				    url:'/chat/im_chat.html'
+				  });
+			})
 		</script>
 	</body>
 

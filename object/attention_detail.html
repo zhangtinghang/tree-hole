@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
 		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/headerStyle.css" />
 		<style>
 			html,body{
 				background-color: white;
@@ -21,75 +22,113 @@
 			a{
 				color: black;
 			}
-			.mui-bar-nav{
-				box-shadow: none;
-				-webkit-box-shadow: none;
-				position: relative;
-			}
+			
 			.mui-bar{
 				box-shadow: none;
 				-webkit-box-shadow: none;
 				background: #FBD940;
-				position: relative;
 			}
 			.mess_icon{
 				width: 0.708333rem;
 				position: absolute;
-				right: 0.238888rem;
+				right: 0.338888rem;
 				top: 10px;
-			}
-			
-			.mui-content{
-				padding-top: 0px !important; 
 			}
 			
 			.mui-table-view{
 				margin-top: 0 !important;
 			}
+			.mui-table-view:before{
+				display: none;
+			}
+			.mui-table-view:after{
+				display: none;
+			}
 			
+			.table-view{
+				padding-top:0.258333rem;
+				border-bottom:1px solid #A3A3A3;
+			}
+			
+			.mui-media-body{
+				position: relative;
+				display: flex;
+			}
+			.mui-media-body img{
+				width:1.597222rem;
+				height: 2.361111rem;
+				margin-left: 0.347222rem;
+			}
+			.media-title{
+				position: absolute;
+				top: 50%;
+				margin-top: -10px;
+				left:2.344444rem;
+				font-size: 0.472222rem;
+				color: #272727;
+				font-weight: 700;
+			}
+			.media-time{
+				position: absolute;
+				right: 0.438888rem;
+				top: 10%;
+				font-size: 0.372222rem;
+			}
 			.original-text{
-				
+				padding:0.338888rem 0;
+				padding-left: 4%;
+				font-size: 0.347222rem;
+				color: #797979;
 			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">匪我思存</h1>
-			<img class="mess_icon" src="../imgs/mess.png" />
+		<header id="header_box" class="mui-bar mui-bar-nav">
+			<div id="header_content">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-title">匪我思存</h1>
+				<img id="msg_im" class="mess_icon" src="../imgs/mess.png" />
+			</div>
 		</header>
 		<div class="mui-content">
 			<ul class="mui-table-view">
 				<li class="table-view">
-						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree1.png">
-						<div class="mui-media-body">
-							<span class="media-title">幸福</span>
-							<div>17-1-23</div>
+					<div class="mui-media-body">
+						<img src="../imgs/trees/tree1.png" />					
+							<span class="media-title">匪我思存</span>
+							<div class="media-time">17-1-23</div>
 						</div>
-						<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
+					<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
 				</li>
 				<li class="table-view">
-						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree1.png">
-						<div class="mui-media-body">
-							<span class="media-title">幸福</span>
-							<div>17-1-23</div>
+					<div class="mui-media-body">
+						<img src="../imgs/trees/tree1.png" />					
+							<span class="media-title">匪我思存</span>
+							<div class="media-time">17-1-23</div>
 						</div>
-						<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
+					<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
 				</li>
 				<li class="table-view">
-						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree1.png">
-						<div class="mui-media-body">
-							<span class="media-title">幸福</span>
-							<div>17-1-23</div>
+					<div class="mui-media-body">
+						<img src="../imgs/trees/tree1.png" />					
+							<span class="media-title">匪我思存</span>
+							<div class="media-time">17-1-23</div>
 						</div>
-						<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
+					<div class="original-text">想要这样一间小木屋，夏天挫v想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫想要这样一间小木屋，夏天挫</div>
 				</li>
 			</ul>
 		</div>
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
+		<script src="../js/immersion.js"></script>
+		<script type="text/javascript">	
+			var msg_im = document.getElementById("msg_im");
+			msg_im.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: '../chat/im_chat.html', 
+			    id:'../chat/im_chat.html'
+			  });
+			})
 		</script>
 	</body>
 

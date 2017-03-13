@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/feedback.css" />
+		<link rel="stylesheet" href="../css/headerStyle.css" />
 		<style>
 			html,
 			body {
@@ -68,10 +69,12 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header id="header_box" class="mui-bar mui-bar-nav">
+			<div id="header_content">
 			<div class="btn-box mui-action-back">
 				<div class="btn-return">取消</div>
 				<div class="btn-send">发送</div>
+			</div>
 			</div>
 		</header>
 		<div class="mui-content">
@@ -85,6 +88,7 @@
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script src=" ../js/feedback.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init()

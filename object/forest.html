@@ -151,7 +151,7 @@
 	</head>
 
 	<body>
-		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: #2AC845;">
+		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: #D1E991">
 			<div class="mui-slider-group" id="list-box">
 
 			</div>
@@ -172,6 +172,7 @@
 				</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/template.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script type="text/html" id="art-list">
 			{{each index as value i}}
 				<div class="mui-slider-item">
@@ -182,6 +183,20 @@
 					</div>
 				</div>
 			{{/each}}
+		</script>
+		
+		<script type="text/html" id="popover_list">
+			<a href="javascript:;">
+						<div class="popover-box">
+							<img id="povover_back" class="popover-btn" src="../imgs/trees/cancel.png" />
+							<h2>小狐狸的树</h2>
+							<p>关键字：狗狗离开了我</p>
+							<img src="../imgs/trees/tree{{popover_num}}-big.png" />
+							<div id="come_btn" class="come-btn">
+								进入...
+							</div>
+						</div>
+					</a>
 		</script>
 		<script>
 			mui.init();
@@ -198,7 +213,7 @@
 				};
 			var html = template('art-list', data);
 			document.getElementById('list-box').innerHTML = html;
-			
+			var popover_bg = template('popover_list',data);
 
 		//跳转遮罩层
 			mui('body').on('shown', '.mui-popover', function(e) {

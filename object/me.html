@@ -99,9 +99,9 @@
 	</head>
 
 	<body>
-		<div class="me-head">
-			<div class="head-box">
-				<img src="../imgs/me/tree.png" />
+		<div class="me-head" id="head_box">
+			<div class="head-box" id="head_icon">
+				<img src="../imgs/me/tree0_head.png" />
 			</div>
 			<div class="head-title" id="comment_message">
 				子非鱼
@@ -121,10 +121,22 @@
 			<button type="button" class="mui-btn mui-btn-block">退出树洞</button>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/template.js"></script>
+		<script src="../js/immersion.js"></script>
+		<script type="text/html" id="head_list">			
+				<div class="head-box">
+					<img src="../imgs/me/tree{{num}}_head.png" />
+				</div>
+				<div class="head-title" id="comment_message">
+					{{title}}
+				</div>
+		</script>
+		
 		<script type="text/javascript">
 			var btn_message = document.getElementById("btn_message");
 			var btn_attention = document.getElementById("btn_attention");
 			var comment_message = document.getElementById("comment_message");
+			var head_box = document.getElementById("head_box");
 			btn_message.addEventListener('tap',function(){
 				mui.openWindow({
 			    url: 'myMess.html', 
@@ -143,6 +155,31 @@
 			    id:'comment_message.html'
 			  });
 			})
+			head_box.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'head_modification.html', 
+			    id:'head_modification.html'
+			  });
+			})
+			
+			//更换头像
+			var num =localStorage.nowHead;
+			window.addEventListener('headId',function(event){
+			  //获得事件参数
+			  num = event.detail.num;
+			  localStorage.setItem("nowHead",num);
+				artHead(num);
+			});
+			
+			artHead(num);
+		//修改头像
+		function artHead(){
+			var data = {
+				num:num
+			}
+			var html = template('head_list', data);
+			document.getElementById('head_box').innerHTML = html;
+		}
 		</script>
 	</body>
 
