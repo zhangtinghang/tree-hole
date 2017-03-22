@@ -6,43 +6,47 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta content="yes" name="apple-mobile-web-app-capable">
-        <meta content="yes" name="apple-touch-fullscreen">
-        <meta content="telephone=no,email=no" name="format-detection">
-        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
-        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
-        <link href="../css/mui.min.css" rel="stylesheet" />
-        <style>
-        	body,html{
-        		background-color: #d1e991;
-        	}
-        	.centent-box{
-        		position: relative;
-        	}
-        	.bg-pic{
-        		position: absolute;
-        		width: 8.888888rem;
-        		height: 10.986111rem;
-        		top: 3.388888rem;
-        		left: 0.616666rem;
-        	}
-        	.bg-pic-down{
-        		width: 0.486111rem;
-        		height: 0.444444rem;
-        		position: absolute;
-        		top:11.83333rem;
-        		left: 4rem;
-        	}
-        	
-        	.bg-pic img{
-        		width: 8.888888rem;
-        		height: 10.986111rem;
-        	}
-        	
-        	.bg-pic-down img{
-        		width: 0.486111rem;
-        		height: 0.444444rem;
-        	}
-        </style>
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body,
+			html {
+				background-color: #d1e991;
+			}
+			
+			.centent-box {
+				position: relative;
+			}
+			
+			.bg-pic {
+				position: absolute;
+				width: 8.888888rem;
+				height: 10.986111rem;
+				top: 3.388888rem;
+				left: 0.616666rem;
+			}
+			
+			.bg-pic-down {
+				width: 0.486111rem;
+				height: 0.444444rem;
+				position: absolute;
+				top: 11.83333rem;
+				left: 4rem;
+			}
+			
+			.bg-pic img {
+				width: 8.888888rem;
+				height: 10.986111rem;
+			}
+			
+			.bg-pic-down img {
+				width: 0.486111rem;
+				height: 0.444444rem;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -56,14 +60,20 @@
 		</div>
 
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script type="text/javascript" src="../js/immersion.js"></script>
 		<script type="text/javascript">
 			mui.init()
-			document.getElementById("down_comment").addEventListener('tap',function(){
-				mui.openWindow({
-			    url: 'comment.html', 
-			    id:'comment.html'
-			  });
+			var token = localStorage.getItem('name_token');
+			document.getElementById("down_comment").addEventListener('tap', function() {
+				console.log('这是获取到的token'+token);
+				if(token != null) {
+					mui.openWindow({
+						url: 'comment.html',
+						id: 'comment.html'
+					});
+				} else {
+					mui.toast('请先登录！');
+				}
 			})
 		</script>
 	</body>

@@ -56,31 +56,35 @@
 				background-color: #fbd940;
 			}
 			
-			.tree-box{
-				width:100%;
+			.tree-box {
+				width: 100%;
 				position: relative;
 				margin: 0;
 				padding: 0;
 				height: auto;
 				text-align: center;
 			}
-			.tree-ul{
+			
+			.tree-ul {
 				width: 100%;
 				list-style: none;
 				height: 100%;
 				margin: 0;
 				padding: 0;
 			}
-			.tree-ul li{
+			
+			.tree-ul li {
 				width: 50%;
 				float: left;
 				margin: 15px 0;
 				position: relative;
 			}
-			.tree-ul img{
-				width:1.555555rem;
+			
+			.tree-ul img {
+				width: 1.555555rem;
 			}
-			.active{
+			
+			.active {
 				background-image: url(../imgs/trees/true.png);
 				background-position: left top;
 				background-size: 100% 100%;
@@ -91,36 +95,39 @@
 				right: 20%;
 				bottom: 2%;
 			}
-			.mui-input-row{
+			
+			.mui-input-row {
 				width: 98%;
 				margin-left: 1%;
 				border: 1px solid #999999;
-				border-radius:10px;
+				border-radius: 10px;
 				margin-top: 0.577777rem;
 			}
-			.mui-input-row label{
+			
+			.mui-input-row label {
 				width: 20%;
 				text-align: center;
 				padding: 9px 0;
 				margin: 0;
 				font-size: 0.5rem;
 				color: #999999;
-				line-height:21px;
+				line-height: 21px;
 			}
-			.mui-input-row input{
+			
+			.mui-input-row input {
 				width: 80% !important;
 			}
 		</style>
 	</head>
 
 	<body>
-		<header  id="header_box" class="mui-bar mui-bar-nav">
-		<div id="header_content">
-			<div class="btn-box mui-action-back">
-				<div class="btn-return">取消</div>
-				<div id="affirm" class="btn-send">确认</div>
+		<header id="header_box" class="mui-bar mui-bar-nav">
+			<div id="header_content">
+				<div class="btn-box">
+					<div class="btn-return mui-action-back">取消</div>
+					<div id="affirm" class="btn-send">确认</div>
+				</div>
 			</div>
-		</div>
 		</header>
 		<div class="mui-content">
 			<div class="mui-input-row">
@@ -129,15 +136,51 @@
 			</div>
 			<div class="tree-box">
 				<ul class="tree-ul">
-					<a style="display: none;" href="#javascript:;" data-list="0"><li><img src="../imgs/trees/tree0.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="1"><li><img src="../imgs/trees/tree1.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="2"><li><img src="../imgs/trees/tree2.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="3"><li><img src="../imgs/trees/tree3.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="4"><li><img src="../imgs/trees/tree4.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="5"><li><img src="../imgs/trees/tree5.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="6"><li><img src="../imgs/trees/tree6.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="7"><li><img src="../imgs/trees/tree7.png"/><div class="tree_active"></div></li></a>
-					<a href="#javascript:;" data-list="8"><li><img src="../imgs/trees/tree8.png"/><div class="tree_active"></div></li></a>
+					<a style="display: none;" href="#javascript:;" data-list="0">
+						<li><img src="../imgs/trees/tree0.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="1">
+						<li><img src="../imgs/trees/tree1.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="2">
+						<li><img src="../imgs/trees/tree2.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="3">
+						<li><img src="../imgs/trees/tree3.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="4">
+						<li><img src="../imgs/trees/tree4.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="5">
+						<li><img src="../imgs/trees/tree5.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="6">
+						<li><img src="../imgs/trees/tree6.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="7">
+						<li><img src="../imgs/trees/tree7.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
+					<a href="#javascript:;" data-list="8">
+						<li><img src="../imgs/trees/tree8.png" />
+							<div class="tree_active"></div>
+						</li>
+					</a>
 				</ul>
 			</div>
 		</div>
@@ -145,15 +188,15 @@
 		<script src="../js/immersion.js"></script>
 		<script type="text/javascript">
 			var index;
-			if(localStorage.head_num){
+			if(localStorage.head_num) {
 				index = localStorage.head_num;
-			}else{
+			} else {
 				index = 0;
 			}
 			//点击更改
-			mui(".tree-ul").on('tap','a',function(){
-				index = this.getAttribute("data-list");	
-				localStorage.setItem("head_num",index);
+			mui(".tree-ul").on('tap', 'a', function() {
+				index = this.getAttribute("data-list");
+				localStorage.setItem("head_num", index);
 				console.log(index)
 				choose();
 			});
@@ -161,25 +204,56 @@
 			//自定义函数，用于传递选中头像
 			var detailPage = null;
 			var affirm = document.getElementById("affirm");
-			affirm.addEventListener('tap',function(){
-				//获得页面
-				if(!detailPage){
-				  detailPage = plus.webview.getWebviewById('me.html');
-				}
-				//触发页面的newsId事件
-				mui.fire(detailPage,'headId',{
-				  num:index
-				});		
-				//打开页面          
-				  mui.openWindow({
-				    id:'me.html'
-				  });
-			});		
+			var token = localStorage.getItem('name_token');
+			var contact = document.getElementById("contact");
+			affirm.addEventListener('tap', function() {
+				//修改参数
+				var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
+				mui.ajax('http://139.219.189.127:5000/api/alter', {
+					data: {
+						token: token,
+						avatar:index,
+						nickname: contact.value
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						console.log('修改页面返回:' + data);
+						if(dataobj.success == true) {
+							//获得页面
+							if(!detailPage) {
+								detailPage = plus.webview.getWebviewById('me.html');
+							}
+							//触发页面的newsId事件
+							mui.fire(detailPage, 'headId', {
+								num: index,
+								nickname:contact.value
+							});
+							//打开页面
+							console.log('返回成功')
+							
+							mui.currentWebview.close();					
+						} else {
+							//TODO 获取数据失败
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						w.close();
+						mui.toast('获取数据失败，请稍后再试！');
+						console.log(type);
+					}
+				});
+			});
 
-			function choose(){				
+			function choose() {
 				var list = document.getElementsByClassName('tree_active');
 				/*list.classList.add('active');*/
-				for(var i=0;i<list.length;i++){
+				for(var i = 0; i < list.length; i++) {
 					list[i].classList.remove('active');
 				}
 				list[index].classList.add('active');

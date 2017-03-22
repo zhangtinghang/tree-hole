@@ -83,6 +83,11 @@
 		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script type="text/javascript">
 			mui.init()
+			mui.plusReady(function () {
+				plus.webview.currentWebview().setStyle({
+				softinputMode: "adjustResize"
+				});  
+			});
 		</script>
 	</body>
 

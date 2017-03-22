@@ -1,6 +1,10 @@
 body,html{
 	overflow-x: hidden;
 }
+
+#header_box{
+	position: fixed;
+}
 #header_content{
 	position: absolute;
 	width: 100%;
@@ -9,7 +13,6 @@ body,html{
 }
 .mui-content{
 	position: relative;
-	padding-top:0 !important;
 }
 .mui-bar-nav{
 	box-shadow: none;

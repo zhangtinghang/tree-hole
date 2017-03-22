@@ -17,7 +17,7 @@
 			padding: 0;
 			background-color: white;
 		}
-			.me-head{		
+			.me-head{	
 				margin: 0;
 				padding: 0;
 				width: 10rem;
@@ -74,7 +74,7 @@
 				font-size: 0.638888rem;
 			}
 			.attention{
-				width: 5rem;
+				width: 5.05rem;
 				height:3.166666rem;
 				background: #FBD940;
 				position: relative;
@@ -164,9 +164,11 @@
 			
 			//更换头像
 			var num =localStorage.nowHead;
+			var nickname;
 			window.addEventListener('headId',function(event){
 			  //获得事件参数
 			  num = event.detail.num;
+			  nickname = event.detail.nickname;
 			  localStorage.setItem("nowHead",num);
 				artHead(num);
 			});
@@ -175,7 +177,8 @@
 		//修改头像
 		function artHead(){
 			var data = {
-				num:num
+				num:num,
+				title:nickname
 			}
 			var html = template('head_list', data);
 			document.getElementById('head_box').innerHTML = html;

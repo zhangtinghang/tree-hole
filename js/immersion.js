@@ -1,9 +1,9 @@
 	mui.plusReady(function(){
 			var header_height = document.getElementById("header_box");//获取状态栏高度
+			var header_box;
 			if(header_height){
 				header_box = header_height.offsetHeight;
 			}
-			console.log('这是header高度 = ' + header_box);
 			var immersed = 0;//初始化状态栏高度
 			var topoffset = header_box; //将状态栏高度赋值进行计算
 			var ms=(/Html5Plus\/.+\s\(.*(Immersed\/(\d+\.?\d*).*)\)/gi).exec(navigator.userAgent);
@@ -22,5 +22,10 @@
 //				var newpt =topoffset +'px';
 //				mc.style.paddingTop = newpt;
 //				}
-			}	
+			}
+			
+			
+		plus.webview.currentWebview().setStyle({
+   	 		softinputMode: "adjustResize"  // 弹出软键盘时自动改变webview的高度
+		});
 	})

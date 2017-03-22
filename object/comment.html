@@ -71,27 +71,70 @@
 	<body>
 		<header id="header_box" class="mui-bar mui-bar-nav">
 			<div id="header_content">
-			<div class="btn-box mui-action-back">
-				<div class="btn-return">取消</div>
-				<div class="btn-send">发送</div>
+			<div class="btn-box">
+				<div class="btn-return mui-action-back">取消</div>
+				<div id="btn_send" class="btn-send">发送</div>
 			</div>
 			</div>
 		</header>
 		<div class="mui-content">
 			<div class="mui-input-row">
-				<textarea id="textarea" rows="5" placeholder="说出你的小秘密..."></textarea>
+				<textarea id="content_textarea" rows="5" placeholder="说出你的小秘密..."></textarea>
 			</div>
-				<div id='image-list' class="row image-list"></div>
+			<div id='image-list' class="row image-list"></div>
 			<div class="mui-input-row">
-				<input id='contact' type="text" class="mui-input-clear contact" placeholder="添加5-10字的关键字
-				" />
+				<input id='contact' type="text" class="mui-input-clear contact" placeholder="添加5-10字的关键字" />
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script src=" ../js/feedback.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			mui.plusReady(function () {
+				plus.webview.currentWebview().setStyle({
+				softinputMode: "adjustResize"
+				});  
+			})	
+			var content_textarea = document.getElementById("content_textarea");
+			var contact = document.getElementById("contact"); 
+			var btn_send = document.getElementById("btn_send");
+			var token = localStorage.getItem('name_token');
+			var arrContact = [];
+			btn_send.addEventListener('tap',function(){
+			var strContact =contact.value;
+			arrContact[0] =strContact;
+				mui.ajax('http://139.219.189.127:5000/api/announce', {
+					data: {
+						token:token,
+						title:'1',
+						text:content_textarea.value,
+						type:0,
+						tag:arrContact
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						if(dataobj.success ==true){
+							mui.openWindow({
+									url: 'main.html',
+									id: 'main.html'
+								});
+						}else{
+							//TODO 获取数据失败
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						mui.toast('获取数据失败，请稍后再试！');
+						console.log(type);
+					}
+				});
+			})
 		</script>
 	</body>
 

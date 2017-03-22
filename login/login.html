@@ -14,6 +14,8 @@
 		<style>			
 			body,html{
         		background-color: #FBD940 !important;
+        		height: 100% !important;
+				margin: 1px 0 0 0;
         	}
 			.mui-icon{
 				color: #000000;
@@ -49,6 +51,7 @@
 			.mui-content{
 				padding-top: 0 !important;
 				background: #FBD940;
+				height: 100% !important;
 			}
 			
 			.mui-input-group .mui-input-row{
@@ -102,26 +105,89 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="header-title">忘记密码</h1>
+			<h1 id="btn_loose" class="header-title">忘记密码</h1>
 		</header>
 		<div class="mui-content">
 			<img class="content-img" src="../imgs/login/bigtree.png" />
 			<form class="mui-input-group">
 			    <div class="mui-input-row">
 			        <label><img class="input-icon" src="../imgs/login/phono.png"/></label>
-			        <input type="text" class="mui-input-clear" placeholder="手机号码">
+			        <input id="login_nickname" type="text" class="mui-input-clear" placeholder="账号">
 			    </div>
 			    <div class="mui-input-row">
 			        <label><img class="input-icon" src="../imgs/login/code.png"/></label>
-			        <input type="text" class="mui-input-clear" placeholder="8-20位的数字或英文">
+			        <input id="login_password" type="text" class="mui-input-clear" placeholder="8-20位的数字或英文">
 			    </div>
 			</form>
-			<button type="button" class="mui-btn mui-btn-block">按钮</button>		
-			<div class="btn-register">立即注册</div>
+			<button id='btn_login' type="button" class="mui-btn mui-btn-block">登录</button>	
+			<div id="btn_tourist" class="btn-register">游客登录</div>
+			<div id="btn_register" class="btn-register">立即注册</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()
+			//登录
+			var login_nickname = document.getElementById("login_nickname");
+			var login_password = document.getElementById("login_password");
+			var btn_login = document.getElementById("btn_login");
+			btn_login.addEventListener('tap',function(){
+				mui.ajax('http://139.219.189.127:5000/api/login', {
+					data: {
+						username:login_nickname.value,
+						password:login_password.value
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						
+						if(dataobj.success ==true){
+							var token = dataobj.token;							
+							localStorage.setItem('name_token',token);
+							mui.openWindow({
+									url: '../object/main.html',
+									id: 'main.html'
+								});
+						}else{
+							//TODO 获取数据失败
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						mui.toast('登录失败，请稍后再试！');
+						console.log(type);
+					}
+				});
+			});
+			//注册跳转
+			var btn_register = document.getElementById("btn_register");
+			btn_register.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'information.html', 
+			    id:'information.html'
+			  });
+			});
+			
+			//忘记密码跳转
+			var btn_loose = document.getElementById("btn_loose");
+			btn_loose.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: 'register.html', 
+			    id:'register.html'
+			  });
+			});
+			
+			//游客登录跳转
+			var btn_tourist = document.getElementById("btn_tourist");
+			btn_tourist.addEventListener('tap',function(){
+				mui.openWindow({
+			    url: '../object/main.html', 
+			    id:'../object/main.html'
+			  });
+			});
 		</script>
 	</body>
 

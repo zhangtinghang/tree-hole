@@ -10,141 +10,167 @@
 		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<style>
-			a{
+			a {
 				color: #272727;
 				text-decoration: none;
 			}
-			a:link{
+			
+			a:link {
 				color: #272727;
 			}
-			a:visited{
+			
+			a:visited {
 				color: #272727;
 			}
+			
 			.item-logo {
 				width: 100%;
 				height: 100%;
 				position: relative;
 			}
-			.tree{
-        		overflow: hidden;
-        		position: absolute;
-        		width: 1.597222rem;
-        		height:2.361111rem;
-        	}
-        	.tree img{
-        		width: 100%;
-        	}
-        	.tree-0{
-        		top: 8.152777rem;
-        		left:1.069444rem;
-        	}
-        	.tree-1{
-        		top: 6.452777rem;
-        		left:5.069444rem;
-        	}
-        	.tree-2{
-        		top:12.791666rem;
-        		left:5.486111rem;
-        	}
-        	.tree-3{
-        		top: 1.180555rem;
-        		left: 7.166666rem;
-        	}
-        	.tree-4{
-        		top:3.402777rem;
-        		left: 8.041666rem;
-        	}
-        	.tree-5{
-        		top:3.208333rem;
-        		left:6.5rem;
-        	}
-        	.tree-6{
-        		top:3.75rem;
-        		left:4.291666rem;
-        	}
-        	.tree-7{
-        		top:13.513888rem;
-        		left:1.888888rem;
-        	}
-        	.tree-8{
-        		top:6.458333rem;
-        		left:1.072222rem;
-        	}
-        	.tree-9{
-        		top:1.527777rem;
-        		left:3.083333rem;
-        	}
-        	.tree-10{
-        		top:5.819444rem;
-        		left:5.888888rem;
-        	}
-        	.tree-11{
-        		top:8.777777rem;
-        		left:3.930555rem;
-        	}
-        	.tree-12{
-        		top:11.319444rem;
-        		left:1.277777rem;
-        	}
-        	.tree-13{
-        		top:12.986111rem;
-        		left:2.625rem;
-        	}
-        	.tree-14{
-        		top:11.958333rem;
-        		left:6.555555rem;
-        	}
-        	.tree-15{
-        		top:10.319444rem;
-        		left:8.0rem;
-        	}
-        	.tree-16{
-        		top:8.125rem;
-        		left:8.125rem;
-        	}
-        	#popover{
-        		top: 2.777777rem !important;
-        		left: 50% !important;
-        		margin-left: -140px;
-        		background-color: rgba(247,247,247,0.7);
-        		
-        	}
-        	.mui-popover .mui-popover-arrow{
-        		display: none;
-        	}
-        	
-        	.popover-box{
-        		text-align: center;
-        		position: relative;
-        	}
-        	
-        	.popover-btn{
-        		position: absolute;
-        		width:0.763888rem !important;
-        		left: 0.138888rem;
-        		top: 0;
-        	}
-			.popover-box img{
+			
+			.tree {
+				overflow: hidden;
+				position: absolute;
+				width: 1.597222rem;
+				height: 2.361111rem;
+			}
+			
+			.tree img {
+				width: 100%;
+			}
+			
+			.tree-0 {
+				top: 8.152777rem;
+				left: 1.069444rem;
+			}
+			
+			.tree-1 {
+				top: 6.452777rem;
+				left: 5.069444rem;
+			}
+			
+			.tree-2 {
+				top: 12.791666rem;
+				left: 5.486111rem;
+			}
+			
+			.tree-3 {
+				top: 1.180555rem;
+				left: 7.166666rem;
+			}
+			
+			.tree-4 {
+				top: 3.402777rem;
+				left: 8.041666rem;
+			}
+			
+			.tree-5 {
+				top: 3.208333rem;
+				left: 6.5rem;
+			}
+			
+			.tree-6 {
+				top: 3.75rem;
+				left: 4.291666rem;
+			}
+			
+			.tree-7 {
+				top: 13.513888rem;
+				left: 1.888888rem;
+			}
+			
+			.tree-8 {
+				top: 6.458333rem;
+				left: 1.072222rem;
+			}
+			
+			.tree-9 {
+				top: 1.527777rem;
+				left: 3.083333rem;
+			}
+			
+			.tree-10 {
+				top: 5.819444rem;
+				left: 5.888888rem;
+			}
+			
+			.tree-11 {
+				top: 8.777777rem;
+				left: 3.930555rem;
+			}
+			
+			.tree-12 {
+				top: 11.319444rem;
+				left: 1.277777rem;
+			}
+			
+			.tree-13 {
+				top: 12.986111rem;
+				left: 2.625rem;
+			}
+			
+			.tree-14 {
+				top: 11.958333rem;
+				left: 6.555555rem;
+			}
+			
+			.tree-15 {
+				top: 10.319444rem;
+				left: 8.0rem;
+			}
+			
+			.tree-16 {
+				top: 8.125rem;
+				left: 8.125rem;
+			}
+			
+			#popover {
+				top: 2.777777rem !important;
+				left: 50% !important;
+				margin-left: -140px;
+				background-color: rgba(247, 247, 247, 0.7);
+			}
+			
+			.mui-popover .mui-popover-arrow {
+				display: none;
+			}
+			
+			.popover-box {
+				text-align: center;
+				position: relative;
+			}
+			
+			.popover-btn {
+				position: absolute;
+				width: 0.763888rem !important;
+				left: 0.138888rem;
+				top: 0;
+			}
+			
+			.popover-box img {
 				width: 6.083333rem;
 				margin-top: 0.138888rem;
 			}
-			.popover-box p{
+			
+			.popover-box p {
 				color: #272727;
 			}
-			.come-btn{
+			
+			.come-btn {
 				position: absolute;
 				width: 2.277777rem;
 				height: 2.277777rem;
-				background-image:url(../imgs/trees/circle.png);
+				background-image: url(../imgs/trees/circle.png);
 				background-size: 100% 100%;
 				z-index: 99999999;
 				top: 3.986111rem;
-				left:50%;
+				left: 50%;
 				margin-left: -1.133333rem;
-				text-align: center;	
+				text-align: center;
 				font-size: 20px;
 				font-weight: 700;
-				color: rgba(248,248,255,0.8);
+				color: rgba(248, 248, 255, 0.8);
 				line-height: 2.277777rem;
 			}
 		</style>
@@ -156,118 +182,139 @@
 
 			</div>
 		</div>
-		
-				<div id="popover" class="mui-popover">
-					<a href="javascript:;">
-						<div class="popover-box">
-							<img id="povover_back" class="popover-btn" src="../imgs/trees/cancel.png" />
-							<h2>小狐狸的树</h2>
-							<p>关键字：狗狗离开了我</p>
-							<img src="../imgs/trees/tree5-big.png" />
-							<div id="come_btn" class="come-btn">
-								进入...
-							</div>
-						</div>
-					</a>
-				</div>
+		<div id="popover" class="mui-popover">
+
+		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/template.js"></script>
-		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script type="text/javascript" src="../js/immersion.js"></script>
 		<script type="text/html" id="art-list">
 			{{each index as value i}}
-				<div class="mui-slider-item">
-					<div id="jump_box" class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/{{value}}.png);">
-						{{each trees as data j}}
-								<a href="#popover"><div class="tree tree-{{trees[j]}}"><img src="../imgs/trees/tree{{treestyle[j]}}.png" /></div></a>
-						{{/each}}
-					</div>
+			<div class="mui-slider-item">
+				<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/{{value}}.png);">
+					{{each trees as data j}}
+					<a href="javascript:;">
+						<div data-list='{{treestyle[j]}}' class="tree tree_list tree-{{trees[j]}}"><img src="../imgs/trees/tree{{treestyle[j]}}.png" /></div>
+					</a>
+					{{/each}}
 				</div>
+			</div>
 			{{/each}}
 		</script>
-		
 		<script type="text/html" id="popover_list">
 			<a href="javascript:;">
-						<div class="popover-box">
-							<img id="povover_back" class="popover-btn" src="../imgs/trees/cancel.png" />
-							<h2>小狐狸的树</h2>
-							<p>关键字：狗狗离开了我</p>
-							<img src="../imgs/trees/tree{{popover_num}}-big.png" />
-							<div id="come_btn" class="come-btn">
-								进入...
-							</div>
-						</div>
-					</a>
+				<div class="popover-box">
+					<img id="povover_back" class="popover-btn" src="../imgs/trees/cancel.png" />
+					<h2>小狐狸的树</h2>
+					<p>关键字：狗狗离开了我</p>
+					<img src="../imgs/trees/tree{{data_img}}-big.png" />
+					<div id="come_btn" class="come-btn">
+						进入...
+					</div>
+				</div>
+			</a>
 		</script>
 		<script>
 			mui.init();
-//			//图片切换时，触发动画
-//			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
-//			 	//注意slideNumber是从0开始的；
-//			 	var index = event.detail.slideNumber;
-//			});	
-				var randomNumber = randomNumber();
-				var data = {
-				index : ['1','2','3','4','5','6','7'],
-				trees : randomNumber,
-				treestyle:['1','2','3','4','5','6','7','6','5','4']
-				};
-			var html = template('art-list', data);
-			document.getElementById('list-box').innerHTML = html;
-			var popover_bg = template('popover_list',data);
-
-		//跳转遮罩层
-			mui('body').on('shown', '.mui-popover', function(e) {
-				console.log('shown', e.detail.popover);//detail为当前popover元素
-			});
-			mui('body').on('hidden', '.mui-popover', function(e) {
-				console.log('hidden', e.detail.popover);//detail为当前popover元素
+			//			//图片切换时，触发动画
+			//			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+			//			 	//注意slideNumber是从0开始的；
+			//			 	var index = event.detail.slideNumber;
+			//			});
+			
+			var token = localStorage.getItem('name_token');
+			console.log(token)
+			//获取数据
+			mui.ajax('http://139.219.189.127:5000/api/getLast',{
+				data:'token='+token+'&type=0',
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:0,//超时时间设置为10秒；
+				success:function(data){
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					console.log('这是最新的树洞信息'+dataobj.article.length)
+				},
+				error:function(xhr,type,errorThrown){
+					console.log('这是首页='+type)
+				}
 			});
 			
-		//点击事件
-		var come_btn = document.getElementById("come_btn");
-		come_btn.addEventListener('tap',function(){
-			mui.openWindow({
-			    url: 'comment_message.html', 
-			    id:'comment_message.html'
-			  });
-		});
-	
-	//随机数组
-    function randomNumber(){
-        var source= [
-            "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"
-        ];
-        var sL = source.length;
+			//模板渲染
+			var randomNumber = randomNumber();
+			var data = {
+				index: ['1', '2', '3', '4', '5', '6', '7'],
+				trees: randomNumber,
+				treestyle: ['1', '2', '3', '4', '5', '6', '7', '6', '5', '4']
+			};
+			var html = template('art-list', data);
+			document.getElementById('list-box').innerHTML = html;
 
-        var target= [];     //存储下标
+			//点击遮罩触发
+			var pop = document.getElementById("popover");
+			var mask = mui.createMask(function() {
+				pop.classList.remove('mui-active');
+			});
+			// 显示
+			mui('.item-logo').on('tap', '.tree_list', function() {
+				var data_img = this.getAttribute("data-list");
+				var data = {
+					data_img: data_img
+				}
+				var html = template('popover_list', data);
+				document.getElementById('popover').innerHTML = html;
+				mask.show();
+				pop.classList.add('mui-active');
+			})
+			//遮罩点击事件
+			mui('#popover').on('tap','.popover-btn',function(){
+				pop.classList.remove('mui-active');
+				mask.close();
+			});
+			
+			mui('#popover').on('tap','.come-btn',function(){
+				mui.openWindow({
+					url: 'comment_message.html',
+					id: 'comment_message.html'
+				});
+			});
+			
+			//随机数组
+			function randomNumber() {
+				var source = [
+					"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"
+				];
+				var sL = source.length;
 
-        //随机4个数组下标
-        for(var i = 0; i < 10; i++){
-            var rand = Math.floor( Math.random() * sL );
-            if(target.length > 0){
-                detection(target, rand);
-            }else{
-                target.push(rand);
-            }
-        }
-        //检测num是否存在于arr，存在重新添加，不存在直接添加
-        function detection(arr, num){
-            var repeatFlag = false;
-            for(var j = 0; j < arr.length; j++){
-                if(arr[j] == num){
-                    repeatFlag = true;
-                }
-            }
-            if(repeatFlag){
-                //递归
-                arguments.callee(arr, Math.floor( Math.random() * sL ));
-            }else{
-                arr.push(num);
-            }
-        }
-        return target;
-    }
+				var target = []; //存储下标
+
+				//随机4个数组下标
+				for(var i = 0; i < 10; i++) {
+					var rand = Math.floor(Math.random() * sL);
+					if(target.length > 0) {
+						detection(target, rand);
+					} else {
+						target.push(rand);
+					}
+				}
+				//检测num是否存在于arr，存在重新添加，不存在直接添加
+				function detection(arr, num) {
+					var repeatFlag = false;
+					for(var j = 0; j < arr.length; j++) {
+						if(arr[j] == num) {
+							repeatFlag = true;
+						}
+					}
+					if(repeatFlag) {
+						//递归
+						arguments.callee(arr, Math.floor(Math.random() * sL));
+					} else {
+						arr.push(num);
+					}
+				}
+				return target;
+			}
 		</script>
 	</body>
- 
+
 </html>
