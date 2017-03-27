@@ -22,14 +22,26 @@
   "object/hole.html": {
     "resources": [
       "imgs/arrows.png",
-      "imgs/big-tree.png"
+      "imgs/big-tree.png",
+      "js/immersion.js"
+    ],
+    "refer": [
+      "object/comment.html"
     ]
   },
   "object/me.html": {
     "resources": [
       "imgs/me/tree.png",
       "imgs/me/medal.png",
-      "imgs/me/messagge.png"
+      "imgs/me/messagge.png",
+      "js/template.js",
+      "imgs/me/tree0_head.png",
+      "js/immersion.js",
+      "imgs/me/tree2_head.png"
+    ],
+    "refer": [
+      "object/head_modification.html",
+      "object/myMess.html"
     ]
   },
   "object/forest.html": {
@@ -46,7 +58,103 @@
       "imgs/trees/3.png",
       "imgs/trees/2.png",
       "imgs/trees/tree1.png",
-      "imgs/trees/tree9.png"
+      "imgs/trees/tree9.png",
+      "js/template.js"
+    ],
+    "refer": []
+  },
+  "object/head_modification.html": {
+    "resources": [
+      "imgs/trees/tree8.png",
+      "imgs/trees/tree5.png",
+      "imgs/trees/tree7.png",
+      "imgs/trees/tree6.png",
+      "imgs/trees/tree2.png",
+      "imgs/trees/tree3.png",
+      "css/headerStyle.css",
+      "imgs/trees/tree4.png",
+      "imgs/trees/tree1.png",
+      "imgs/trees/true.png",
+      "js/zoom/flexible.js",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "js/immersion.js"
+    ],
+    "refer": []
+  },
+  "login/login.html": {
+    "resources": [
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "imgs/login/code.png",
+      "imgs/login/phono.png",
+      "imgs/login/bigtree.png"
+    ],
+    "refer": [
+      "login/information.html",
+      "object/main.html"
+    ]
+  },
+  "login/information.html": {
+    "resources": [
+      "imgs/login/head.png"
+    ],
+    "refer": [
+      "login/login.html"
+    ]
+  },
+  "object/comment.html": {
+    "resources": [
+      "css/feedback.css",
+      "css/headerStyle.css",
+      "js/feedback.js",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "js/immersion.js"
+    ],
+    "refer": []
+  },
+  "object/reply.html": {
+    "resources": [
+      "css/feedback.css"
+    ],
+    "refer": []
+  },
+  "object/myMess.html": {
+    "resources": [
+      "imgs/trees/tree5.png",
+      "js/zoom/flexible.js",
+      "imgs/trees/tree2.png",
+      "fonts/mui.ttf",
+      "imgs/trees/tree3.png",
+      "css/headerStyle.css",
+      "imgs/trees/tree4.png",
+      "js/zoom/flexible_css.js",
+      "js/mui.min.js",
+      "imgs/trees/tree6.png",
+      "css/mui.min.css",
+      "js/immersion.js",
+      "imgs/trees/tree1.png"
+    ],
+    "refer": [
+      "object/reply.html",
+      "chat/im_chat.html"
+    ]
+  },
+  "chat/im_chat.html": {
+    "resources": [
+      "js/mui.imageViewer.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/arttmpl.js"
     ]
   }
 }

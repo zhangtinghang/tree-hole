@@ -10,7 +10,7 @@
 	"icons": {
 		"72": "icon.png"
 	},
-	"launch_path": "object/main.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"launch_path": "login/login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
 		"name": "",/*开发者名称*/
 		"email": "",/*开发者邮箱地址*/
@@ -217,18 +217,28 @@
 			"object/hole.html": {
 				"resources": [
 					"imgs/arrows.png",
-					"imgs/big-tree.png"
+					"imgs/big-tree.png",
+					"js/immersion.js"
 				],
-				"refer": [],
+				"refer": [
+					"object/comment.html"
+				],
 				"priority": 0
 			},
 			"object/me.html": {
 				"resources": [
 					"imgs/me/tree.png",
 					"imgs/me/medal.png",
-					"imgs/me/messagge.png"
+					"imgs/me/messagge.png",
+					"js/template.js",
+					"imgs/me/tree0_head.png",
+					"js/immersion.js",
+					"imgs/me/tree2_head.png"
 				],
-				"refer": [],
+				"refer": [
+					"object/head_modification.html",
+					"object/myMess.html"
+				],
 				"priority": 0
 			},
 			"object/forest.html": {
@@ -245,7 +255,110 @@
 					"imgs/trees/3.png",
 					"imgs/trees/2.png",
 					"imgs/trees/tree1.png",
-					"imgs/trees/tree9.png"
+					"imgs/trees/tree9.png",
+					"js/template.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"object/head_modification.html": {
+				"resources": [
+					"imgs/trees/tree8.png",
+					"imgs/trees/tree5.png",
+					"imgs/trees/tree7.png",
+					"imgs/trees/tree6.png",
+					"imgs/trees/tree2.png",
+					"imgs/trees/tree3.png",
+					"css/headerStyle.css",
+					"imgs/trees/tree4.png",
+					"imgs/trees/tree1.png",
+					"imgs/trees/true.png",
+					"js/zoom/flexible.js",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"css/mui.min.css",
+					"js/immersion.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"login/login.html": {
+				"resources": [
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"imgs/login/code.png",
+					"imgs/login/phono.png",
+					"imgs/login/bigtree.png"
+				],
+				"refer": [
+					"login/information.html",
+					"object/main.html"
+				],
+				"priority": 0
+			},
+			"login/information.html": {
+				"resources": [
+					"imgs/login/head.png"
+				],
+				"refer": [
+					"login/login.html"
+				],
+				"priority": 0
+			},
+			"object/comment.html": {
+				"resources": [
+					"css/feedback.css",
+					"css/headerStyle.css",
+					"js/feedback.js",
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"css/mui.min.css",
+					"js/immersion.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"object/reply.html": {
+				"resources": [
+					"css/feedback.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"object/myMess.html": {
+				"resources": [
+					"imgs/trees/tree5.png",
+					"js/zoom/flexible.js",
+					"imgs/trees/tree2.png",
+					"fonts/mui.ttf",
+					"imgs/trees/tree3.png",
+					"css/headerStyle.css",
+					"imgs/trees/tree4.png",
+					"js/zoom/flexible_css.js",
+					"js/mui.min.js",
+					"imgs/trees/tree6.png",
+					"css/mui.min.css",
+					"js/immersion.js",
+					"imgs/trees/tree1.png"
+				],
+				"refer": [
+					"object/reply.html",
+					"chat/im_chat.html"
+				],
+				"priority": 0
+			},
+			"chat/im_chat.html": {
+				"resources": [
+					"js/mui.imageViewer.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/arttmpl.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -255,28 +368,16 @@
 			"resources": [
 				"imgs/comment_messgae/comment.png",
 				"login/register.html",
-				"css/feedback.css",
 				"imgs/login/verify.png",
 				"imgs/trees/cancel.png",
-				"fonts/mui.ttf",
 				"imgs/trees/tree.png",
 				"imgs/trees/river.png",
-				"object/comment.html",
-				"imgs/login/code.png",
 				"css/mui.css",
 				"js/zoom/flexible.debug.js",
 				"js/zoom/flexible_css.debug.js",
-				"imgs/trees/tree8.png",
-				"imgs/login/head.png",
 				"index.html",
 				"imgs/comment_messgae/arrows.png",
-				"login/login.html",
-				"login/information.html",
-				"object/myMess.html",
 				"js/mui.js",
-				"js/feedback.js",
-				"imgs/login/phono.png",
-				"imgs/login/bigtree.png",
 				"object/comment_message.html",
 				"object/myAttention.html"
 			]

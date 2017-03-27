@@ -207,6 +207,18 @@
 			var token = localStorage.getItem('name_token');
 			var contact = document.getElementById("contact");
 			affirm.addEventListener('tap', function() {
+			//判断是否为kong			
+			if (contact.value == '') {
+				return mui.toast('昵称不能为空');
+			};
+			if (contact.value.length > 10) {
+				return mui.toast('昵称不能超过十个字');
+			};
+			//判断网络连接
+			if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_NONE){
+				return mui.toast("连接网络失败，请稍后再试");
+			}
+				
 				//修改参数
 				var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
 				mui.ajax('http://139.219.189.127:5000/api/alter', {
@@ -224,6 +236,7 @@
 						var dataobj = eval("(" + data + ")");
 						console.log('修改页面返回:' + data);
 						if(dataobj.success == true) {
+							w.close();
 							//获得页面
 							if(!detailPage) {
 								detailPage = plus.webview.getWebviewById('me.html');

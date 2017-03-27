@@ -66,7 +66,7 @@
 			var token = localStorage.getItem('name_token');
 			document.getElementById("down_comment").addEventListener('tap', function() {
 				console.log('这是获取到的token'+token);
-				if(token != null) {
+				if(token){
 					mui.openWindow({
 						url: 'comment.html',
 						id: 'comment.html'

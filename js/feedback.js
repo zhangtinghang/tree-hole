@@ -5,15 +5,17 @@
  * @version:1.0.0
  * @author:cuihongbao@dcloud.io
  */
-(function() {
+ (function() {
 	var index = 1;
 	var size = null;
 	var imageIndexIdNum = 0;
 	var feedback = {
 		imageList: document.getElementById('image-list'),
-		submitBtn: document.getElementById('btn_send')
+		submitBtn: document.getElementById('btn_send'),
+		question: document.getElementById('content_textarea'),
+		contact:document.getElementById("contact")
 	};
-	var url = 'http://139.219.189.127/api/postComment';
+	var url = 'http://139.219.189.127/api/uploadImg';
 	feedback.files = [];	//文件初始化
 	feedback.uploader = null;  //上传文件初始化
 	feedback.deviceInfo = null;  //设备信息初始化
@@ -130,59 +132,94 @@
 	};
 	//初始化图片占位域
 	feedback.newPlaceholder();
+	var arrContact = [];
 	//发送按钮监听事件
 	feedback.submitBtn.addEventListener('tap', function(event) {
+		if (feedback.question.value == '' ||feedback.contact.value == '') {
+			return mui.toast('信息填写不符合规范');
+		}
+		if (feedback.question.value.length > 200 || feedback.contact.value.length > 10) {
+			return mui.toast('信息超长,请重新填写~')
+		}
 		//判断网络连接
 		if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_NONE){
 			return mui.toast("连接网络失败，请稍后再试");
 		}
-		//extend（）将两个对象合并成一个对象。
-		feedback.send(mui.extend({}, feedback.deviceInfo, {
-			images: feedback.files,
-		})) 
-	}, false)
-	//发送
-	feedback.send = function(content) {
-		feedback.uploader = plus.uploader.createUpload(url, {
-			method: 'POST'
-		}, function(upload, status) {
-//			plus.nativeUI.closeWaiting()
-			console.log("upload cb:"+upload.responseText);
-			if(status==200){
-				//parse用于从一个字符串中解析出json对象
-				var data = JSON.parse(upload.responseText);
-				//上传成功，重置表单
-				if (data.ret === 0 && data.desc === 'Success') {
-//					mui.toast('反馈成功~')
-					console.log("upload success");
-//					feedback.clearForm();
-				}
-			}else{
-				console.log("upload fail");
-			}
-			
-		});
-		//添加上传文件
-		mui.each(feedback.files, function(index, element) {
-			var f = feedback.files[index];
+		var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
+		//图片转换
+			var f = feedback.files[0];
 			var path = f.path;
 			console.log("addFile:"+path);
-			GetBase64Code(path);
-		});
-		
-		function GetBase64Code(path) //path绝对路径
-		{
 			var bitmap = new plus.nativeObj.Bitmap("test"); //test标识谁便取
 			// 从本地加载Bitmap图片
-			bitmap.load(path, function() {
+			var Img=bitmap.load(path, function() {
 				var base64 = bitmap.toBase64Data();
-				console.log(base64)
+				localStorage.setItem('Imgbase64',base64);
 			}, function(e) {
 				console.log('加载图片失败：' + JSON.stringify(e));
 			});
+			var imgFormat = path.substr(path.lastIndexOf('.') + 1);
+			var token = localStorage.getItem('name_token');
+			var ImgBase64 = localStorage.getItem('Imgbase64');
+			mui.ajax('http://139.219.189.127:5000/api/uploadImg',{
+				data:{
+					token:token,
+					img:ImgBase64,
+					imgFormat:imgFormat
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					if(dataobj.success ==true){
+						UpData();
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					w.close();
+					mui.toast('图片上传出错，请重试！');
+					console.log('图片上传出错：'+type);
+				}
+			});
+			
+		//上传数据
+		function UpData(){
+			mui.ajax('http://139.219.189.127:5000/api/announce', {
+					data: {
+						token:token,
+						title:'1',
+						text:feedback.question.value,
+						type:0,
+						tag:feedback.contact.value
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						if(dataobj.success ==true){
+							w.close();
+							mui.openWindow({
+									url: 'main.html',
+									id: 'main.html'
+								});
+						}else{
+							//TODO 获取数据失败
+							mui.toast('拉取数据出错，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						w.close();
+						//异常处理；
+						mui.toast('上传数据失败，请稍后再试！');
+						console.log(type);
+					}
+				});
 		}
-		//开始上传任务
-		feedback.uploader.start();
-//		plus.nativeUI.showWaiting();
-	};
+
+	}, false)
 })();

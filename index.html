@@ -1,62 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>简单的html5 File测试 for pic2base64</title>
-		<script>
-			window.onload = function() {
-				var input = document.getElementById("demo_input");
-				var result = document.getElementById("result");
-				var img_area = document.getElementById("img_area");
-				if(typeof(FileReader) === 'undefined') {
-					result.innerHTML = "抱歉，你的浏览器不支持 FileReader，请使用现代浏览器操作！";
-					input.setAttribute('disabled', 'disabled');
-				} else {
-					input.addEventListener('change', readFile, false);
-				}
-			}
-
-			function readFile() {
-				var file = this.files[0];
-				//这里我们判断下类型如果不是图片就返回 去掉就可以上传任意文件 
-				if(!/image\/\w+/.test(file.type)) {
-					alert("请确保文件为图像类型");
-					return false;
-				}
-				var reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = function(e) {
-					result.innerHTML = '<img src="' + this.result + '" alt=""/>';
-					img_area.innerHTML = '<div class="sitetip">图片img标签展示：</div><img src="' + this.result + '" alt=""/>';
-				}
-			}
-		</script>
+		<meta charset="UTF-8">
+		<title></title>
 	</head>
 
 	<body>
-		<input type="file" value="sdgsdg" id="demo_input" />
-		<textarea id="result" rows=30 cols=300></textarea>
-		<p id="img_area"></p>
+		<div id="content"></div>
+		<script type="text/javascript" src="art.js" ></script>
+		<script id="test"  type="text/html">
+			<h1>{{title}}</h1>
+			<ul>
+				{{each list as value i}}
+				<li>索引 {{i + 1}} ：{{value}}</li>
+				{{/each}}
+			</ul>
+		</script>
+		<script type="text/javascript">
+			var  data  =   {    
+				title:   '标签',
+				    list:  ['文艺',  '博客',  '摄影',  '电影',  '民谣',  '旅行',  '吉他']
+			};
+			var  html  =  template('test',data);
+			document.getElementById('content').innerHTML  =  html;
+		</script>
 	</body>
-	<script>
-		function GetBase64Code(path) //path绝对路径
-		{
-			var bitmap = new plus.nativeObj.Bitmap("test"); //test标识谁便取
-			// 从本地加载Bitmap图片
-			bitmap.load(path, function() {
-				var base4 = bitmap.toBase64Data();
-				var datastr = base4.split(',', 3)
-				if(datastr.length > 1) {
-					pics.push(datastr[1]);
-				} else {
-					pics.push(datastr[0]);
-				}
-				console.log('加载图片：' + base4);
-			}, function(e) {
-				console.log('加载图片失败：' + JSON.stringify(e));
-			});
-		}
-	</script>
 
 </html>

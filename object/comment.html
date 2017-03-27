@@ -94,45 +94,6 @@
 			mui.plusReady(function () {
 				plus.webview.currentWebview().setStyle({
 				softinputMode: "adjustResize"
-				});  
-			})	
-			var content_textarea = document.getElementById("content_textarea");
-			var contact = document.getElementById("contact"); 
-			var btn_send = document.getElementById("btn_send");
-			var token = localStorage.getItem('name_token');
-			var arrContact = [];
-			btn_send.addEventListener('tap',function(){
-			var strContact =contact.value;
-			arrContact[0] =strContact;
-				mui.ajax('http://139.219.189.127:5000/api/announce', {
-					data: {
-						token:token,
-						title:'1',
-						text:content_textarea.value,
-						type:0,
-						tag:arrContact
-					},
-					dataType: 'json', //服务器返回json格式数据
-					type: 'post', //HTTP请求类型
-					timeout: 10000, //超时时间设置为10秒；
-					headers: { 'Content-Type': 'application/json' },
-					success: function(data) {
-						var data = JSON.stringify(data);
-						var dataobj = eval("(" + data + ")");
-						if(dataobj.success ==true){
-							mui.openWindow({
-									url: 'main.html',
-									id: 'main.html'
-								});
-						}else{
-							//TODO 获取数据失败
-						}
-					},
-					error: function(xhr, type, errorThrown) {
-						//异常处理；
-						mui.toast('获取数据失败，请稍后再试！');
-						console.log(type);
-					}
 				});
 			})
 		</script>

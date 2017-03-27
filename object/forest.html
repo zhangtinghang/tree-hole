@@ -189,12 +189,12 @@
 		<script src="../js/template.js"></script>
 		<script type="text/javascript" src="../js/immersion.js"></script>
 		<script type="text/html" id="art-list">
-			{{each index as value i}}
+			{{each index as data i}}
 			<div class="mui-slider-item">
-				<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/{{value}}.png);">
+				<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/{{index[i]}}.png);">
 					{{each trees as data j}}
 					<a href="javascript:;">
-						<div data-list='{{treestyle[j]}}' class="tree tree_list tree-{{trees[j]}}"><img src="../imgs/trees/tree{{treestyle[j]}}.png" /></div>
+						<div data-index = '{{j}}' data-list='{{treestyle[j]}}' class="tree tree_list tree-{{trees[j]}}"><img src="../imgs/trees/tree{{treestyle[j]}}.png" /></div>
 					</a>
 					{{/each}}
 				</div>
@@ -204,80 +204,119 @@
 		<script type="text/html" id="popover_list">
 			<a href="javascript:;">
 				<div class="popover-box">
-					<img id="povover_back" class="popover-btn" src="../imgs/trees/cancel.png" />
-					<h2>小狐狸的树</h2>
-					<p>关键字：狗狗离开了我</p>
+					<img class="popover-btn" src="../imgs/trees/cancel.png" />
+					<h2>{{username}}</h2>
+					<p>关键字：{{tag}}</p>
 					<img src="../imgs/trees/tree{{data_img}}-big.png" />
-					<div id="come_btn" class="come-btn">
+					<div class="come-btn">
 						进入...
 					</div>
 				</div>
 			</a>
 		</script>
 		<script>
-			mui.init();
-			//			//图片切换时，触发动画
-			//			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
-			//			 	//注意slideNumber是从0开始的；
-			//			 	var index = event.detail.slideNumber;
-			//			});
-			
+	(function(){
+			mui.init();			
 			var token = localStorage.getItem('name_token');
-			console.log(token)
 			//获取数据
 			mui.ajax('http://139.219.189.127:5000/api/getLast',{
-				data:'token='+token+'&type=0',
+				data:'token='+token+'&type=0'+'&count=70',
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
-				timeout:0,//超时时间设置为10秒；
+				timeout:1000,//超时时间设置为10秒；
 				success:function(data){
 					var data = JSON.stringify(data);
+					//添加离线缓存
+					plus.storage.setItem("forestdata", data);
 					var dataobj = eval("(" + data + ")");
-					console.log('这是最新的树洞信息'+dataobj.article.length)
+					var datalen = parseInt(dataobj.article.length/10);
+					localStorage.setItem('datalen',datalen);
+					console.log('这是最新的树洞信息'+data)
+					console.log('这是最新的树洞数量'+dataobj.article.length)
 				},
 				error:function(xhr,type,errorThrown){
 					console.log('这是首页='+type)
 				}
 			});
-			
-			//模板渲染
-			var randomNumber = randomNumber();
+		var allArr = ['1', '2', '3', '4', '5', '6', '7'];
+		var listArr = [];
+		var listIndex = 0;
+		var listTag = 0;
+		var randomNumber = randomNumber();	
+		var listCount = localStorage.getItem('datalen');
+			for(var i=0;i<listCount;i++){
+				listArr[i]=allArr[i]
+			}
+			//图片切换时，触发动画
+			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+			 	//注意slideNumber是从0开始的：
+			 	listIndex = event.detail.slideNumber;
+			});
+
+		temp(listArr);
+		function temp(listArr){
+			//模板渲染		
 			var data = {
-				index: ['1', '2', '3', '4', '5', '6', '7'],
+				index: listArr,
 				trees: randomNumber,
 				treestyle: ['1', '2', '3', '4', '5', '6', '7', '6', '5', '4']
 			};
 			var html = template('art-list', data);
 			document.getElementById('list-box').innerHTML = html;
-
-			//点击遮罩触发
-			var pop = document.getElementById("popover");
-			var mask = mui.createMask(function() {
-				pop.classList.remove('mui-active');
-			});
-			// 显示
+		}
+			// 点开初始化页面
 			mui('.item-logo').on('tap', '.tree_list', function() {
 				var data_img = this.getAttribute("data-list");
+				var data_tag = this.getAttribute("data-index");
+				listTag = data_tag;
+				var index =Number(listIndex+listTag);
+				console.log('当前位置'+data_tag);
+				var data = JSON.parse(plus.storage.getItem("forestdata"));
+				var tag = data.article[index].tag;
+				var text = data.article[index].text;
+				var username = data.article[index].username;
 				var data = {
-					data_img: data_img
+					data_img: data_img,
+					username: username,
+					tag: tag
 				}
 				var html = template('popover_list', data);
 				document.getElementById('popover').innerHTML = html;
 				mask.show();
 				pop.classList.add('mui-active');
 			})
+			
+			//点击进入按钮
+			mui('#popover').on('tap','.come-btn',function(){
+				var index =Number(listIndex+listTag);
+				console.log("这是传递的位置："+index)
+				var data = JSON.parse(plus.storage.getItem("forestdata"));
+				var pid = data.article[index]._id;
+				var text = data.article[index].text;
+				var username = data.article[index].username;
+				mui.openWindow({
+					url: 'comment_message.html',
+					id: 'comment_message.html',
+					extras:{
+						pid:pid,
+						text:text,
+						username:username
+    				}
+				});
+			});
+			
+			//点击遮罩触发
+			var pop = document.getElementById("popover");
+			var mask = mui.createMask(function() {
+				pop.classList.remove('mui-active');
+			});
+			
 			//遮罩点击事件
 			mui('#popover').on('tap','.popover-btn',function(){
 				pop.classList.remove('mui-active');
 				mask.close();
 			});
 			
-			mui('#popover').on('tap','.come-btn',function(){
-				mui.openWindow({
-					url: 'comment_message.html',
-					id: 'comment_message.html'
-				});
-			});
 			
 			//随机数组
 			function randomNumber() {
@@ -313,7 +352,8 @@
 					}
 				}
 				return target;
-			}
+			}				
+			})();
 		</script>
 	</body>
 
