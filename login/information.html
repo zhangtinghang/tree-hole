@@ -35,68 +35,6 @@
 				-webkit-box-shadow: none;
 				background: #FBD940;
 			}
-			
-			.mui-content>.mui-table-view:first-child {
-				margin-top: 0;
-			}
-			
-			.mui-btn {
-				margin: 0 1.277777rem;
-				margin-top: 0.736111rem;
-				width: 75%;
-				border-radius: 15px;
-				color: #a3a3a3 !important;
-				background-color: #535353;
-				border: none;
-			}
-			
-			.mui-content {
-				padding-top: 3.472222rem !important;
-				background: #FBD940;
-			}
-			
-			.mui-input-group .mui-input-row {
-				height: 1.236111rem;
-			}
-			
-			.input-icon {
-				width: 0.430555rem;
-			}
-			
-			.mui-input-row label {
-				width: 10% !important;
-			}
-			
-			.mui-input-row input {
-				width: 85% !important;
-			}
-			
-			.mui-input-clear {
-				height: 1.236111rem !important;
-				padding-left: 0.375rem !important;
-			}
-			
-			.mui-input-group {
-				margin: 0 1.277777rem;
-				border-radius: 15px;
-				margin-top: 0.805555rem;
-			}
-			
-			.select_btn {
-				width: 100%;
-				margin: 0;
-				border-radius: 0;
-				color: #333333;
-				background-color: white;
-				padding-left: 1.385rem;
-			}
-			
-			.hint-name {
-				position: absolute;
-				color: red;
-				right: 0;
-				top: 15px;
-			}
 		</style>
 	</head>
 
@@ -104,98 +42,20 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		</header>
-		<div class="mui-content">
-			<form class="mui-input-group">
-				<div class="mui-input-row">
-					<label><img class="input-icon" src="../imgs/login/head.png"/></label>
-					<input id="hint-input" onblur="blur()" type="text" class="mui-input-clear" placeholder="请输入昵称">
-					<div id="hint-name" class="hint-name" style="display: none;">用户名不可用</div>
-				</div>
-				<div class="mui-input-row">
-					<label><img class="input-icon" src="../imgs/login/code.png"/></label>
-					<input id="input_password" type="password" class="mui-input-clear" placeholder="请输入您的密码">
-				</div>
-				<select id="selct_change" class="mui-btn mui-btn-block select_btn">
-					<option value="1">你的名字</option>
-					<option value="2">你的生日</option>
-					<option value="3">你的性别</option>
-				</select>
-				<div class="mui-input-row">
-					<label><img class="input-icon" src="../imgs/login/code.png"/></label>
-					<input id="input_answer" type="text" class="mui-input-clear" placeholder="请输入您的答案">
-				</div>
-			</form>
-			<button type="button" id="btn_register" class="mui-btn mui-btn-block">提交</button>
-		</div>
+		
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			//注册
-			var btn_register = document.getElementById("btn_register");
-			btn_register.addEventListener('tap',function(){
-				var hint_input = document.getElementById("hint-input").value;			
-				var input_password = document.getElementById("input_password").value;
-				var selct_change = document.getElementById("selct_change");
-				var selct_index=selct_change.selectedIndex;
-				var problem_id = selct_change.options[selct_index].value;
-				var input_answer = document.getElementById("input_answer").value;
-				register(hint_input,input_password,problem_id,input_answer);
-			})
-						
-			function register(hint_input,input_password,problem_id,input_answer){
-				mui.ajax('http://139.219.189.127:5000/api/register', {
-					data: {
-						username:hint_input,
-						password:input_password,
-						problem_id:problem_id,
-						answer:input_answer
-					},
-					dataType: 'json', //服务器返回json格式数据
-					type: 'post', //HTTP请求类型
-					timeout: 10000, //超时时间设置为10秒；
-					headers: { 'Content-Type': 'application/json' },
-					success: function(data) {
-						var data = JSON.stringify(data);
-						var dataobj = eval("(" + data + ")");
-						if(dataobj.success ==true){
-							mui.openWindow({
-									url: 'login.html',
-									id: 'login.html'
-								});
-						}else{
-							//TODO 获取数据失败
-						}
-						console.log(data);
-					},
-					error: function(xhr, type, errorThrown) {
-						//异常处理；
-						mui.toast('获取数据失败，请稍后再试！');
-						console.log(type);
-					}
-				});
-				
-			}
-			
-			
-			
-			function blur() {			
-				var hint_name = document.getElementById("hint-name");
-				mui.ajax('http://139.219.189.127:5000/api/registerUsername', {
-					data: {
-						username: hint_input
-					},
-					dataType: 'json', //服务器返回json格式数据
-					type: 'post', //HTTP请求类型
-					timeout: 10000, //超时时间设置为10秒；
-					headers: { 'Content-Type': 'application/json' },
-					success: function(data) {
-						console.log('按时');
-					},
-					error: function(xhr, type, errorThrown) {
-						//异常处理；
-						console.log(type);
-					}
-				});
-			}
+			mui.init({
+			swipeBack:true, //Boolean(默认false)启用右滑关闭功能
+			subpages:[{
+		      url:'informationChil.html',//子页面HTML地址，支持本地地址和网络地址
+		      id:'informationChil.html',//子页面标志
+		      styles:{
+		        top:'45px',//子页面顶部位置
+		        bottom:'0px',//子页面底部位置
+		    }
+		}]
+		});
 		</script>
 	</body>
 

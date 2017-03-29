@@ -82,7 +82,9 @@
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init({
+				swipeBack:true, //Boolean(默认false)启用右滑关闭功能
+			});
 			mui.plusReady(function () {
 				plus.webview.currentWebview().setStyle({
 				softinputMode: "adjustResize"

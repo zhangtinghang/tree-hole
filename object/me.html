@@ -15,7 +15,7 @@
 		html,body{
 			margin: 0;
 			padding: 0;
-			background-color: white;
+			background-color: #EEEEEE;
 		}
 			.me-head{	
 				margin: 0;
@@ -32,7 +32,7 @@
 				width: 6.416666rem;
 				height: 6.416666rem;
 				border-radius:200px;
-				background-color: white;
+				background-color: #EEEEEE;
 			}
 			.head-box img{
 				width: 4.347222rem;
@@ -58,7 +58,7 @@
 				height:3.166666rem;
 				background: #FBD940;
 				position: relative;
-				border-right:0.05rem solid white;
+				border-right:0.05rem solid #EEEEEE;
 			}
 			.message img{
 				width: 0.805555rem;
@@ -89,23 +89,24 @@
 			.me-btn{
 				margin-top: 0.402777rem;
 			}
-			.me-btn button{
+			#btn_return{
 				border: none;
 				background: #FBD940;
 				font-size:0.638888rem;
 				color: #272727;
+				padding: 15px 0;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="me-head" id="head_box">
-			<div class="head-box" id="head_icon">
+			<!--<div class="head-box" id="head_icon">
 				<img src="../imgs/me/tree0_head.png" />
 			</div>
 			<div class="head-title" id="comment_message">
 				子非鱼
-			</div>
+			</div>-->
 		</div>
 		<div class="me-message">
 			<div class="message" id="btn_message">
@@ -118,7 +119,7 @@
 			</div>
 		</div>
 		<div class="me-btn">
-			<button type="button" class="mui-btn mui-btn-block">退出树洞</button>
+			<input type="button" id="btn_return" class="mui-btn mui-btn-block" value="登录/注册"></input>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/template.js"></script>
@@ -133,49 +134,107 @@
 		</script>
 		
 		<script type="text/javascript">
+		mui.init({
+			  preloadPages:[{
+				    url: '../login/login.html', 
+					id:'login.html',
+					subpages:[{
+						url:'../login/loginChil.html',
+						id:'../login/loginChil.html'
+						}]//预加载页面的子页面
+			    }]
+			});
+		mui.plusReady(function () {
+			var token = plus.storage.getItem('name_token');
 			var btn_message = document.getElementById("btn_message");
 			var btn_attention = document.getElementById("btn_attention");
 			var comment_message = document.getElementById("comment_message");
 			var head_box = document.getElementById("head_box");
+			var btn_return = document.getElementById("btn_return");
+			if(!token){
+				btn_return.value = '登录/注册';
+			}else{
+				btn_return.value = '退出登录';
+			}
+			//开启回弹
+			plus.webview.currentWebview().setStyle({
+					bounce: "vertical",
+					bounceBackground:"#EEEEEE"
+				});
+			//更换头像
+			var num;
+			if(plus.storage.getItem("nowHead")){
+				num = plus.storage.getItem("nowHead");
+			}else{
+				num = 0;
+			}
+			var nickname = ' ';
+			console.log('这是未登录状态的头像'+num);
+			console.log('这是未登录状态的名字'+nickname);
+			artHead(num);
+		
+		
+			btn_return.addEventListener('tap',function(){
+				if(token){
+					plus.storage.removeItem('name_token');
+					btn_return.value = '登录/注册';
+				}else{
+					mui.openWindow({
+					    url: '../login/login.html', 
+					    id:'login.html'
+					  });
+				}
+			});
 			btn_message.addEventListener('tap',function(){
-				mui.openWindow({
-			    url: 'myMess.html', 
-			    id:'myMess.html'
-			  });
+				if(token){
+					mui.openWindow({
+					    url: 'myMess.html', 
+					    id:'myMess.html'
+					  });
+				}else{
+					mui.openWindow({
+					    url: '../login/login.html', 
+					    id:'login.html'
+					  });
+				}
+
 			});
 			btn_attention.addEventListener('tap',function(){
+				if(token){
 				mui.openWindow({
 			    url: 'myAttention.html', 
 			    id:'myAttention.html'
 			  });
+			 }else{
+					mui.openWindow({
+					    url: '../login/login.html', 
+					    id:'login.html'
+					  });
+				}
 			})
-			comment_message.addEventListener('tap',function(){
-				mui.openWindow({
-			    url: 'comment_message.html', 
-			    id:'comment_message.html'
-			  });
-			})
-			head_box.addEventListener('tap',function(){
+			mui('#head_box').on('tap','.head-box',function(){
+				if(token){
 				mui.openWindow({
 			    url: 'head_modification.html', 
 			    id:'head_modification.html'
 			  });
-			})
-			
-			//更换头像
-			var num =localStorage.nowHead;
-			var nickname;
-			window.addEventListener('headId',function(event){
-			  //获得事件参数
-			  num = event.detail.num;
-			  nickname = event.detail.nickname;
-			  localStorage.setItem("nowHead",num);
-				artHead(num);
+			 }else{
+					mui.openWindow({
+					    url: '../login/login.html', 
+					    id:'login.html'
+					  });
+				}
 			});
-			
-			artHead(num);
+		
+		window.addEventListener('headId',function(event){
+		  //获得事件参数
+		  num = event.detail.num;
+		  nickname = event.detail.nickname;
+		  plus.storage.setItem("nowHead",num);
+		  artHead(num);
+		});
 		//修改头像
-		function artHead(){
+		function artHead(num){
 			var data = {
 				num:num,
 				title:nickname
@@ -183,6 +242,7 @@
 			var html = template('head_list', data);
 			document.getElementById('head_box').innerHTML = html;
 		}
+});
 		</script>
 	</body>
 

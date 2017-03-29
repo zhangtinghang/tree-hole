@@ -62,8 +62,13 @@
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/immersion.js"></script>
 		<script type="text/javascript">
-			mui.init()
-			var token = localStorage.getItem('name_token');
+			mui.init({
+				preloadPages:[{
+				    url:'comment.html', 
+					id:'comment.html'
+			    }]
+			})
+			var token = plus.storage.getItem('name_token');
 			document.getElementById("down_comment").addEventListener('tap', function() {
 				console.log('这是获取到的token'+token);
 				if(token){
@@ -72,6 +77,10 @@
 						id: 'comment.html'
 					});
 				} else {
+					mui.openWindow({
+						url: 'comment.html',
+						id: 'comment.html'
+					});
 					mui.toast('请先登录！');
 				}
 			})

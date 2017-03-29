@@ -173,7 +173,9 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/immersion.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init({
+				swipeBack:true, //Boolean(默认false)启用右滑关闭功能
+			})
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
 				var pid = self.pid;
@@ -183,10 +185,9 @@
 				var header_title = document.getElementById("header_title");
 				var content_text = document.getElementById("content_text");
 				header_title.innerHTML = username;
-				content_text.innerHTML = text;							
-			
+				content_text.innerHTML = text;							 
 			//关注
-			var token = localStorage.getItem('name_token');	
+			var token = plus.storage.getItem('name_token');	
 			var attention_btn = document.getElementById("attention_btn");
 			attention_btn.addEventListener('tap',function(){
 			//判断网络连接
@@ -222,9 +223,7 @@
 				});
 			})
 		})
-			
-
-		</script>
+	</script>
 	</body>
 
 </html>

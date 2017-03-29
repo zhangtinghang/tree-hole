@@ -64,6 +64,14 @@
 			}
 			#contact{
 				border: 1px solid #ACACB4 !important;
+				margin: 0;
+			}
+			.nav-footer{
+				margin: 0 !important;
+				padding: 0 !important;
+				position: fixed !important;
+				bottom: 0;
+				width: 100%;
 			}
 		</style>
 	</head>
@@ -81,8 +89,8 @@
 			<div class="mui-input-row">
 				<textarea id="content_textarea" rows="5" placeholder="说出你的小秘密..."></textarea>
 			</div>
-			<div id='image-list' class="row image-list"></div>
-			<div class="mui-input-row">
+			<div id='image-list' class="row image-list" style="display: none;"></div>
+			<div class="mui-input-row nav-footer">
 				<input id='contact' type="text" class="mui-input-clear contact" placeholder="添加5-10字的关键字" />
 			</div>
 		</div>
@@ -90,12 +98,45 @@
 		<script type="text/javascript" src="../js/immersion.js" ></script>
 		<script src=" ../js/feedback.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui.init();
-			mui.plusReady(function () {
-				plus.webview.currentWebview().setStyle({
-				softinputMode: "adjustResize"
-				});
-			})
+			mui.init({
+				swipeBack:true, //Boolean(默认false)启用右滑关闭功能
+			});
+//			mui.plusReady(function () {
+//				plus.webview.currentWebview().setStyle({
+//				softinputMode: "adjustResize"
+//				});
+//			})
+
+var openSoftKeyboard = function() {
+        if(mui.os.ios){
+            var webView = plus.webview.currentWebview().nativeInstanceObject();
+            webView.plusCallMethod({
+                "setKeyboardDisplayRequiresUserAction": false
+            });
+        }else{
+            var webview = plus.android.currentWebview();
+            plus.android.importClass(webview);
+            webview.requestFocus();
+            var Context = plus.android.importClass("android.content.Context");
+            var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+            var main = plus.android.runtimeMainActivity();
+            var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+        }
+    }
+
+			//页面隐藏事件
+            plus.webview.currentWebview().addEventListener("hide",function(e){
+                document.getElementById("content_textarea").value="";
+                    document.getElementById("content_textarea").blur();//搜索框取消焦点，关闭软键盘
+            });
+            //页面显示事件
+            plus.webview.currentWebview().addEventListener("show",function(e){
+                setTimeout(function() {//自动打开软键盘，搜索框获取焦点
+                        openSoftKeyboard();
+                        document.getElementById("content_textarea").focus();
+                    }, 300);
+            });
 		</script>
 	</body>
 

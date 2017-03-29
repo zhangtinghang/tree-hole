@@ -148,6 +148,8 @@
 		var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
 		//图片转换
 			var f = feedback.files[0];
+			var token = plus.storage.getItem('name_token');
+		if(f){
 			var path = f.path;
 			console.log("addFile:"+path);
 			var bitmap = new plus.nativeObj.Bitmap("test"); //test标识谁便取
@@ -159,7 +161,7 @@
 				console.log('加载图片失败：' + JSON.stringify(e));
 			});
 			var imgFormat = path.substr(path.lastIndexOf('.') + 1);
-			var token = localStorage.getItem('name_token');
+			
 			var ImgBase64 = localStorage.getItem('Imgbase64');
 			mui.ajax('http://139.219.189.127:5000/api/uploadImg',{
 				data:{
@@ -183,6 +185,9 @@
 					console.log('图片上传出错：'+type);
 				}
 			});
+		}else{
+			UpData();
+		}
 			
 		//上传数据
 		function UpData(){
@@ -201,6 +206,7 @@
 					success: function(data) {
 						var data = JSON.stringify(data);
 						var dataobj = eval("(" + data + ")");
+						console.log(data)
 						if(dataobj.success ==true){
 							w.close();
 							mui.openWindow({
@@ -209,6 +215,7 @@
 								});
 						}else{
 							//TODO 获取数据失败
+							w.close();
 							mui.toast('拉取数据出错，请稍后再试！');
 						}
 					},

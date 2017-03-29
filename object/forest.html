@@ -216,14 +216,15 @@
 		</script>
 		<script>
 	(function(){
-			mui.init();			
-			var token = localStorage.getItem('name_token');
+			mui.init();	
+			mui.plusReady(function () {
+			    var token = plus.storage.getItem('name_token');			
 			//获取数据
 			mui.ajax('http://139.219.189.127:5000/api/getLast',{
 				data:'token='+token+'&type=0'+'&count=70',
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
-				timeout:1000,//超时时间设置为10秒；
+				timeout:10000,//超时时间设置为10秒；
 				success:function(data){
 					var data = JSON.stringify(data);
 					//添加离线缓存
@@ -238,11 +239,12 @@
 					console.log('这是首页='+type)
 				}
 			});
+		});
 		var allArr = ['1', '2', '3', '4', '5', '6', '7'];
 		var listArr = [];
 		var listIndex = 0;
 		var listTag = 0;
-		var randomNumber = randomNumber();	
+		var randomNumber = randomNumber();
 		var listCount = localStorage.getItem('datalen');
 			for(var i=0;i<listCount;i++){
 				listArr[i]=allArr[i]
@@ -255,7 +257,7 @@
 
 		temp(listArr);
 		function temp(listArr){
-			//模板渲染		
+			//模板渲染
 			var data = {
 				index: listArr,
 				trees: randomNumber,
@@ -284,7 +286,7 @@
 				document.getElementById('popover').innerHTML = html;
 				mask.show();
 				pop.classList.add('mui-active');
-			})
+			});
 			
 			//点击进入按钮
 			mui('#popover').on('tap','.come-btn',function(){

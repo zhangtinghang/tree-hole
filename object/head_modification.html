@@ -187,9 +187,12 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/immersion.js"></script>
 		<script type="text/javascript">
+			mui.init({
+				swipeBack:true, //Boolean(默认false)启用右滑关闭功能
+			})
 			var index;
-			if(localStorage.head_num) {
-				index = localStorage.head_num;
+			if(plus.storage.head_num) {
+				index = plus.storage.head_num;
 			} else {
 				index = 0;
 			}
@@ -204,7 +207,7 @@
 			//自定义函数，用于传递选中头像
 			var detailPage = null;
 			var affirm = document.getElementById("affirm");
-			var token = localStorage.getItem('name_token');
+			var token = plus.storage.getItem('name_token');
 			var contact = document.getElementById("contact");
 			affirm.addEventListener('tap', function() {
 			//判断是否为kong			

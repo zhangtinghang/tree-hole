@@ -10,7 +10,7 @@
 	"icons": {
 		"72": "icon.png"
 	},
-	"launch_path": "login/login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"launch_path": "object/main.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
 		"name": "",/*开发者名称*/
 		"email": "",/*开发者邮箱地址*/
@@ -233,11 +233,14 @@
 					"js/template.js",
 					"imgs/me/tree0_head.png",
 					"js/immersion.js",
-					"imgs/me/tree2_head.png"
+					"imgs/me/tree2_head.png",
+					"imgs/me/tree4_head.png"
 				],
 				"refer": [
 					"object/head_modification.html",
-					"object/myMess.html"
+					"object/myMess.html",
+					"object/myAttention.html",
+					"login/login.html"
 				],
 				"priority": 0
 			},
@@ -256,9 +259,23 @@
 					"imgs/trees/2.png",
 					"imgs/trees/tree1.png",
 					"imgs/trees/tree9.png",
-					"js/template.js"
+					"js/template.js",
+					"imgs/trees/5.png",
+					"imgs/trees/cancel.png",
+					"imgs/trees/tree4-big.png",
+					"imgs/trees/circle.png",
+					"imgs/trees/tree7-big.png",
+					"imgs/trees/tree5-big.png",
+					"imgs/trees/tree6-big.png",
+					"imgs/trees/tree1-big.png",
+					"imgs/trees/tree3-big.png",
+					"imgs/trees/tree2-big.png",
+					"imgs/trees/6.png",
+					"js/immersion.js"
 				],
-				"refer": [],
+				"refer": [
+					"object/comment_message.html"
+				],
 				"priority": 0
 			},
 			"object/head_modification.html": {
@@ -292,17 +309,25 @@
 					"css/mui.min.css",
 					"imgs/login/code.png",
 					"imgs/login/phono.png",
-					"imgs/login/bigtree.png"
+					"imgs/login/bigtree.png",
+					"css/headerStyle.css"
 				],
 				"refer": [
 					"login/information.html",
-					"object/main.html"
+					"object/main.html",
+					"login/register.html"
 				],
 				"priority": 0
 			},
 			"login/information.html": {
 				"resources": [
-					"imgs/login/head.png"
+					"imgs/login/head.png",
+					"css/mui.min.css",
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"fonts/mui.ttf",
+					"imgs/login/code.png"
 				],
 				"refer": [
 					"login/login.html"
@@ -318,7 +343,8 @@
 					"js/mui.min.js",
 					"js/zoom/flexible_css.js",
 					"css/mui.min.css",
-					"js/immersion.js"
+					"js/immersion.js",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
@@ -362,24 +388,66 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"object/comment_message.html": {
+				"resources": [
+					"imgs/comment_messgae/arrows.png",
+					"imgs/attention.png",
+					"css/headerStyle.css",
+					"imgs/Guide-page3.png",
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"css/mui.min.css",
+					"imgs/tree1.png",
+					"js/immersion.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"object/myAttention.html": {
+				"resources": [
+					"imgs/trees/tree8.png",
+					"imgs/trees/tree5.png",
+					"imgs/trees/tree7.png",
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"imgs/trees/tree6.png",
+					"fonts/mui.ttf",
+					"css/headerStyle.css",
+					"css/mui.min.css",
+					"imgs/trees/tree4.png",
+					"js/immersion.js",
+					"imgs/trees/tree9.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"login/register.html": {
+				"resources": [
+					"js/zoom/flexible.js",
+					"js/mui.min.js",
+					"js/zoom/flexible_css.js",
+					"imgs/login/verify.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"imgs/login/phono.png"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
 			"resources": [
 				"imgs/comment_messgae/comment.png",
-				"login/register.html",
-				"imgs/login/verify.png",
-				"imgs/trees/cancel.png",
 				"imgs/trees/tree.png",
 				"imgs/trees/river.png",
 				"css/mui.css",
 				"js/zoom/flexible.debug.js",
 				"js/zoom/flexible_css.debug.js",
 				"index.html",
-				"imgs/comment_messgae/arrows.png",
-				"js/mui.js",
-				"object/comment_message.html",
-				"object/myAttention.html"
+				"js/mui.js"
 			]
 		}
 	},"fullscreen":false
