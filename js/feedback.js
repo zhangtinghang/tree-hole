@@ -13,7 +13,10 @@
 		imageList: document.getElementById('image-list'),
 		submitBtn: document.getElementById('btn_send'),
 		question: document.getElementById('content_textarea'),
-		contact:document.getElementById("contact")
+		contact:document.getElementById("contact"),
+		picture:document.getElementById("picture"),
+		photo:document.getElementById("photo"),
+		speak:document.getElementById("speak")
 	};
 	var url = 'http://139.219.189.127/api/uploadImg';
 	feedback.files = [];	//文件初始化
@@ -44,6 +47,7 @@
 		size = 0; //文件大小初始化
 		imageIndexIdNum = 0;
 	};
+	
 	//获取文件存入数组；将对象的数组提出来转化为数组
 	feedback.getFileInputArray = function() {
 		return [].slice.call(feedback.imageList.querySelectorAll('.file'));
@@ -80,6 +84,31 @@
 			}, 0);
 			return false;
 		}, false);
+		
+			//监听点击事件
+		feedback.picture.addEventListener("tap",function () {
+	      mui.trigger(fileInput,'tap');
+		  feedback.imageList.style.display = 'block';	  
+		});
+	
+		// 获取摄像头目录对象
+	document.getElementById("photo").addEventListener("tap", function() {
+					/**
+					 * 获取摄像头对象
+					 * http://www.html5plus.org/doc/zh_cn/camera.html#plus.camera.getCamera
+					 */
+					var camera = plus.camera.getCamera();
+					/**
+					 * 进行拍照操作
+					 * http://www.html5plus.org/doc/zh_cn/camera.html#plus.camera.Camera.captureImage
+					 */
+					camera.captureImage( function ( path ) {
+						plus.gallery.save(path);
+						 mui.trigger(fileInput,'tap');
+					}, function ( e ) {
+					mui.toast( "取消拍照" );
+				}, {filename:"_doc/gallery/",index:1} );
+		});
 		
 		//fileInputDIV构成一个上传文件的容器
 		var fileInput = document.createElement('div');

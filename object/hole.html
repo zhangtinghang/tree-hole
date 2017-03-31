@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
 		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/animate.css" />
 		<style>
 			body,
 			html {
@@ -33,18 +34,26 @@
 				width: 0.486111rem;
 				height: 0.444444rem;
 				position: absolute;
-				top: 11.83333rem;
-				left: 4rem;
+				top: 11.86333rem;
+				left: 4rem;			
 			}
 			
 			.bg-pic img {
 				width: 8.888888rem;
 				height: 10.986111rem;
 			}
-			
-			.bg-pic-down img {
-				width: 0.486111rem;
-				height: 0.444444rem;
+			#down_comment{
+				position: absolute;
+				height: 80px;
+				width: 80px;
+				top: 10.96333rem;
+				left:3.3rem;
+				z-index: 999;
+			}
+			.animated{
+				-webkit-animation-duration: 2s;
+    			animation-duration: 2s;
+
 			}
 		</style>
 	</head>
@@ -54,9 +63,9 @@
 			<div class="bg-pic">
 				<img src="../imgs/big-tree.png" />
 			</div>
-			<div class="bg-pic-down" id="down_comment">
-				<img src="../imgs/arrows.png" />
+			<div id="down_comment">		 
 			</div>
+			<img class="animated bounce bg-pic-down" src="../imgs/arrows.png" />
 		</div>
 
 		<script src="../js/mui.min.js"></script>

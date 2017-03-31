@@ -135,13 +135,10 @@
 		
 		<script type="text/javascript">
 		mui.init({
+			swipeBack:true, //Boolean(默认false)启用右滑关闭功能
 			  preloadPages:[{
 				    url: '../login/login.html', 
-					id:'login.html',
-					subpages:[{
-						url:'../login/loginChil.html',
-						id:'../login/loginChil.html'
-						}]//预加载页面的子页面
+					id:'login.html'
 			    }]
 			});
 		mui.plusReady(function () {
