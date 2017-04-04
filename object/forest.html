@@ -41,88 +41,73 @@
 			}
 			
 			.tree-0 {
-				top: 8.152777rem;
-				left: 1.069444rem;
+				top: 2.763888rem;
+				left: 1.805555rem;
 			}
 			
 			.tree-1 {
-				top: 6.452777rem;
-				left: 5.069444rem;
+				top: 2.277777rem;
+				left: 6.083333rem;
 			}
 			
 			.tree-2 {
-				top: 12.791666rem;
-				left: 5.486111rem;
+				top: 2.916666rem;
+				left: 9.027777rem;
 			}
 			
 			.tree-3 {
-				top: 1.180555rem;
-				left: 7.166666rem;
+				top: 5.180555rem;
+				left: 3.958333rem;
 			}
 			
 			.tree-4 {
-				top: 3.402777rem;
-				left: 8.041666rem;
+				top: 5.25rem;
+				left: 7.083333rem;
 			}
 			
 			.tree-5 {
-				top: 3.208333rem;
-				left: 6.5rem;
+				top: 6.555555rem;
+				left: 1.263888rem;
 			}
 			
 			.tree-6 {
-				top: 3.75rem;
-				left: 4.291666rem;
+				top: 8.722222rem;
+				left:4.875rem;
 			}
 			
 			.tree-7 {
-				top: 13.513888rem;
-				left: 1.888888rem;
+				top:7.75rem;
+				left:8.736111rem;
 			}
 			
 			.tree-8 {
-				top: 6.458333rem;
-				left: 1.072222rem;
+				top: 10.555555rem;
+				left: 1.986111rem;
 			}
 			
 			.tree-9 {
-				top: 1.527777rem;
-				left: 3.083333rem;
+				top: 12.333333rem;
+				left: 4.277777rem;
 			}
 			
 			.tree-10 {
-				top: 5.819444rem;
-				left: 5.888888rem;
+				top: 10.430555rem;
+				left:7.763888rem;
 			}
 			
 			.tree-11 {
-				top: 8.777777rem;
-				left: 3.930555rem;
+				top: 14.486111rem;
+				left: 1.805555rem;
 			}
 			
 			.tree-12 {
-				top: 11.319444rem;
-				left: 1.277777rem;
+				top: 15.166666rem;
+				left: 6.027777rem;
 			}
 			
 			.tree-13 {
-				top: 12.986111rem;
-				left: 2.625rem;
-			}
-			
-			.tree-14 {
-				top: 11.958333rem;
-				left: 6.555555rem;
-			}
-			
-			.tree-15 {
-				top: 10.319444rem;
-				left: 8.0rem;
-			}
-			
-			.tree-16 {
-				top: 8.125rem;
-				left: 8.125rem;
+				top: 14.180555rem;
+				left: 8.694444rem;
 			}
 			
 			#popover {
@@ -179,7 +164,13 @@
 	<body>
 		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: #D1E991">
 			<div class="mui-slider-group" id="list-box">
-
+				<div class="mui-slider-item">
+					<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/1.png);">
+						<a href="javascript:;">
+						<div data-index = '{{j}}' data-list='{{treestyle[j]}}' class="tree tree_list tree-{{trees[j]}}"><img src="../imgs/trees/tree1.png" /></div>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id="popover" class="mui-popover">
@@ -188,19 +179,6 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/template.js"></script>
 		<script type="text/javascript" src="../js/immersion.js"></script>
-		<script type="text/html" id="art-list">
-			{{each index as data i}}
-			<div class="mui-slider-item">
-				<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/{{index[i]}}.png);">
-					{{each trees as data j}}
-					<a href="javascript:;">
-						<div data-index = '{{j}}' data-list='{{treestyle[j]}}' class="tree tree_list tree-{{trees[j]}}"><img src="../imgs/trees/tree{{treestyle[j]}}.png" /></div>
-					</a>
-					{{/each}}
-				</div>
-			</div>
-			{{/each}}
-		</script>
 		<script type="text/html" id="popover_list">
 			<a href="javascript:;">
 				<div class="popover-box">
@@ -214,14 +192,31 @@
 				</div>
 			</a>
 		</script>
-		<script>
-	(function(){
-			mui.init();	
-			mui.plusReady(function () {
-			    var token = plus.storage.getItem('name_token');			
+	<script>
+		var randomNumber = randomNumber();//随机数 10个
+		var AddrandomNumber = AddrandomNumber(); //随机数（二维数组）
+		var listArr = listArr();  //页面数量
+		var treeStyle = treeStyle();  //树的样式
+		var listIndex = 0; //当前页数
+		var listTag = 0; //当页点击位置
+		var listbox = document.getElementById('list-box');
+		Ajax();
+		//图片切换时，触发动画
+		document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+		 	//注意slideNumber是从0开始的：
+		 	listIndex = event.detail.slideNumber;	 	
+		});
+		//发送树洞刷新
+		window.addEventListener('ref',function(event){
+		  	var id = event.detail.id;
+		  	console.log('发送树洞返回的'+id)
+		  	Ajax();
+		});
+
+		function Ajax(){
 			//获取数据
-			mui.ajax('http://139.219.189.127:5000/api/getLast',{
-				data:'token='+token+'&type=0'+'&count=70',
+			mui.ajax('http://112.74.215.22:5000/api/getLast',{
+				data:'type=0'+'&count=70',
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
 				timeout:10000,//超时时间设置为10秒；
@@ -234,40 +229,22 @@
 					localStorage.setItem('datalen',datalen);
 					console.log('这是最新的树洞信息'+data)
 					console.log('这是最新的树洞数量'+dataobj.article.length)
+					//走新消息渲染				
+					 var result = ArtContent();
+					 listbox.innerHTML = result;
 				},
 				error:function(xhr,type,errorThrown){
 					console.log('这是首页='+type)
+					//走缓存渲染		
+					 var result = ArtContent();
+					 listbox.innerHTML = result;
 				}
 			});
-		});
-		var allArr = ['1', '2', '3', '4', '5', '6', '7'];
-		var listArr = [];
-		var listIndex = 0;
-		var listTag = 0;
-		var randomNumber = randomNumber();
-		var listCount = localStorage.getItem('datalen');
-			for(var i=0;i<listCount;i++){
-				listArr[i]=allArr[i]
-			}
-			//图片切换时，触发动画
-			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
-			 	//注意slideNumber是从0开始的：
-			 	listIndex = event.detail.slideNumber;
-			});
-
-		temp(listArr);
-		function temp(listArr){
-			//模板渲染
-			var data = {
-				index: listArr,
-				trees: randomNumber,
-				treestyle: ['1', '2', '3', '4', '5', '6', '7', '6', '5', '4']
-			};
-			var html = template('art-list', data);
-			document.getElementById('list-box').innerHTML = html;
 		}
-			// 点开初始化页面
-			mui('.item-logo').on('tap', '.tree_list', function() {
+
+			
+			// 点开树洞页面
+			mui('#list-box').on('tap', '.tree_list', function() {
 				var data_img = this.getAttribute("data-list");
 				var data_tag = this.getAttribute("data-index");
 				listTag = data_tag;
@@ -276,7 +253,7 @@
 				var data = JSON.parse(plus.storage.getItem("forestdata"));
 				var tag = data.article[index].tag;
 				var text = data.article[index].text;
-				var username = data.article[index].username;
+				var username = data.article[index].user.nickname;
 				var data = {
 					data_img: data_img,
 					username: username,
@@ -295,35 +272,100 @@
 				var data = JSON.parse(plus.storage.getItem("forestdata"));
 				var pid = data.article[index]._id;
 				var text = data.article[index].text;
-				var username = data.article[index].username;
+				var username = data.article[index].user.nickname;
+				var userid = data.article[index].user.id;
+				console.log('这是将要传递的userid'+userid)
 				mui.openWindow({
 					url: 'comment_message.html',
 					id: 'comment_message.html',
 					extras:{
 						pid:pid,
 						text:text,
-						username:username
+						username:username,
+						userid:userid
     				}
 				});
 			});
 			
-			//点击遮罩触发
+			//点击遮罩触发事件
 			var pop = document.getElementById("popover");
 			var mask = mui.createMask(function() {
 				pop.classList.remove('mui-active');
 			});
 			
-			//遮罩点击事件
+			//按钮点击事件
 			mui('#popover').on('tap','.popover-btn',function(){
 				pop.classList.remove('mui-active');
 				mask.close();
 			});
 			
-			
+	
+
+		//模板拼接
+		function ArtContent(){
+			var ULS ='';
+			for(var i=0;i<listArr.length;i++){
+				var uls = '';
+				for(var j=0;j<10;j++){
+					uls= uls+'<a href="javascript:;">'+
+						'<div data-index = "'+j+'" data-list="'+treeStyle[i][j]+'" class="tree tree_list tree-'+AddrandomNumber[i][j]+'">'+'<img src="../imgs/trees/tree'+treeStyle[i][j]+'.png" /></div>'+
+					'</a>'
+				}
+				ULS = ULS + '<div class="mui-slider-item">'+
+					'<div class="item-logo" style="background-position: left top; background-repeat: no-repeat; background-size: 100% 100%; background-image: url(../imgs/trees/'+i+'.png);">'+
+					uls+
+					'</div>'+
+					'</div>'
+			}
+		return ULS
+		}
+		
+		//二维随机数
+		function AddrandomNumber(){
+			var len = localStorage.getItem('datalen');
+			var Arr = [];
+			for(var i=0;i<len;i++){
+				Arr[i] = [];
+				for(var j=0;j<10;j++){
+					Arr[i][j]=randomNumber[j];
+				}
+			}
+			return Arr;
+		}
+		//页数数组
+		function listArr(){
+			var allArr = ['1', '2', '3', '4', '5', '6', '7'];
+			var list = [];
+			var listCount = localStorage.getItem('datalen');
+			console.log("这是从缓存中提取到的页数"+listCount)
+			for(var i=0;i<listCount;i++){
+				list[i]=allArr[i]
+			}
+			return list;
+		}
+
+		//树的样式
+		function treeStyle(){
+			var treeStyle = new Array();
+			var index =0;
+			var e = 0;
+			var len = localStorage.getItem('datalen');
+			var data = JSON.parse(plus.storage.getItem("forestdata"));
+			for(var i=0;i<len;i++){
+				treeStyle[i] = new Array();
+				for(var j=0;j<10;j++){
+					e = index++;
+					treeStyle[i][j]=data.article[e].user.avatar;
+				}
+			}	
+			return treeStyle;
+		}	
+	
+
 			//随机数组
 			function randomNumber() {
 				var source = [
-					"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"
+					"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"
 				];
 				var sL = source.length;
 
@@ -354,8 +396,7 @@
 					}
 				}
 				return target;
-			}				
-			})();
+			}			
 		</script>
 	</body>
 

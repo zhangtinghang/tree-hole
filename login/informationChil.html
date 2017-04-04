@@ -122,7 +122,11 @@
 			});
 						
 			function register(hint_input,input_password,problem_id,input_answer){
-				mui.ajax('http://139.219.189.127:5000/api/register', {
+				console.log(hint_input)
+				console.log(input_password)
+				console.log(problem_id)
+				console.log(input_answer)
+				mui.ajax('http://112.74.215.22:5000/api/register', {
 					data: {
 						username:hint_input,
 						password:input_password,
@@ -159,9 +163,9 @@
 			
 			function blur() {			
 				var hint_name = document.getElementById("hint-name");
-				mui.ajax('http://139.219.189.127:5000/api/registerUsername', {
+				mui.ajax('http://112.74.215.22:5000//api/registerUsername', {
 					data: {
-						username: hint_input
+						userid: hint_input
 					},
 					dataType: 'json', //服务器返回json格式数据
 					type: 'post', //HTTP请求类型

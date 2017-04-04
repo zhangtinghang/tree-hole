@@ -168,13 +168,21 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.zoom.js"></script>
 		<script src="../js/mui.previewimage.js"></script>
-		<!--<script type="text/javascript" src="../js/common.js"></script>-->
 		<script type="text/javascript" src="../js/immersion.js"></script>
-		<!--<script src=" ../js/feedback.js" type="text/javascript" charset="utf-8"></script>-->
 		<script type="text/javascript" src="../js/photo.js"></script>
 		<script type="text/javascript">
 			mui.init({
 				swipeBack: true, //Boolean(默认false)启用右滑关闭功能
+				beforeback: function(){
+					//获得列表界面的webview
+					var content = plus.webview.getWebviewById('forest.html');
+					//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+					mui.fire(content,'ref',{
+						id:"刷新"
+					});
+					//返回true，继续页面关闭逻辑
+					return true;
+				}
 			});
 			var content_textarea = document.getElementById("content_textarea");
 			document.getElementById('speak').addEventListener('tap', function() {
@@ -198,12 +206,6 @@
 					outSet("语音识别失败：" + e.message);
 				});
 			};
-
-			//			mui.plusReady(function () {
-			//				plus.webview.currentWebview().setStyle({
-			//				softinputMode: "adjustResize"
-			//				});
-			//			})
 
 			//键盘弹出事件
 
@@ -236,11 +238,9 @@
 					inputElem.focus();
 				}, 200);
 			};
-			mui.plusReady(function() {
-				showSoftInput();
-				initNativeObjects();
+			showSoftInput();
+			initNativeObjects();
 
-			});
 		</script>
 	</body>
 

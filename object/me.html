@@ -17,7 +17,7 @@
 			padding: 0;
 			background-color: #EEEEEE;
 		}
-			.me-head{	
+			.me-head{
 				margin: 0;
 				padding: 0;
 				width: 10rem;
@@ -100,7 +100,7 @@
 	</head>
 
 	<body>
-		<div class="me-head" id="head_box">
+		<div class="me-head loginBtn" id="head_box">
 			<!--<div class="head-box" id="head_icon">
 				<img src="../imgs/me/tree0_head.png" />
 			</div>
@@ -109,137 +109,118 @@
 			</div>-->
 		</div>
 		<div class="me-message">
-			<div class="message" id="btn_message">
+			<div class="message loginBtn" id="btn_message">
 				<img src="../imgs/me/messagge.png" />
 				<div class="message-title">我的消息</div>
 			</div>
-			<div class="attention" id="btn_attention">
+			<div class="attention loginBtn" id="btn_attention">
 				<img src="../imgs/me/medal.png" />
 				<div class="message-title">我的关注</div>
 			</div>
 		</div>
 		<div class="me-btn">
-			<input type="button" id="btn_return" class="mui-btn mui-btn-block" value="登录/注册"></input>
+			<input type="button" id="btn_return" class="mui-btn mui-btn-block loginBtn" value="登录/注册"></input>
 		</div>
 		<script src="../js/mui.min.js"></script>
-		<script src="../js/template.js"></script>
 		<script src="../js/immersion.js"></script>
-		<script type="text/html" id="head_list">			
-				<div class="head-box">
-					<img src="../imgs/me/tree{{num}}_head.png" />
-				</div>
-				<div class="head-title" id="comment_message">
-					{{title}}
-				</div>
-		</script>
-		
 		<script type="text/javascript">
 		mui.init({
 			swipeBack:true, //Boolean(默认false)启用右滑关闭功能
-			  preloadPages:[{
-				    url: '../login/login.html', 
-					id:'login.html'
-			    }]
 			});
-		mui.plusReady(function () {
-			var token = plus.storage.getItem('name_token');
-			var btn_message = document.getElementById("btn_message");
-			var btn_attention = document.getElementById("btn_attention");
-			var comment_message = document.getElementById("comment_message");
-			var head_box = document.getElementById("head_box");
-			var btn_return = document.getElementById("btn_return");
-			if(!token){
-				btn_return.value = '登录/注册';
-			}else{
-				btn_return.value = '退出登录';
-			}
+			
+		mui.plusReady(function (){
+			var btn_return = document.getElementById("btn_return");			
+			getData();
+			returnBtn();
+			btnMess();
+			btnAttent();
 			//开启回弹
 			plus.webview.currentWebview().setStyle({
 					bounce: "vertical",
 					bounceBackground:"#EEEEEE"
-				});
-			//更换头像
-			var num;
-			if(plus.storage.getItem("nowHead")){
-				num = plus.storage.getItem("nowHead");
-			}else{
-				num = 0;
-			}
-			var nickname = ' ';
-			console.log('这是未登录状态的头像'+num);
-			console.log('这是未登录状态的名字'+nickname);
-			artHead(num);
-		
-		
-			btn_return.addEventListener('tap',function(){
-				if(token){
-					plus.storage.removeItem('name_token');
-					btn_return.value = '登录/注册';
-				}else{
-					mui.openWindow({
-					    url: '../login/login.html', 
-					    id:'login.html'
-					  });
-				}
 			});
-			btn_message.addEventListener('tap',function(){
-				if(token){
-					mui.openWindow({
-					    url: 'myMess.html', 
-					    id:'myMess.html'
-					  });
-				}else{
-					mui.openWindow({
-					    url: '../login/login.html', 
-					    id:'login.html'
-					  });
-				}
-
-			});
-			btn_attention.addEventListener('tap',function(){
-				if(token){
-				mui.openWindow({
-			    url: 'myAttention.html', 
-			    id:'myAttention.html'
-			  });
-			 }else{
-					mui.openWindow({
-					    url: '../login/login.html', 
-					    id:'login.html'
-					  });
-				}
-			})
-			mui('#head_box').on('tap','.head-box',function(){
-				if(token){
-				mui.openWindow({
-			    url: 'head_modification.html', 
-			    id:'head_modification.html'
-			  });
-			 }else{
-					mui.openWindow({
-					    url: '../login/login.html', 
-					    id:'login.html'
-					  });
-				}
-			});
-		
-		window.addEventListener('headId',function(event){
-		  //获得事件参数
-		  num = event.detail.num;
-		  nickname = event.detail.nickname;
-		  plus.storage.setItem("nowHead",num);
-		  artHead(num);
 		});
-		//修改头像
-		function artHead(num){
-			var data = {
-				num:num,
-				title:nickname
-			}
-			var html = template('head_list', data);
-			document.getElementById('head_box').innerHTML = html;
+			window.addEventListener('refresh',function(event){
+			  var id = event.detail.id;
+			  console.log('页面返回的'+id)
+			  getData();
+			});		
+		
+		
+		var returnBtn = function(){
+			btn_return.addEventListener('tap',function(){
+				if(btn_return.value == '登录/注册'){
+					mui.openWindow('../login/login.html','login');
+				}else{
+					init();
+				}
+			});
 		}
-});
+		
+		var init = function(){
+			plus.storage.removeItem('name_token');
+			getData();
+		}
+		
+		var btnMess = function(){
+			var btn_Mess = document.getElementById("btn_message");
+			btn_Mess.addEventListener('tap',function(){
+				if(btn_return.value == '登录/注册'){
+					mui.openWindow('../login/login.html','login');
+				}else{
+				mui.openWindow({
+					url:'myMess.html',
+					id:'myMess'
+				})
+				}
+			});
+		}
+		
+		var btnAttent = function(){
+			var btn_Attent = document.getElementById("btn_attention");
+			btn_Attent.addEventListener('tap',function(){
+				if(btn_return.value == '登录/注册'){
+					mui.openWindow('../login/login.html','login');
+				}else{
+				mui.openWindow({
+					url:'myAttention.html',
+					id:'myAttention'
+				})
+				}
+			});
+		}
+		//获取数据
+		var getData = function(){
+			var token = plus.storage.getItem('name_token');
+			var head_box = document.getElementById("head_box");
+			console.log('这是me页面得token'+token)
+			if(token){				
+				mui.ajax('http://112.74.215.22:5000/api/getUser',{
+					data:'token='+token,
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						console.log('这是获取到的me页面数据'+data)
+						if(dataobj.success == true){
+							var nickname = dataobj.user.nickname;
+							var avatar = dataobj.user.avatar;
+							head_box.innerHTML = '<div class="head-box" id="head_icon"><img src="../imgs/me/tree'+avatar+'_head.png" /></div><div class="head-title" id="comment_message">'+nickname+'</div>';
+							btn_return.value = '退出登录';
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						console.log('获取数据失败'+type);
+						mui.toast("获取数据失败，请稍后再试！")
+					}
+				});				
+			}else{
+				head_box.innerHTML = '<div class="head-box" id="head_icon"><img src="../imgs/me/tree0_head.png" /></div><div class="head-title" id="comment_message"></div>';
+				btn_return.value = '登录/注册';
+			}
+		}
 		</script>
 	</body>
 

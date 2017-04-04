@@ -1,5 +1,3 @@
-
-
 function plusReady(){
 		var imageWidth = document.getElementById("imageWidth");
 		var imgFormat = '';
@@ -33,7 +31,7 @@ function plusReady(){
 	document.getElementById("btn-return").addEventListener('tap',function(){
 		init();
 		mui.back();
-	})
+	});
 	
 	//监听长按事件
 	mui("#line").on('tap','.deleteBtn',function(){
@@ -62,9 +60,11 @@ function plusReady(){
 		}
 		var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
 			if(imageWidth.style.display == 'block'){
+				console.log('走的上传图片')
 				upPic(token,Imgbase64,imgFormat,w);
 			}else{
 				upData(token,content_textarea,contact,w);
+				console.log('走的上传数据')
 			}
 			
 		});
@@ -137,7 +137,7 @@ function plusReady(){
 
 //照片上传
 function upPic(token,Imgbase64,imgFormat,w){	
-			mui.ajax('http://139.219.189.127:5000/api/uploadImg',{
+			mui.ajax('http://112.74.215.22:5000/api/uploadImg',{
 				data:{
 					token:token,
 					img:Imgbase64,
@@ -163,7 +163,7 @@ function upPic(token,Imgbase64,imgFormat,w){
 
 //数据上传
 function upData(token,content_textarea,contact,w){
-	mui.ajax('http://139.219.189.127:5000/api/announce', {
+	mui.ajax('http://112.74.215.22:5000/api/announce', {
 			data: {
 				token:token,
 				title:'1',
@@ -181,11 +181,9 @@ function upData(token,content_textarea,contact,w){
 				if(dataobj.success ==true){
 					w.close();
 					init();
-					mui.openWindow({
-							url: 'main.html',
-							id: 'main.html'
-						});
+					mui.back();
 				}else{
+					console.log(data)
 					//TODO 获取数据失败
 					w.close();
 					mui.toast('获取数据出错，请稍后再试！');

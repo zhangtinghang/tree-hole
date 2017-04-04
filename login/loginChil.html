@@ -102,12 +102,23 @@
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init();
+			mui.init({
+				beforeback: function(){
+					//获得列表界面的webview
+					var list = plus.webview.getWebviewById('me.html');
+					//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+					mui.fire(list,'refresh',{
+						id:"刷新"
+					});
+					//返回true，继续页面关闭逻辑
+					return true;
+				}
+			});
 			mui.plusReady(function () {
 			    //仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
 				
-			})
+			});
 			
 			//登录
 			var login_nickname = document.getElementById("login_nickname");
@@ -125,10 +136,9 @@
 		if (login_password.value.length > 10 || login_password.value.length > 10) {
 			return mui.toast('账号或密码超长,请重新填写~')
 		};
-			mui('.btn').button('loading');
 			//修改参数
 			var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
-				mui.ajax('http://139.219.189.127:5000/api/login', {
+				mui.ajax('http://112.74.215.22:5000/api/login', {
 					data: {
 						username:login_nickname.value,
 						password:login_password.value
@@ -144,17 +154,13 @@
 							var token = dataobj.token;							
 							plus.storage.setItem('name_token',token);
 							w.close();
-							mui.openWindow({
-									url: '../object/main.html',
-									id: 'main.html'
-								});
+					        mui.back();
 						}else{
 							w.close();
 							//TODO 获取数据失败
 						}
 					},
 					error: function(xhr, type, errorThrown) {
-						mui('.btn').button('reset');
 						w.close();
 						//异常处理；
 						mui.toast('登录失败，请稍后再试！');
@@ -169,10 +175,7 @@
 			    url: 'information.html', 
 			    id:'information.html'
 			  });
-			});
-			
-
-			
+			});		
 			//游客登录跳转
 			var btn_tourist = document.getElementById("btn_tourist");
 			btn_tourist.addEventListener('tap',function(){

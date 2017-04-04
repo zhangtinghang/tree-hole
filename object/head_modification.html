@@ -224,7 +224,7 @@
 				
 				//修改参数
 				var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
-				mui.ajax('http://139.219.189.127:5000/api/alter', {
+				mui.ajax('http://112.74.215.22:5000/api/alter', {
 					data: {
 						token: token,
 						avatar:index,
@@ -239,7 +239,6 @@
 						var dataobj = eval("(" + data + ")");
 						console.log('修改页面返回:' + data);
 						if(dataobj.success == true) {
-							w.close();
 							//获得页面
 							if(!detailPage) {
 								detailPage = plus.webview.getWebviewById('me.html');
@@ -249,9 +248,9 @@
 								num: index,
 								nickname:contact.value
 							});
+							w.close();
 							//打开页面
-							console.log('返回成功')
-							
+							console.log('返回成功')							
 							mui.currentWebview.close();					
 						} else {
 							//TODO 获取数据失败

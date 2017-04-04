@@ -39,6 +39,7 @@
 				position: absolute;
 				right: 3%;
 				top: 10px;
+				
 			}
 			
 			.icon-return img {
@@ -88,6 +89,7 @@
 			.text-content {
 				color: #000000;
 				line-height: 30px;
+				padding:20px 5%;
 			}
 			
 			.personal-head {
@@ -98,11 +100,11 @@
 			.head-icon {
 				position: absolute;
 				top: 0.069444rem;
-				left: 0.330555rem;
+				left: 0.130555rem;
 			}
 			
 			.head-icon img {
-				width: 60%;
+				width: 20%;
 			}
 			
 			.head-title {
@@ -135,6 +137,12 @@
 			.img_content img{
 				width: 100%;
 			}
+			.msg-content{
+				position: relative;
+			}
+			#comment{
+				position: relative;
+			}
 		</style>
 	</head>
 
@@ -147,9 +155,9 @@
 			</div>
 		</header>
 		<div class="footer-nav">
-			<a href="comment.html">
-				<div class="mui-input-row">
-					<input class="comment_text" type="text" placeholder="写下我的看法">
+			<a href="javascript:;">
+				<div class="mui-input-row" id="publish">
+					<input id="comment_text" class="comment_text" type="text" placeholder="写下我的看法">
 				</div>
 			</a>
 		</div>
@@ -162,8 +170,8 @@
 				<img src="../imgs/Guide-page2.png" data-preview-src="" data-preview-group="1"/>
 			</p>
 			</div>
-			
-			<div class="personal-information">
+			<div id="comment">
+				<!--<div class="personal-information">
 				<hr />
 				<div class="personal-head">
 					<div class="head-icon">
@@ -175,6 +183,7 @@
 				<div class="personal-content">
 					好感动，动物其实有时比人还重情重义，我以前养过一只猫，小猫最后被车撞死了，从此我再也没有养过猫了。
 				</div>
+			</div>-->
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
@@ -183,53 +192,149 @@
 			mui.init({
 				swipeBack:true, //Boolean(默认false)启用右滑关闭功能
 			})
+			var pid;
+			var token = plus.storage.getItem('name_token');
+			var userid;
 			mui.plusReady(function() {
-				var self = plus.webview.currentWebview();
-				var pid = self.pid;
-				var text = self.text;
-				var username = self.username;
-				console.log(pid + text + username);
-				var header_title = document.getElementById("header_title");
-				var content_text = document.getElementById("content_text");
-				header_title.innerHTML = username;
-				content_text.innerHTML = text;							 
+			var self = plus.webview.currentWebview();
+			pid = self.pid;
+			userid = self.userid;
+			console.log('这是传递过来的userid'+userid)
+			var text = self.text;
+			var username = self.username;
+			console.log(pid + text + username);
+			var header_title = document.getElementById("header_title");
+			var content_text = document.getElementById("content_text");
+			header_title.innerHTML = username;
+			content_text.innerHTML = text;
+			//评论
+			gainComment();
 			//关注
-			var token = plus.storage.getItem('name_token');	
-			var attention_btn = document.getElementById("attention_btn");
-			attention_btn.addEventListener('tap',function(){
-			//判断网络连接
-			if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_NONE){
-				return mui.toast("连接网络失败，请稍后再试");
-			}
-			//修改参数
-			var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
-			mui.ajax('http://139.219.189.127:5000/api/follow',{
-					data:{
-						token:token,
-						username:username
-					},
-					dataType:'json',//服务器返回json格式数据
-					type:'post',//HTTP请求类型
-					timeout:10000,//超时时间设置为10秒；
-					success:function(data){
-						var data = JSON.stringify(data);
-						var dataobj = eval("(" + data + ")");
-						if(dataobj.success == true){
-							w.close();
-							mui.toast('关注成功！');
+			Attention();
+			//发表评论
+			publishComment();
+		});
+			//发送树洞刷新
+			window.addEventListener('refr',function(event){
+			  	var id = event.detail.id;
+			  	console.log('发送树洞返回的'+id)
+			  	gainComment();
+			});
+			
+		//获取评论
+		var gainComment = function (){
+			var comments = document.getElementById("comment");
+			mui.ajax('http://112.74.215.22:5000/api/getComment',{
+				data:'article_ID='+pid,
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){				
+					var data = JSON.stringify(data);
+					console.log('评论数据'+data)
+					var dataobj = eval("(" + data + ")");
+					if(dataobj.success == true){
+						if(dataobj.article == null){
+							mui.toast("暂无评论!");
 						}else{
-							w.close();
-							mui.toast('关注失败！');
+							var childs = comments.childNodes;
+							for(var i = childs.length - 1; i >= 0; i--) { 
+							  comments.removeChild(childs[i]); 
+							}
+							comments.appendChild(createDiv(dataobj));
 						}
-					},
-					error:function(xhr,type,errorThrown){
-						w.close();
-						mui.toast('网络错误 ，请稍后再试！');
-						console.log('关注错误'+type)
 					}
-				});
+				},
+				error:function(xhr,type,errorThrown){
+					mui.toast('获取评论失败！')
+					console.log('获取评论失败'+type)
+				}
+			});
+		}
+		//创建渲染DIV
+		var createDiv = function(dataobj){
+			var fragment = document.createDocumentFragment();
+			for (var i = 0; i < dataobj.article.length; i++) {
+			var avatar = dataobj.article[i].user.avatar;
+			var nickname = dataobj.article[i].user.nickname;
+			var date = dataobj.article[i].date;
+			var text = dataobj.article[i].text;
+			var pid = dataobj.article[i]._id;
+			div = document.createElement('div');
+			div.setAttribute('data-id',pid);
+			div.className = 'personal-information';
+			div.innerHTML = '<hr />'+
+				'<div class="personal-head">'+
+					'<div class="head-icon">'+
+						'<img src="../imgs/trees/tree'+avatar+'.png" />'+
+					'</div>'+
+					'<div class="head-title">'+nickname+'</div>'+
+					'<div class="head-time">'+date+'</div>'+
+				'</div>'+
+				'<div class="personal-content">'+text+'</div>';
+			fragment.appendChild(div);
+			}
+			return fragment;
+		}
+	//发表评论
+	var publishComment = function(){
+		document.getElementById("publish").addEventListener('tap',function(){
+			mui.openWindow({
+				url:'reply.html',
+				id:'reply.html',
+				extras:{
+					token:token,
+					article_ID:pid
+				}
 			})
+		});
+		document.getElementById("comment_text").addEventListener('tap',function(){
+			mui.openWindow({
+				url:'reply.html',
+				id:'reply.html',
+				extras:{
+					token:token,
+					article_ID:pid
+				}
+			})
+		});
+	}
+	
+	//关注
+	var Attention = function(){
+		document.getElementById("attention_btn").addEventListener('tap',function(){
+			console.log(userid)
+			console.log(token)
+			var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
+			mui.ajax('http://112.74.215.22:5000/api/follow',{
+				data:{
+					token:token,
+					userid:userid
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					console.log(data)
+					if(dataobj.success==true){
+						attention_btn.src = "../imgs/attSuccess.png";
+						w.close();
+						mui.toast('关注成功！');
+					}else{
+						w.close();
+						console.log('服务器出错，请稍后再试！')
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					w.close();
+					mui.toast('关注失败，请稍后再试！');
+					console.log(type)
+				}
+			});
 		})
+	}
 	</script>
 	</body>
 
