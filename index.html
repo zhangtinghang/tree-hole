@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>入口页面</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			/**
+			 * 该页面作为空白的入口页面
+			 * 其意义在于，我们可以在这个页面进行一些隐式的操作
+			 * 例如：判定用户是否第一次登录，来跳转至引导页或直接进入APP
+			 * 从本地存储中获取用户信息，进行用户的自动登录
+			 * 在该页面判定完成后，跳转的目标页面，我们可以手动关闭启动界面，用户是看不到这个空白页的
+			 */
+			mui.init({
+				preloadPages: [{
+					url: '../object/push.html',
+					id: 'push.html'
+				}]
+			});
+			mui.plusReady(function() {
+				// 仅支持竖屏显示，这个具体的API我也没有找到，是看的hello mui的例子；
+				plus.screen.lockOrientation("portrait-primary");
+				/*
+				 * 这里获取本地存储中的字段，来判定是否第一次打开app；
+				 * 注意，只需要判定有这个值就可以了，因为只有两种情况：
+				 * 1、有这个值，并且值是true
+				 * 2、压根就没有这个值
+				 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.getItem
+				 */
+				var myDate = new Date();
+				var day = myDate.getDate(); //获取当前日
+				var flag
+				if(plus.storage.getItem('nowDay')){
+					flag = plus.storage.getItem('nowDay');
+				}
+				else{
+					flag = day;
+				}
+				if(flag <= day){
+					plus.storage.removeItem("IsFrist");
+					plus.storage.setItem('nowDay',day);
+				}		
+				var first = plus.storage.getItem("IsFrist");
+				if (!first) {
+					mui.openWindow({
+						url: "object/push.html",
+						id: "push.html",
+						waiting: {
+							autoShow: false
+						},
+						Show:{
+							aniShow:'none',
+							extras: {
+								acceleration: 'capture'
+							} //窗口动画是否使用图片加速
+						}
+					});
+				} else {
+					mui.openWindow({
+						url: "object/main.html",
+						id: "main",
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							aniShow: 'none', //页面显示动画，默认为”slide-in-right“；
+							event: 'loaded', //页面显示时机，默认为titleUpdate事件时显示
+							extras: {
+								acceleration: 'capture'
+							} //窗口动画是否使用图片加速
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

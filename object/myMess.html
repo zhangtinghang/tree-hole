@@ -1,0 +1,486 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+<!--        <meta http-equiv="refresh" content="1"> -->
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="../js/zoom/flexible.js" ></script>
+        <script type="text/javascript" src="../js/zoom/flexible_css.js" ></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body,html{
+				height: 100%;
+				background-color:#FFFFFF;
+			}
+			a:hover{
+				text-decoration: none;
+			}
+			a{
+				color: black;
+			}
+			.mui-bar-nav{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+			}
+			.mui-bar{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+				background: #FBD940;
+			}
+			.mui-segmented-control{
+				background:#FBD940;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				color: beige;
+				border-bottom: none;
+				background:#FBD940;
+			}
+			.mui-icon{
+				color: #000000;
+			}
+			
+			.back-btn{
+				padding: 2px 8px;
+				border-radius:6px;
+			}
+			.media-title{
+				font-size: 20px;
+			}
+			.table-view{
+				padding:10px 10px;
+				border-bottom:1px solid #CCCCCC;
+			}
+			.comment-text{
+				font-size: 17px;
+				color:#272727;
+				padding-bottom: 5px;
+			}
+			.original-text{
+				color: #666666;
+			}
+			.mui-segmented-control {
+				background: #FBD940;
+			}
+			.mui-bar .mui-segmented-control{
+				width: 10rem !important;
+				top: -1px;
+				margin: 0;
+				left: -10px;
+			}
+			#header{
+				height: 82px;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 82px;
+				background-color: #FFFFFF;
+			}
+			.mui-control-item{
+				color: #000000;
+			}
+			
+			.noContent{
+				position: absolute;
+				width: 70%;
+				top:2rem;
+				left:15%;
+			}
+			.noContent img{
+				width: 100%;
+			}
+			.noContent p{
+				text-align: center;
+				font-size: 20px;
+				margin-top: 0.855555rem;
+				color: rgb(220,219,219);
+			}
+			.noContent2{
+				position: absolute;
+				width: 49%;
+				top:4rem;
+				left:25.5%;
+				display: block;
+			}
+			.noContent2 img{
+				width: 100%;
+			}
+			.noContent2 p{
+				text-align: center;
+				font-size: 20px;
+				margin-top: 0.855555rem;
+				color: rgb(220,219,219);
+			}
+			
+			.mui-table-view:after{
+				display: none;
+			}
+			
+			.personal-information {
+				padding-bottom: 5px;
+			}
+			hr{
+				color:rgb(229,229,229);
+				border-color:rgba(229,229,229,.1);
+				margin: 0;
+				margin-left: 1.583333rem;
+			}
+			.personal-head {
+				position: relative;
+				height: 1.083333rem;
+			}
+			.head-icon {
+				position: absolute;
+				width: 0.888888rem;
+				height: 0.888888rem;
+				top: 0.305555rem;
+				left: 0.416666rem;
+			}
+			
+			.head-icon img {
+				width: 100%;
+			}
+			.head-content{
+				position: absolute;
+				top: 0.444444rem;
+				width: 80%;
+				left: 1.583333rem;
+				display: flex;
+			}
+			.head-title {
+				font-size: 0.405555rem;
+				color: #929292;
+			}
+			
+			.head-time {
+				font-size: 0.322222rem;
+				color: #929292;
+				padding-left: 3%;
+			}
+			.personal-content {
+				margin-left:1.583333rem;
+				font-size: 0.388888rem;
+				padding-top: 0.079444rem;
+				padding-bottom: 0.211111rem;
+				padding-right: 2%;
+				color: #3f3f3f;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的消息</h1>
+				<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#item1">
+						评论
+					</a>
+					<a class="mui-control-item" href="#item2">
+						私信
+					</a>
+				</div>
+		</header>
+			
+		<div id="content" class="mui-content">
+			<div id="item1" class="mui-control-content mui-active">
+				<ul class="mui-table-view" id="comments">
+					<!--<div class="noContent">
+						<img src="../imgs/mushroom.png" />
+						<p>当前没有任何评论</p>
+					</div>-->
+				<!--<div class="personal-information">
+					<div class="personal-head">
+						<div class="head-icon">
+							<img src="../imgs/comment/tree1.png" />
+						</div>
+						<div class="head-content">
+							<div class="head-title">匪我思存</div>
+							<div class="head-time">11-24 17:07</div>
+						</div>
+						
+					</div>
+					<div class="personal-content">
+						好感动，动物其实有时比人还重情重义，我以前养过一只猫，小猫最后被车撞死了，从此我再也没有养过猫了。
+					</div>
+					<hr />
+				</div>-->
+			</ul>
+		</div>
+			
+			<div id="item2" class="mui-control-content">
+				<ul class="mui-table-view" id="IMlist">
+					<div class="noContent2" id="noContent2">
+						<img src="../imgs/mushroom.png" />
+						<p>当前没有任何消息</p>
+					</div>
+					<!--<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree4.png">
+						<div class="mui-media-body">
+							<span class="media-title">幸福</span><span class="mui-pull-right">17-1-23</span>
+							<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+						</div>
+					</a>
+				</li>-->
+			</ul>
+		</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/webim.config.js" ></script>
+		<script type="text/javascript" src="../js/strophe-1.2.8.min.js" ></script>
+		<script type="text/javascript" src="../js/websdk-1.4.10.js" ></script>
+		<script type="text/javascript" src="../js/immersed.js" ></script>
+		<script>
+			mui.init({
+				swipeBack:true, //启用右滑关闭功能
+				 preloadPages:[{
+			    	id:'comment_message.html',
+			   	 	url:'comment_message.html'           
+			  	}]
+			});
+			// 单聊页面对象
+			var chatPage = null;
+			//树洞详情页
+			var detailPage = null;
+			//初始化
+			var conn = new WebIM.connection({
+ 			   	https: WebIM.config.https,
+   				url: WebIM.config.xmppURL,
+    			isAutoLogin: WebIM.config.isAutoLogin,
+    			isMultiLoginSessions: WebIM.config.isMultiLoginSessions
+			});
+			mui.plusReady(function (){
+				plus.webview.currentWebview().setStyle({
+				scrollIndicator: 'none'
+			});
+			    //获取评论数据
+				getData();
+				//跳转私信聊天
+			    privateLetter();
+			//初始化界面
+			document.getElementById("noContent2").style.display = 'block';
+			var usernameIM  = plus.storage.getItem('usernameIM');
+			var passwordIM  = plus.storage.getItem('passwordIM');
+			var index = 0;
+			var options = {
+		        apiUrl: WebIM.config.apiURL,
+		        user: usernameIM,
+		        pwd: passwordIM,
+		        appKey: WebIM.config.appkey,
+		        success:function(obj){
+		        IMtoken = obj.access_token;
+		        }
+			}
+			conn.open(options);		
+			// 预加载chatPage
+			chatPage = mui.preload({
+				url:'chat.html',
+			    id:'chat'
+			});
+			});
+			conn.listen({
+				onOpened: function ( message ) {        //连接成功回调
+		        // 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
+		        // 手动上线指的是调用conn.setPresence(); 如果conn初始化时已将isAutoLogin设置为true
+		        // 则无需调用conn.setPresence();
+			    },
+			    onClosed: function ( message ) {
+			    	console.log('链接关闭回调'+message)
+			    },         //连接关闭回调
+				onTextMessage: function ( message ) {
+					var IMlist = document.getElementById("IMlist");
+					//获取私信聊天数据
+					var data = JSON.stringify(message);
+					var dataobj = eval("(" + data + ")");
+					console.log('收到文本消息'+JSON.stringify(message))
+					getIM(dataobj);
+				},    //收到文本消息
+			});
+
+		//获取评论数据
+		var getData = function(){
+		var token = plus.storage.getItem('name_token');
+		var comments = document.getElementById("comments");
+		mui.ajax('http://112.74.215.22:5000/api/getUser',{
+			data:'token='+token,
+			dataType:'json',//服务器返回json格式数据
+			type:'get',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){				
+				var data = JSON.stringify(data);
+				var dataobj = eval("(" + data + ")");
+				console.log('这是评论数据'+data)
+				if(dataobj.success == true){
+					if(dataobj.user.message.length > 0){
+							var childs = comments.childNodes;
+							for(var i = childs.length - 1; i >= 0; i--) { 
+							  comments.removeChild(childs[i]); 
+							}
+							comments.appendChild(createlist(dataobj));					
+					}else{
+						console.log('数据为空');
+						var div =document.createElement('div');
+						div.className = 'noContent';
+						div.innerHTML =' <div class="noContent">'+
+											'<img src="../imgs/mushroom.png" />'+
+											'<p>当前没有任何评论</p>'+
+										'</div>';
+						comments.appendChild(div);
+					}
+				}
+			},
+			error:function(xhr,type,errorThrown){
+				var div =document.createElement('div');
+						div.className = 'noContent';
+						div.innerHTML =' <div class="noContent">'+
+											'<img src="../imgs/mushroom.png" />'+
+											'<p>当前没有任何评论</p>'+
+										'</div>';
+						comments.appendChild(div);
+				mui.toast('获取数据失败，请稍后再试！');
+			}
+		});
+		};
+		
+	var createlist = function(dataobj){
+		var fragment = document.createDocumentFragment();
+		var li;
+		for(var i = 0;i<dataobj.user.message.length;i++){
+			var avatar = dataobj.user.message[i].user.avatar;
+			var nickname = dataobj.user.message[i].user.nickname;
+			var id = dataobj.user.message[i].ancestor;
+			var text = dataobj.user.message[i].text;
+			var date = dataobj.user.message[i].date;
+			li = document.createElement('div');
+			li.setAttribute('data-id',id);
+			li.setAttribute('data-nickname',nickname);
+			li.className = 'personal-information';
+			li.innerHTML ='<div class="personal-head">'+
+						'<div class="head-icon">'+
+							'<img src="../imgs/comment/tree'+avatar+'.png" />'+
+						'</div>'+
+						'<div class="head-content">'+
+							'<div class="head-title">'+nickname+'</div>'+
+							'<div class="head-time">'+date+'</div>'+
+						'</div>'+					
+					'</div>'+
+					'<div class="personal-content mui-ellipsis">'+text+'</div>'+
+					'<hr />';
+			fragment.appendChild(li);
+		}
+		return fragment;
+	}
+	
+	function getIM(dataobj){
+		var otherUser = dataobj.from;
+		var delay = dataobj.delay;
+		var content = dataobj.data;		
+		var token = plus.storage.getItem('name_token');
+		mui.ajax('http://112.74.215.22:5000/api/getOtherUserByName',{
+			data:'token='+token+'&username='+otherUser,
+			dataType:'json',//服务器返回json格式数据
+			type:'get',//HTTP请求类型
+			timeout:10000,//超时时间设置为10秒；
+			success:function(data){
+				var data = JSON.stringify(data);
+				var dataobj = eval("(" + data + ")");
+					if(dataobj.success == true){
+						var chatAvata =dataobj.user.avatar;
+						var nicknameIM =dataobj.user.nickname;
+						document.getElementById("noContent2").style.display = 'none';
+						if(delay){
+						var fragment = document.createDocumentFragment();
+						var li;
+						li = document.createElement('li');
+						li.setAttribute('data-username',otherUser);
+						li.setAttribute('data-avatar',chatAvata);
+						li.setAttribute('data-nickname',nicknameIM);
+						//添加头像
+						li.className = 'mui-table-view-cell mui-media';
+						li.innerHTML ='<a href="javascript:;">'+
+										'<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree'+chatAvata+'.png">'+
+										'<div class="mui-media-body">'+
+											'<span class="media-title">'+nicknameIM+'</span><span class="mui-pull-right">'+delay+'</span>'+
+											'<p class="mui-ellipsis">'+content+'</p>'+
+										'</div>'+
+									'</a>';
+						fragment.appendChild(li);
+						IMlist.insertBefore(fragment,IMlist.firstChild);			
+					}else{
+						var fragment = document.createDocumentFragment();
+						var li;
+						li = document.createElement('li');
+						li.setAttribute('data-username',otherUser);
+						li.setAttribute('data-avatar',chatAvata);
+						li.setAttribute('data-nickname',nicknameIM);
+						//添加头像
+						li.className = 'mui-table-view-cell mui-media';
+						li.innerHTML ='<a href="javascript:;">'+
+										'<img class="mui-media-object mui-pull-left" src="../imgs/trees/tree'+chatAvata+'.png">'+
+										'<div class="mui-media-body">'+
+											'<span class="media-title">'+nicknameIM+'</span>'+
+											'<p class="mui-ellipsis">'+content+'</p>'+
+										'</div>'+
+									'</a>';
+						fragment.appendChild(li);
+						IMlist.insertBefore(fragment,IMlist.firstChild);			
+					}
+				}
+			},
+			error:function(xhr,type,errorThrown){
+				console.log('获取失败');
+			}
+		});
+	}
+
+	//回复评论		
+	mui('#item1').on('tap','.personal-information',function(){
+		 var pid = this.getAttribute('data-id');
+		 var nickname = this.getAttribute('data-nickname');
+		 console.log('这是当前页面'+pid)
+		 //获得详情页面
+		  if(!detailPage){
+		    detailPage = plus.webview.getWebviewById('comment_message.html');
+		  }
+		  //触发详情页面的newsId事件
+		  mui.fire(detailPage,'treeId',{
+		    pid:pid,
+		    nickname:nickname
+		  });
+		//打开详情页面          
+		  mui.openWindow({
+		    id:'comment_message.html'
+		  });
+	});
+
+	//切换私聊
+	var privateLetter = function(){
+		mui('#item2').on('tap','.mui-table-view-cell',function(){
+			var username = this.getAttribute('data-username');
+			var nickname = this.getAttribute('data-nickname');
+			var avatar = this.getAttribute('data-avatar');
+			mui.fire(chatPage,'chat',{
+				chatname: nickname,
+				username:username,
+				avatar:avatar
+			});
+			mui.openWindow({
+			    id:'chat',
+			    show: {
+					aniShow: 'pop-in'
+				},
+				waiting: {
+					autoShow: false
+				}
+			  });
+		})
+	}
+			
+		</script>
+	</body>
+
+</html>

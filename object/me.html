@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+				background-color: #FFFFFF;
+			}
+			
+			.me-head {
+				margin: 0;
+				padding: 0;
+				width: 10rem;
+				height: 5.333333rem;
+				/*background-color: #FBD940;*/
+				background-image: url(../imgs/me/back.png);
+				background-position: left top;
+				background-repeat: no-repeat;
+				background-size: 10rem 5.333333rem;
+				box-sizing: border-box;
+				padding-top: 1.208333rem;
+			}
+			
+			.head-box {
+				margin: 0 auto;
+				width: 2.25rem;
+				height: 2.25rem;
+				border-radius: 200px;
+				background-color: #EEEEEE;
+				text-align: center;
+			}
+			
+			.head-box img {
+				width: 1.527777rem;
+				height: 2.013888rem;
+				margin: 0 auto;
+				margin-top: 6px;
+			}
+			
+			.head-title {
+				text-align: center;
+				font-size: 0.427777rem;
+				color: #FFFFFF;
+				margin-top: 0.5rem;
+				font-weight: bolder;
+			}
+			
+			.me-message {
+				margin-top: 0.402777rem;
+				height: 2.666666rem;
+				width: 10rem;
+				display: flex;
+			}
+			
+			.message {
+				width: 4.95rem;
+				height: 2.666666rem;
+				background: #FFFFFF;
+				position: relative;
+			}
+			
+			.message img {
+				width: 1.361111rem;
+				height: 1.361111rem;
+				position: absolute;
+				top: 0;
+				left: 1.972222rem;
+			}
+			
+			.boundary {
+				margin-top: 0.5rem;
+				height: 1.666666rem;
+				width: 0.1rem;
+				background-image: url(../imgs/me/line1.png);
+				background-position: left top;
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			.attention {
+				width: 4.95rem;
+				height: 2.666666rem;
+				background: #FFFFFF;
+				position: relative;
+			}
+			
+			.attention img {
+				width: 1.361111rem;
+				height: 1.361111rem;
+				position: absolute;
+				top: 0rem;
+				left: 1.972222rem;
+			}
+			
+			.message-title {
+				position: absolute;
+				bottom: 0.5rem;
+				left: 1.734444rem;
+				font-size: 0.444444rem;
+				color: #524d4d;
+			}
+			
+			.me-btn {
+				margin-top: 0.402777rem;
+			}
+			
+			#btn_return {
+				border: none;
+				background: #FBD940;
+				font-size: 0.638888rem;
+				color: #FFFFFF;
+				padding: 10px 0;
+				border-radius: 15px;
+				width: 70%;
+				margin-left: 15%;
+				margin-bottom: 5%;
+			}
+			
+			.division {
+				height: 10px;
+				width: 100%;
+				background-color: rgb(234, 232, 232);
+			}
+			
+			.mui-table-view:after {
+				display: none;
+			}
+			
+			.mui-table-view:before {
+				display: none;
+			}
+			
+			.mui-table-view-box {
+				width: 100%;
+				position: relative;
+				height: 1.388888rem;
+			}
+			
+			.mui-table-view-box:after {
+				position: absolute;
+				right: 5%;
+				left: 5%;
+				height: 1px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: rgb(229, 229, 229);
+				bottom: -1px;
+			}
+			
+			.mui-table-view-img {
+				position: absolute;
+				text-align: center;
+				left: 0.444444rem;
+				top: 50%;
+				margin-top: -0.255555rem;
+				width: 0.555555rem;
+				height: 0.555555rem;
+			}
+			
+			.mui-table-view-img img {
+				width: 100%;
+			}
+			
+			.mui-table-view-text {
+				position: absolute;
+				top: 50%;
+				margin-top: -9px;
+				left: 1.472222rem;
+				font-size: 0.444444rem;
+				color: #524d4d;
+			}
+			
+			.mui-table-view-right {
+				position: absolute;
+				top: 50%;
+				margin-top: -10px;
+				right: 5%;
+				width: 0.194444rem;
+				height: 0.319444rem;
+			}
+			
+			.mui-table-view-right img {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="me-head" id="head_box">
+			<div class="head-box" id="head_icon">
+				<img src="../imgs/trees/tree0.png" />
+			</div>
+			<div class="head-title" id="comment_message"></div>
+		</div>
+		<div class="me-message">
+			<div class="message" id="btn_message">
+				<img src="../imgs/me/mess.png" />
+				<div class="message-title">我的消息</div>
+			</div>
+			<div class="boundary"></div>
+			<div class="attention" id="btn_attention">
+				<img src="../imgs/me/con-copy.png" />
+				<div class="message-title">我的关注</div>
+			</div>
+		</div>
+		<div class="division"></div>
+		<ul class="mui-table-view">
+			<div class="mui-table-view-box" id="upApp">
+				<div class="mui-table-view-img">
+					<img src="../imgs/me/icon1.png" />
+				</div>
+				<div class="mui-table-view-text">
+					检查更新
+				</div>
+				<div class="mui-table-view-right">
+					<img src="../imgs/me/arrows.png" />
+				</div>
+			</div>
+			<div class="mui-table-view-box" id="attentionDay">
+				<div class="mui-table-view-img">
+					<img src="../imgs/me/icon2.png" />
+				</div>
+				<div class="mui-table-view-text">
+					每日推送
+				</div>
+				<div class="mui-table-view-right">
+					<img src="../imgs/me/arrows.png" />
+				</div>
+			</div>
+			<div class="mui-table-view-box" id="telMe">
+				<div class="mui-table-view-img">
+					<img src="../imgs/me/icon3.png" />
+				</div>
+				<div class="mui-table-view-text">
+					关于我们
+				</div>
+				<div class="mui-table-view-right">
+					<img src="../imgs/me/arrows.png" />
+				</div>
+			</div>
+		</ul>
+		<div class="me-btn">
+			<input type="button" id="btn_return" class="mui-btn mui-btn-block" value="登录/注册"></input>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/webim.config.js"></script>
+		<script type="text/javascript" src="../js/strophe-1.2.8.min.js"></script>
+		<script type="text/javascript" src="../js/websdk-1.4.10.js"></script>
+		<script type="text/javascript">
+			var avatar;
+			mui.init({
+				swipeBack: true, //Boolean(默认false)启用右滑关闭功能
+				preloadPages: [{
+					url: '../login/loginChil.html',
+					id: 'loginChil.html'
+				},{
+					url: 'push2.html',
+					id: 'push2.html'
+				}]
+			});
+
+			mui.plusReady(function(){
+				var btn_return = document.getElementById("btn_return");
+				getData();
+				returnBtn();
+				btnMess();
+				btnAttent();
+				btnHead();
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+			});
+			window.addEventListener('refresh', function(event) {
+				getData();
+			});
+			window.addEventListener('refreshHead', function(event) {
+				getData();
+			});
+			
+			document.getElementById("attentionDay").addEventListener('tap',function(){
+				mui.openWindow({
+					url: 'push2.html',
+					id: 'push2.html',
+					show: {
+						aniShow: 'pop-in',//页面显示动画，默认为”slide-in-right“；
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			})
+			
+			document.getElementById("upApp").addEventListener('tap',function(){
+				mui.toast('当前版本最新！');
+			});
+			
+			document.getElementById("telMe").addEventListener('tap',function(){
+				mui.toast('"pathfinder"团队永争第一！');
+			});
+
+			
+			var btnHead = function() {
+				mui('#head_box').on('tap', '.head-box', function() {
+					if(btn_return.value == '登录/注册') {
+						mui.toast("请登录！");
+					} else {
+						mui.openWindow({
+							url: 'head_modification.html',
+							id: 'head_modification',
+							extras: {
+								avatar: avatar
+							},
+							show: {
+								aniShow: 'pop-in', //页面显示动画，默认为”slide-in-right“；
+								event: 'titleUpdate', //页面显示时机，默认为titleUpdate事件时显示
+								extras: {
+									acceleration: 'capture'
+								} //窗口动画是否使用图片加速
+							},
+							waiting: {
+								autoShow: false
+							}
+
+						});
+					}
+				})
+			}
+			var returnBtn = function() {
+				btn_return.addEventListener('tap', function() {
+					if(btn_return.value == '登录/注册') {
+						mui.openWindowWithTitle({
+							url: '../login/loginChil.html',
+							id: 'loginChil',
+							show: {
+								aniShow: 'pop-in'
+							},
+							waiting: {
+								autoShow: false
+							}
+						}, {
+							id: "title",
+							height: '44px',
+							backgroundColor: '#FBD940',
+							bottomBorderColor: '#FBD940',
+						})
+					} else {
+						init();
+					}
+				});
+			}
+
+			var init = function() {
+				plus.storage.removeItem('name_token');
+				getData();
+			}
+
+			var btnMess = function() {
+				var btn_Mess = document.getElementById("btn_message");
+				btn_Mess.addEventListener('tap', function() {
+					if(btn_return.value == '登录/注册') {
+						mui.toast("请登录！")
+					} else {
+						mui.openWindow({
+							url: 'myMess.html',
+							id: 'myMess',
+							show: {
+								aniShow: 'pop-in', //页面显示动画，默认为”slide-in-right“；
+								event: 'titleUpdate', //页面显示时机，默认为titleUpdate事件时显示
+								extras: {
+									acceleration: 'capture' //窗口动画是否使用图片加速
+								}
+							},
+							waiting: {
+								autoShow: false
+							}
+						})
+					}
+				});
+			}
+
+			var btnAttent = function() {
+				var btn_Attent = document.getElementById("btn_attention");
+
+				btn_Attent.addEventListener('tap', function() {
+
+					if(btn_return.value == '登录/注册') {
+						mui.toast("请登录！");
+					} else {
+						mui.openWindow({
+							url: 'myAttention.html',
+							id: 'myAttention',
+							show: {
+								aniShow: 'pop-in', //页面显示动画，默认为”slide-in-right“；
+								event: 'loaded', //页面显示时机，默认为titleUpdate事件时显示
+								extras: {
+									acceleration: 'capture'
+								} //窗口动画是否使用图片加速
+							},
+							waiting: {
+								autoShow: false
+							}
+						})
+					}
+				});
+			}
+			//获取数据
+			var getData = function() {
+				var token = plus.storage.getItem('name_token');
+				var head_box = document.getElementById("head_box");
+				if(token) {
+					mui.ajax('http://112.74.215.22:5000/api/getUser', {
+						data: 'token=' + token,
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							var data = JSON.stringify(data);
+							console.log(data)
+							var dataobj = eval("(" + data + ")");
+							if(dataobj.success == true) {
+								var nickname = dataobj.user.nickname;
+								avatar = dataobj.user.avatar;
+								plus.storage.setItem('avatarIM', avatar);
+								head_box.innerHTML = '<div class="head-box" id="head_icon"><img src="../imgs/trees/tree' + avatar + '.png" /></div><div class="head-title" id="comment_message">' + nickname + '</div>';
+								btn_return.value = '退出登录';
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log('获取数据失败' + type);
+							mui.toast("获取数据失败，请稍后再试！")
+							head_box.innerHTML = '<div class="head-box" id="head_icon"><img src="../imgs/trees/tree0.png" /></div><div class="head-title" id="comment_message"></div>';
+							btn_return.value = '登录/注册';
+						}
+					});
+				} else {
+					head_box.innerHTML = '<div class="head-box" id="head_icon"><img src="../imgs/trees/tree0.png" /></div><div class="head-title" id="comment_message"></div>';
+					btn_return.value = '登录/注册';
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body,
+			html {
+				background-color: #FBD940 !important;
+				height: 100% !important;
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+			}
+			
+			.content-img {
+				width: 3.833333rem;
+				height: 3.916666rem;
+				margin-top: 2.944444rem;
+				margin-left: 3.069444rem;
+			}
+			
+			.mui-content {
+				padding-top: 0 !important;
+				background: #FBD940;
+				height: 100% !important;
+			}
+			
+			.mui-input-group .mui-input-row {
+				height: 1.236111rem;
+			}
+			
+			.input-icon {
+				width: 0.430555rem;
+			}
+			
+			.mui-input-row label {
+				width: 10% !important;
+			}
+			
+			.mui-input-row input {
+				width: 85% !important;
+			}
+			
+			.mui-input-clear {
+				height: 1.236111rem !important;
+				padding-left: 0.375rem !important;
+			}
+			
+			.mui-input-group {
+				margin: 0 1.277777rem;
+				border-radius: 15px;
+				margin-top: -12px;
+			}
+			
+			#btn_login {
+				margin: 0 1.277777rem;
+				margin-top: 0.736111rem;
+				width: 75%;
+				border-radius: 15px;
+				color: #a3a3a3 !important;
+				background-color: #535353;
+				border: none;
+			}
+			
+			.btn-register {
+				margin-top: 1.361111rem;
+				text-align: center;
+				font-size: 0.527777rem;
+				color: #814203;
+				font-weight: 600;
+				font-family: "微软雅黑";
+			}
+			
+			.mui-input-group:before{
+				display: none;
+			}
+			.mui-input-group .mui-input-row:after{
+				display: none;
+			}
+			.mui-input-group:after{
+				display: none;
+			}
+			.line{
+				border-bottom:1px solid rgba(229,229,229,1) ;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="content" class="mui-content">
+			<img class="content-img" src="../imgs/login/bigtree.png" />
+			<form class="mui-input-group">
+				<div class="mui-input-row line">
+					<label><img class="input-icon" src="../imgs/login/phono.png"/></label>
+					<input id="login_nickname" type="text" class="mui-input-clear" placeholder="账号">
+				</div>
+				<div class="mui-input-row">
+					<label><img class="input-icon" src="../imgs/login/code.png"/></label>
+					<input id="login_password" type="password" class="mui-input-clear" placeholder="8-20位的数字或英文">
+				</div>
+			</form>
+			<button id='btn_login' type="button" data-loading-text="提交中" class="mui-btn mui-btn-block">登录</button>
+			<div id="btn_tourist" class="btn-register">游客登录</div>
+			<div id="btn_register" class="btn-register">立即注册</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/webim.config.js" ></script>
+		<script type="text/javascript" src="../js/strophe-1.2.8.min.js" ></script>
+		<script type="text/javascript" src="../js/websdk-1.4.10.js" ></script>
+		<script type="text/javascript">
+			mui.init({
+				beforeback: function() {
+					//获得列表界面的webview
+					var list = plus.webview.getWebviewById('me.html');
+					//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+					mui.fire(list, 'refresh', {
+						id: "刷新"
+					});
+					//返回true，继续页面关闭逻辑
+					return true;
+				}
+			});
+			var conn = new WebIM.connection({
+ 			   	https: WebIM.config.https,
+   				url: WebIM.config.xmppURL,
+    			isAutoLogin: WebIM.config.isAutoLogin,
+    			isMultiLoginSessions: WebIM.config.isMultiLoginSessions
+			});
+			//登录
+			var login_nickname = document.getElementById("login_nickname");
+			var login_password = document.getElementById("login_password");
+			var btn_login = document.getElementById("btn_login");
+			var flagIm = false;
+			var mainPage = null;
+			
+			mui.plusReady(function () {
+			    mainPage = plus.webview.getWebviewById('main.html');
+			})
+			btn_login.addEventListener('tap', function() {
+				console.log(login_nickname.value)
+				console.log(login_password.value)
+				localStorage.setItem('username',login_nickname.value);
+					var  options = {
+				        apiUrl: WebIM.config.apiURL,
+				        user: login_nickname.value,
+				        pwd: login_password.value,
+				        appKey: WebIM.config.appkey,
+				        success:function(obj){
+				        IMtoken = obj.access_token;
+				        console.log('登录成功获取到的IMtoken'+IMtoken);
+				        	}
+					}
+				
+				//判断网络连接
+				if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+					return mui.toast("连接网络失败，请稍后再试");
+				}
+
+				if(login_nickname.value == '' || login_nickname.value == '') {
+					return mui.toast('账号或密码不能为空！');
+				}
+				if(login_password.value.length > 10 || login_password.value.length > 10) {
+					return mui.toast('账号或密码超长,请重新填写~')
+				};
+				
+				//修改参数
+				var w = plus.nativeUI.showWaiting("处理中，请等待...\n", { padlock: true });
+				
+				mui.ajax('http://112.74.215.22:5000/api/login', {
+					data: {
+						username: login_nickname.value,
+						password: login_password.value
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						console.log(data);
+						if(dataobj.success == true) {
+							console.log('登录成功')
+							conn.open(options);
+							var speak = plus.webview.getWebviewById('myMess.html');
+								mui.fire(speak, 'speak', {
+									id: "刷新"
+								});
+								plus.storage.setItem('usernameIM',login_nickname.value);
+								plus.storage.setItem('passwordIM',login_password.value);
+								var token = dataobj.token;
+								plus.storage.setItem('name_token', token);
+								w.close();
+								mui.back();			
+						} else if(dataobj.error == "密码错误"){
+							mui.toast('账号或密码错误！');
+							w.close();
+							//TODO 获取数据失败
+						}else{
+							w.close();
+							mui.toast('请求失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						w.close();
+						//异常处理；
+						mui.toast('登录失败，请稍后再试！');
+						console.log(type);
+					}
+				});
+			});
+			//注册跳转
+			var btn_register = document.getElementById("btn_register");
+			btn_register.addEventListener('tap', function() {
+				mui.openWindowWithTitle({
+					url: 'informationChil.html',
+					id: 'informationChil'
+				}, {
+					height: '44px',
+					backgroundColor: '#FBD940',
+					bottomBorderColor: '#FBD940',
+					back: { //左上角返回箭头
+						image: {
+							base64Data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAnCAMAAAAihXiyAAAAAXNSR0IArs4c6QAAAE5QTFRFAAAAJiYmJiYmJiYmJiYmJCQkJiYmJiYmJCQkJiYmJCQkJCQkJiYmJiYmJCQkJCQkJiYmJCQkJCQkJCQkJCQkJiYmJCQkJCQkAAAAJiYmHWmmJAAAABl0Uk5TAPHZpOwfsuUayQgUvJw5RJFKSEwkdCJQADbNjTUAAADYSURBVCjPbZPrAsIgCIV3aV5yW7bK8P1ftNlQAfWf5xM8KAzQrl3dAYZWf+s49UAYY4y2BUbHtLQE4RavJYBB3ToOFtTl5UV3HGTdnmVQkPPrpBOQz68OGED/UeN+qO9w5TccmOqTgYDnJ8OByz6J9wQWTX1W8H/n5JPqJ3DCZwZ7bPP/QbAYsAsAMGPMQwJQSL4SdGOuyjN5SVCyHRLAhuQpAayC1B/0nJA/5/fQLpkpYX2lSD28E1WtR/SuLzGy27Pro5kP3x+Dcs/WmcH0Op/ecMI8eoAfdWBSuTg5DzoAAAAASUVORK5CYII=',
+							position: { //绘制图片的目标区域，参考：http://www.html5plus.org/doc/zh_cn/nativeobj.html#plus.nativeObj.Rect
+								top: '20px',
+								left: "15px",
+								width: "10px",
+								height: "20px"
+							}
+						}
+					},
+				})
+			});
+			//游客登录跳转
+			var btn_tourist = document.getElementById("btn_tourist");
+			btn_tourist.addEventListener('tap', function() {
+				mui.back();
+			});
+		</script>
+	</body>
+
+</html>

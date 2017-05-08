@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link href="../css/mui.imageviewer.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+			}
+			footer {
+				position: fixed;
+				width: 100%;
+				height: 50px;
+				min-height: 50px;
+				border-top: solid 1px #bbb;
+				left: 0px;
+				bottom: 0px;
+				overflow: hidden;
+				padding: 0px 50px;
+				background-color: #fafafa;
+			}
+			.footer-left {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				left: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 12px 4px;
+			}
+			.footer-right {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				right: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 17px 5px;
+				display: inline-block;
+			}
+			.footer-center {
+				height: 100%;
+				padding: 5px 0px;
+			}
+			.footer-center [class*=input] {
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
+			.footer-center .input-text {
+				background: #fff;
+				border: solid 1px #ddd;
+				padding: 10px !important;
+				font-size: 16px !important;
+				line-height: 18px !important;
+				font-family: verdana !important;
+				overflow: hidden;
+			}
+			.footer-center .input-sound {
+				background-color: #eee;
+			}
+			.mui-content {
+				height: 100%;
+				padding: 44px 0px 50px 0px;
+				overflow: auto;
+				background-color: #eaeaea;
+			}
+			#msg-list {
+				height: 100%;
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+				padding-bottom: 44px;
+			}
+			.msg-item {
+				padding: 8px;
+				clear: both;
+			}
+			.msg-item .mui-item-clear {
+				clear: both;
+			}
+			.msg-item .msg-user {
+				width: 38px;
+				height: 38px;
+				border: solid 1px #d3d3d3;
+				display: inline-block;
+				background: #fff;
+				border-radius: 3px;
+				vertical-align: top;
+				text-align: center;
+				float: left;
+				padding: 3px;
+				color: #ddd;
+			}
+			
+			.msg-item .msg-user-img{
+				width: 28px;
+				height: 38px;
+				display: inline-block;
+				border-radius: 3px;
+				vertical-align: top;
+				text-align: center;
+				float: left;
+				color: #ddd;
+			}
+			
+			.msg-item .msg-content {
+				display: inline-block;
+				border-radius: 5px;
+				border: solid 1px #d3d3d3;
+				background-color: #FFFFFF;
+				color: #333;
+				padding: 8px;
+				vertical-align: top;
+				font-size: 15px;
+				position: relative;
+				margin: 0px 8px;
+				max-width: 75%;
+				min-width: 35px;
+				float: left;
+			}
+			.msg-item .msg-content .msg-content-inner {
+				overflow-x: hidden;
+			}
+			.msg-item .msg-content .msg-content-arrow {
+				position: absolute;
+				border: solid 1px #d3d3d3;
+				border-right: none;
+				border-top: none;
+				background-color: #FFFFFF;
+				width: 10px;
+				height: 10px;
+				left: -5px;
+				top: 12px;
+				-webkit-transform: rotateZ(45deg);
+				transform: rotateZ(45deg);
+			}
+			.msg-item-self .msg-user,
+			.msg-item-self .msg-content {
+				float: right;
+			}
+			.msg-item-self .msg-content .msg-content-arrow {
+				left: auto;
+				right: -5px;
+				-webkit-transform: rotateZ(225deg);
+				transform: rotateZ(225deg);
+			}
+			.msg-item-self .msg-content,
+			.msg-item-self .msg-content .msg-content-arrow {
+				background-color: #4CD964;
+				color: #fff;
+				border-color: #2AC845;
+			}
+			footer .mui-icon {
+				color: #000;
+			}
+			footer .mui-icon:active {
+				color: #007AFF !important;
+			}
+			footer .mui-icon-paperplane:before {
+				content: "发送";
+			}
+			footer .mui-icon-paperplane {
+				/*-webkit-transform: rotateZ(45deg);
+				transform: rotateZ(45deg);*/
+				
+				font-size: 16px;
+				word-break: keep-all;
+				line-height: 100%;
+				padding-top: 6px;
+				color: rgba(0, 135, 250, 1);
+			}
+			#msg-sound {
+				-webkit-user-select: none !important;
+				user-select: none !important;
+			}
+			.r-sigh{
+				display: none;
+				border-radius: 50px;
+				box-shadow: 0 0 15px #2187e7;
+				width: 46px;
+				height: 46px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -23px;
+				margin-top: -23px;
+				text-align: center;
+				line-height: 46px;
+				font-size: 40px;
+				font-weight: bold;
+				color: #2187e7;
+			}
+			.rprogress-sigh{
+				background-image: none !important;
+			}
+			.rprogress-sigh .r-sigh{
+				display: block !important;
+			}
+			@-webkit-keyframes spin {
+				0% {
+					-webkit-transform: rotate(0deg);
+				}
+				100% {
+					-webkit-transform: rotate(360deg);
+				}
+			}
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+			.cancel {
+				background-color: darkred;
+			}
+			.textRight{
+				position: relative;
+			}
+			.conRight{
+				float: right !important;
+			}
+			.imgRight{
+				float: right !important;
+			}
+			.conRight:after{
+				content: '';
+			    position: absolute;
+			    right: -10px;
+			    top: 15px;
+			    width: 0;
+			    height: 0;
+			    border-style: dashed;
+			    border-color: transparent;
+			    overflow: hidden;
+			    border-width: 10px;
+			    border-top-style: solid;
+			    border-top-color: #FFFFFF;
+			}
+			
+			.conLeft:after{
+			    content: '';
+			    position: absolute;
+			    left: -10px;
+			    top: 15px;
+			    width: 0;
+			    height: 0;
+			    border-style: dashed;
+			    border-color: transparent;
+			    overflow: hidden;
+			    border-width: 10px;
+			    border-top-style: solid;
+			    border-top-color: #FFFFFF;
+			}
+			.mui-bar{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+				background: #FBD940;
+			}
+			.mui-icon{
+				color: #000000;
+			}
+			.imgRight{
+				float: right !important;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body contextmenu="return false;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content">
+			<div id='msg-list'>
+				<!--<div class="msg-item ">
+						<img class="msg-user-img" src="../imgs/me/tree1_head.png" alt="" />	
+					<div class="msg-content conLeft">
+						<div class="msg-content-inner">
+								哈哈哈
+						</div>
+					</div>
+					<div class="mui-item-clear"></div>
+				</div>
+				<div class="msg-item textRight">
+					<img class="msg-user-img imgRight" src="../imgs/trees/tree1.png" alt="" />
+					<div class="msg-content conRight">
+						<div class="msg-content-inner">
+								哈哈哈
+						</div>
+
+					</div>
+					<div class="mui-item-clear"></div>
+				</div>				-->
+			</div>
+		</div>
+		<footer id="IM-footer">
+			<div class="footer-left">
+				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
+			</div>
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" class='input-text'></textarea>
+			</div>
+			<div class="footer-right">
+				<span id='msg-send-text'>发送</span>
+			</div>
+		</footer>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script type="text/javascript" src="../js/webim.config.js" ></script>
+		<script type="text/javascript" src="../js/strophe-1.2.8.min.js" ></script>
+		<script type="text/javascript" src="../js/websdk-1.4.10.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			// UI控件对象
+		var ui = {
+			content: mui('.mui-content'[0]),
+			msgList: mui('#msg-list')[0],
+			footer: mui('footer')[0],
+			msgInputText: mui('#msg-text')[0],
+			msgSendText: mui('#msg-send-text')[0]
+		}
+		
+		// mui初始化
+		mui.init({
+			gestureConfig: {
+				tap: true, //默认为true
+				doubletap: true, //默认为false
+				longtap: true, //默认为false
+				swipe: true, //默认为true
+				drag: true, //默认为true
+				hold: true, //默认为false，不监听
+				release: true //默认为false，不监听
+			}
+		});
+		mui.plusReady(function () {           	
+		    plus.webview.currentWebview().setStyle({
+						softinputMode: "adjustResize"
+					});
+		});
+		// 创建连接
+     	var conn = new WebIM.connection({
+		   	https: WebIM.config.https,
+			url: WebIM.config.xmppURL,
+			isAutoLogin: WebIM.config.isAutoLogin,
+			isMultiLoginSessions: WebIM.config.isMultiLoginSessions
+		});
+		
+		// 页面传参数事件监听
+      	var chatName = null;
+      	var username = null;
+      	var avatar = null;
+		window.addEventListener('chat',function(event){
+			// 获得事件参数
+			chatName = event.detail.chatname;
+			username = event.detail.nickname;
+			avatar = event.detail.avatar;
+			document.querySelector(".mui-title").innerHTML = "与" + chatName + "正在聊天";
+			
+			// 初始化连接
+			var usernameIM  = plus.storage.getItem('usernameIM');
+			var passwordIM  = plus.storage.getItem('passwordIM');
+			var  options = {
+		        apiUrl: WebIM.config.apiURL,
+		        user: usernameIM,
+		        pwd: passwordIM,
+		        appKey: WebIM.config.appkey,
+		        success:function(obj){
+		        IMtoken = obj.access_token;
+		        console.log('登录获取到的IMtoken'+IMtoken);
+		        }
+			}
+			conn.open(options);				
+    });
+    	conn.listen({
+			onOpened: function ( message ) {        //连接成功回调
+	        // 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
+	        // 手动上线指的是调用conn.setPresence(); 如果conn初始化时已将isAutoLogin设置为true
+	        // 则无需调用conn.setPresence();
+		    },
+		    onClosed: function ( message ) {
+		    	console.log('链接关闭回调'+message)
+		    	// 初始化连接
+				var usernameIM  = plus.storage.getItem('usernameIM');
+				var passwordIM  = plus.storage.getItem('passwordIM');
+				var  options = {
+			        apiUrl: WebIM.config.apiURL,
+			        user: usernameIM,
+			        pwd: passwordIM,
+			        appKey: WebIM.config.appkey,
+			        success:function(obj){
+			        IMtoken = obj.access_token;
+			        console.log('登录获取到的IMtoken'+IMtoken);
+			        }
+				}
+				conn.open(options);
+		    },         //连接关闭回调
+			onTextMessage: function ( message ) {
+				handleTextMessage(message);				
+			},    //收到文本消息
+		});
+		
+		// 发送文本消息
+    	ui.msgSendText.addEventListener('tap',function(){
+    		sendText();
+    	})
+    	
+    	// 解决长按“发送”按钮，导致键盘关闭的问题；
+		ui.msgSendText.addEventListener('touchstart', function(event) {
+			msgInputTextFocus();
+			event.preventDefault();
+		});
+		ui.msgSendText.addEventListener('touchmove', function(event) {
+			msgInputTextFocus();
+			event.preventDefault();
+		});
+		
+		// 输入框监听事件
+    	ui.msgInputText.addEventListener('input', function(event) {
+    		msgInputTextFocus();
+			ui.footer.style.height = this.scrollHeight + 'px';
+		});
+		
+		// 调整窗口
+    	window.addEventListener('resize', function() {
+			msgScrollTop();
+		}, false);
+		
+		//发送文本
+		var sendText = function(){
+			var list = document.getElementById("msg-list");
+			var msg = ui.msgInputText.value.replace(new RegExp('\n', 'gm'), '<br/>');
+			var validateReg = /^\S+$/;
+    		// 获得输入框键盘焦点
+    		msgInputTextFocus();
+    		// 消息判断
+    		if(validateReg.test(msg)){ 			
+    			list.appendChild(creatDataRight(msg));
+    			// 发送文本消息到环信服务器
+				sendPrivateText(msg);	
+				// 清空文本框
+				ui.msgInputText.value = '';
+				// 恢复输入框高度(因为我们这里是50px)
+				ui.footer.style.height = '50px';
+				// 保持输入状态
+				mui.trigger(ui.msgInputText, 'input', null);
+				// 这一句让内容滚动起来
+				msgScrollTop();
+    		}else{
+    			mui.toast("文本消息不能为空");
+    		}
+		}
+		
+		// 单聊发送文本消息
+		var sendPrivateText = function (messages) {
+		    var id = conn.getUniqueId();                 // 生成本地消息id
+		    var msg = new WebIM.message('txt', id);      // 创建文本消息
+		    msg.set({
+		        msg: messages,                  // 消息内容
+		        to:chatName,                          // 接收消息对象（用户id）
+		        roomType: false,
+		        success: function (id, serverMsgId) {
+		            console.log('send private text Success');
+		        }
+		    });
+		    msg.body.chatType = 'singleChat';
+		    conn.send(msg.body);
+		};
+		
+		/**
+    	 * 接受文本消息的回调函数
+    	 * @param {Object} message
+    	 */
+    	var handleTextMessage = function(message) {
+    		console.log('接收到消息'+JSON.stringify(message))
+    		var from = message.from;//消息的发送者
+			var msg = message.data;//文本消息体
+			// 收到文本消息在页面展示
+			ui.msgList.appendChild(creatDataLeft(msg));
+			msgScrollTop();
+    	}
+    	var creatDataLeft = function(msg){
+    		var fragment = document.createDocumentFragment();
+			var div;
+			div = document.createElement('div');
+			div.className = 'msg-item';
+			div.innerHTML = '<img class="msg-user-img" src="../imgs/trees/tree'+avatar+'.png" alt="" />'+	
+				'<div class="msg-content conLeft">'+
+					'<div class="msg-content-inner">'+msg+'</div>'+
+					'</div><div class="mui-item-clear"></div>';
+			return fragment.appendChild(div);
+    	}
+    	var creatDataRight = function(msg){
+    		var fragment = document.createDocumentFragment();
+			var div;
+			var avatarIM = plus.storage.getItem('avatarIM');
+			console.log('这是获取的头像'+avatarIM)
+			div = document.createElement('div');
+			div.className = 'msg-item textRight';
+			div.innerHTML ='<img class="msg-user-img imgRight" src="../imgs/trees/tree'+avatarIM+'.png" alt="" />'+
+					'<div class="msg-content conRight">'+
+						'<div class="msg-content-inner">'+msg+'</div>'+
+					'</div>'+
+					'<div class="mui-item-clear"></div>';
+			return fragment.appendChild(div);
+    	}
+    	
+    	// 消息滚动
+		var msgScrollTop = function(){
+			ui.msgList.scrollTop = ui.msgList.scrollHeight + ui.msgList.offsetHeight;
+		}
+		
+		// 获得输入框键盘焦点
+		var msgInputTextFocus = function(){
+			ui.msgInputText.focus();
+    		setTimeout(function() {
+				ui.msgInputText.focus();
+			}, 150);
+		}
+		//点击消息列表，关闭键盘
+		ui.msgList.addEventListener('click',function (event) {
+			if(!focus){
+				ui.msgInputText.blur();
+			}
+		})
+		/**
+		 * 重写返回事件
+		 */
+		mui.back = function(){
+			var ws = plus.webview.currentWebview();
+			ws.reload(true);
+			ws.hide();
+		}
+		
+		//拍照
+		document.getElementById("msg-image").addEventListener('tap',function(){
+			mui.toast('亲，此功能还在开发中哟~')
+		})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,471 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: whitesmoke;
+			}
+			a:link{
+				text-decoration: none;
+			}
+			a:active{
+				text-decoration: none;
+				color: #000000;
+			}
+			a:checked{
+				text-decoration: none;
+				color: #000000;
+			}
+			a:hover{
+				text-decoration: none;
+			}
+			.mui-content {
+				background-color: whitesmoke;
+			}
+			.mui-bar-tab~.mui-content {
+				    padding-bottom: 0;
+				}
+			hr {
+				color: white;
+				border-color: white;
+				width: 80%;
+				margin-left: 1.583333rem;
+			}
+			
+			.mui-icon {
+				position: absolute;
+				left: 0.266666rem;
+				color: #000000;
+			}
+			
+			.attention-icon {
+				width: 1.333333rem;
+				position: absolute;
+				right: 3%;
+				bottom: 9px;
+				
+			}
+			
+			.mui-title {
+				font-size: 0.416666rem;
+				color: #272727;
+			}
+			
+			.mui-bar-nav {
+				background-color: #FBD940;
+			}
+			
+			.footer-nav {
+				position: fixed;
+				z-index: 999;
+				bottom: 0;
+				width: 10rem;
+				height: 1.519444rem;
+				background-color: whitesmoke;
+				z-index: 999;
+				border-top: 1px solid #C8C7CC;
+				box-shadow: 1px 1px 1px 1px #A3A3A3;
+			}
+			
+			.mui-input-row {
+				width: 10rem;
+				height: 1.319444rem !important;
+				padding-top: 0.107777rem;
+			}
+			
+			.mui-input-row>img {
+				width: 0.458333rem;
+				height: 0.458333rem;
+			}
+			
+			.mui-input-row>input {
+				width: 80% !important;
+				margin-left: 10%;
+				padding-left: 5% !important;
+				border-radius: 7px;
+				padding-bottom: 0.138888rem !important;
+			}
+			
+			.text-content {
+				font-family: "宋体";
+				color: #000000;
+				line-height:0.666666rem;
+				padding:0.583333rem 5%;
+				font-size: 0.444444rem;
+				margin: 0;
+				
+			}
+			
+			.personal-head {
+				position: relative;
+				height: 1.083333rem;
+			}
+			
+			.head-icon {
+				position: absolute;
+				width: 0.888888rem;
+				height: 0.888888rem;
+				top: 0.305555rem;
+				left: 0.416666rem;
+			}
+			
+			.head-icon img {
+				width: 100%;
+			}
+			.head-content{
+				position: absolute;
+				top: 0.444444rem;
+				width: 80%;
+				left: 1.583333rem;
+				display: flex;
+			}
+			
+			.head-title {
+				font-size: 0.405555rem;
+				color: #929292;
+			}
+			
+			.head-time {
+				font-size: 0.322222rem;
+				color: #929292;
+				padding-left: 3%;
+			}
+			
+			.personal-content {
+				margin-left:1.583333rem;
+				font-size: 0.388888rem;
+				padding-top: 0.079444rem;
+				padding-bottom: 0.211111rem;
+				padding-right: 2%;
+				color: #3f3f3f;
+			}
+			
+			.personal-information {
+				padding-bottom: 5px;
+			}
+			hr{
+				color:rgb(229,229,229);
+				border-color:rgba(229,229,229,.1);
+				margin: 0;
+				margin-left: 1.583333rem;
+			}
+			.img_content{
+				padding: 0;
+				margin: 0 auto;
+				width: 90%;
+				margin-bottom: 0.833333rem;
+			}
+			.img_content img{
+				width: 100%;
+			}
+			.msg-content{
+				position: relative;
+			}
+			#comment{
+				position: relative;
+			}
+			#comment:before{
+				position: absolute;
+				width: 100%;
+			    height: 1px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color:rgb(229,229,229);
+			    top: -1px;
+			}
+			.inputBox{
+				width: 80%;
+				border: 1px solid #AAAAAA;
+				margin: 2px auto;
+				height: 40px;
+			}
+			.inputBox p{
+				padding: 10px 5%;
+				text-decoration:none;
+			}
+			#imgs{
+				border: none;
+			}
+			.mui-bar-tab{
+				height: 44px;
+			}
+			a:link{text-decoration:none;} 
+			a:visited{text-decoration:none;} 
+			a:active{text-decoration:none;} 
+			pre{
+				overflow: hidden;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+			}
+			
+			.foot-flex{
+				position: fixed;
+				bottom: 0.258888rem;
+				right: 7%;
+			}
+			.foot-flex img{
+				width: 1.472222rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav mui-bar-tab">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="header_title"></h1>
+			<img id="attention_btn" class="attention-icon" src="../imgs/attention.png" />
+		</header>
+		<div class="mui-content" id="content">
+			<!--具体内容-->
+			<div class="msg-content">
+			<pre class="text-content" id="content_text"></pre>
+			<div class="img_content" id="img_content" style="display: none;">
+				<img id = "imgs" data-preview-src="" data-preview-group="1"/>
+			</div>
+			</div>
+			<!--评论-->
+			<div id="comment">
+				<!--<div class="personal-information">
+					<div class="personal-head">
+						<div class="head-icon">
+							<img src="../imgs/comment/tree0.png" />
+						</div>
+						<div class="head-content">
+							<div class="head-title">匪我思存</div>
+							<div class="head-time">11-24 17:07</div>
+						</div>
+						
+					</div>
+					<div class="personal-content">
+						好感动，动物其实有时比人还重情重义，我以前养过一只猫，小猫最后被车撞死了，从此我再也没有养过猫了。
+					</div>
+					<hr />
+				</div>-->
+			</div>
+		</div>
+		<div class="foot-flex" id="comment_text">
+			<img src="../imgs/push/pen.png" />
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersed.js" ></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true, //Boolean(默认false)启用右滑关闭功能
+			});
+			var pid;
+			var token;
+			var userid;
+			var username;	
+			mui.plusReady(function() {
+			plus.webview.currentWebview().setStyle({
+				scrollIndicator: 'none'
+			});
+			token = plus.storage.getItem('name_token');
+			var self = plus.webview.currentWebview();
+			pid = self.pid;
+			userid = self.userid;
+			username = self.username;
+			var text = self.text;
+			var nickname = self.nickname;
+			var imgURL = self.imgURL;
+			var header_title = document.getElementById("header_title");
+			var content_text = document.getElementById("content_text");
+			var imgs = document.getElementById("imgs");
+			header_title.innerHTML = nickname;
+			content_text.innerHTML = text;
+			if(imgURL){
+				document.getElementById("img_content").style.display = 'block';
+				imgs.src = 'http://112.74.215.22/'+imgURL;
+			}else{
+				document.getElementById("img_content").style.display = 'block';
+			}
+			
+			//评论
+			gainComment();
+			//关注
+			Attention();
+			//发表评论
+			publishComment();
+		});
+		
+		//初始化
+		var commInit = function(){
+			document.getElementById("header_title").innerHTML = '';
+			document.getElementById("content_text").innerHTML = '';
+			imgs.src = '';
+		}
+		
+			//评论树洞刷新
+			window.addEventListener('refr',function(event){
+			  	gainComment();
+			});
+			//回复：依据文章ID查询
+			window.addEventListener('treeId',function(event){		  
+			  //初始化
+			  commInit();
+			  //获得事件参数
+			  pid = event.detail.pid;
+			  titleName = event.detail.nickname;
+			  document.getElementById("header_title").innerHTML = titleName;
+			  getData();
+			  gainComment();
+			});
+			
+			//滚动到底部监听
+			window.onscroll=function(){
+			var clientHeight =window.screen.height;
+			var scrollTop = document.documentElement.scrollTop==0? document.body.scrollTop : document.documentElement.scrollTop;
+			var scrollHeight = document.getElementById("content").scrollHeight;
+			if(clientHeight + scrollTop > scrollHeight){
+				document.getElementById("comment_text").style.display = 'none';			
+			}else{
+				document.getElementById("comment_text").style.display = 'block';
+			}
+		}
+			
+		//根据文章ID查询
+		var getData = function(){
+			mui.ajax('http://112.74.215.22:5000/api/getOneArticle',{
+				data:'article_ID='+pid,
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					if(dataobj.success == true){
+						var text = dataobj.article.text;
+						var ImgSrc = dataobj.article.extra[0];
+						document.getElementById("content_text").innerHTML = text;
+						if(ImgSrc){
+							document.getElementById("img_content").style.display = 'block';
+							imgs.src = 'http://112.74.215.22/'+ImgSrc;
+						}else{
+							document.getElementById("img_content").style.display = 'block';
+						}
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					mui.toast("获取内容失败！");
+				}
+			});
+		}
+		//获取评论
+		var gainComment = function (){
+			var comments = document.getElementById("comment");
+			mui.ajax('http://112.74.215.22:5000/api/getComment',{
+				data:'article_ID='+pid,
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){				
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					if(dataobj.success == true){
+						if(dataobj.article == null){
+//							mui.toast("暂无评论!");
+						}else{
+							var childs = comments.childNodes;
+							for(var i = childs.length - 1; i >= 0; i--) { 
+							  comments.removeChild(childs[i]); 
+							}
+							comments.appendChild(createDiv(dataobj));
+						}
+					}
+				},
+				error:function(xhr,type,errorThrown){
+//					mui.toast('获取评论失败！')
+					console.log('获取评论失败'+type)
+				}
+			});
+		}
+		//创建渲染DIV
+		var createDiv = function(dataobj){
+			var fragment = document.createDocumentFragment();
+			for (var i = 0; i < dataobj.article.length; i++) {
+			var avatar = dataobj.article[i].user.avatar;
+			var nickname = dataobj.article[i].user.nickname;
+			var date = dataobj.article[i].date;
+			var text = dataobj.article[i].text;
+			var pid = dataobj.article[i]._id;
+			div = document.createElement('div');
+			div.setAttribute('data-id',pid);
+			div.className = 'personal-information';
+			div.innerHTML = '<div class="personal-head">'+
+						'<div class="head-icon">'+
+							'<img src="../imgs/comment/tree'+avatar+'.png" />'+
+						'</div>'+
+						'<div class="head-content">'+
+							'<div class="head-title">'+nickname+'</div>'+
+							'<div class="head-time">'+date+'</div>'+
+						'</div>'+						
+					'</div>'+
+					'<div class="personal-content"><pre>'+text+'</pre></div>'+
+					'<hr />';
+			fragment.appendChild(div);
+			}
+			return fragment;
+		}
+	//发表评论
+	var publishComment = function(){
+		document.getElementById("comment_text").addEventListener('tap',function(){
+			mui.openWindow({
+				url:'reply.html',
+				id:'reply.html',
+				extras:{
+					token:token,
+					article_ID:pid
+				}
+			})
+		});
+	}
+	
+	//关注
+	var Attention = function(){
+		document.getElementById("attention_btn").addEventListener('tap',function(){
+			var w=plus.nativeUI.showWaiting("处理中，请等待...\n", {padlock:true});
+			mui.ajax('http://112.74.215.22:5000/api/follow',{
+				data:{
+					token:token,
+					userid:userid
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					if(dataobj.success==true){						
+						attention_btn.src = "../imgs/attSuccess.png";
+						w.close();
+						mui.toast('关注成功！');
+					}else{
+						w.close();
+						attention_btn.src = "../imgs/attSuccess.png";
+						console.log('服务器出错，请稍后再试！');
+						mui.toast('已关注！');
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					w.close();
+					mui.toast('关注失败，请稍后再试！');
+					console.log(type)
+				}
+			});
+		})
+	}
+	</script>
+	</body>
+
+</html>

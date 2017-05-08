@@ -1,0 +1,361 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body,html{
+				height: 100%;
+				width: 100%;
+			}
+			.mui-bar-nav{
+				background-color: rgba(228,227,227,1);
+				box-shadow: none;
+				-webkit-box-shadow:none;
+			}
+			.mui-bar-tab{
+				height: 44px;
+			}
+			#header-left{
+				position: absolute;
+				width: 40px;
+				padding: 5px 10px;
+				bottom: 0px;
+				left: 2%;
+			}
+			#header-left img{
+				width: 100%;
+			}
+			#header-right{
+				position: absolute;
+				width:54px;
+				bottom: 9px;
+				right: 5%;
+			}
+			.mui-title{
+				position: absolute;
+				color: rgb(39,39,39);
+				bottom: -3px;
+			}
+			.mui-content{
+				padding-bottom:0 !important;
+				background-color: rgb(228,227,227);
+				width:100%;
+				overflow: hidden;
+			}
+			.content-box{
+				border: none;
+				width: 90%;
+				margin: 0 auto;
+			}
+			#content-img{
+				width: 100%;
+			}
+			.concrete{
+				border-radius:0 0 15px 15px !important;
+				font: "仿宋";
+				background-color: #FFFFFF;
+				padding: 20px 10px;
+				margin-top: -6px;
+				line-height:2;
+				letter-spacing:3px;
+				color: rgb(49,49,49);
+				font-size: 15px;
+			}
+			.imgBox{
+				border-radius:15px 15px 0 0 !important;
+				overflow: hidden;
+			}
+			#comment{
+				position: relative;
+			}
+			#comment:before{
+				position: absolute;
+				width: 100%;
+			    height: 1px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color:rgb(229,229,229);
+			    top: -1px;
+			}
+			.personal-information {
+				padding-bottom: 5px;
+			}
+			.personal-head {
+				position: relative;
+				height: 1.083333rem;
+			}
+			.head-content{
+				position: absolute;
+				top: 0.444444rem;
+				width: 80%;
+				left: 1.583333rem;
+				display: flex;
+			}
+			.head-title{
+				font: "仿宋";
+				font-size: 16px;
+			}		
+			.head-time{
+				padding-left:4%;
+			}
+			.head-icon {
+				position: absolute;
+				width: 0.888888rem;
+				height: 0.888888rem;
+				top: 0.305555rem;
+				left: 0.416666rem;
+			}
+			.personal-content {
+				margin-left:1.583333rem;
+				font-size: 0.388888rem;
+				padding-top: 0.079444rem;
+				padding-bottom: 0.211111rem;
+				padding-right:5%;
+				color: #3f3f3f;
+			}
+			.head-icon img {
+				width: 100%;
+			}
+			hr{
+				color:rgb(229,229,229);
+				border-color:rgba(229,229,229,.1);
+				margin: 0;
+				margin-left: 1.583333rem;
+				margin-right: 5%;
+			}			
+			.foot-flex{
+				position: fixed;
+				bottom: 0.258888rem;
+				right: 7%;
+			}
+			.foot-flex img{
+				width: 1.472222rem;
+			}
+			pre{
+				overflow: hidden;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<div id="header-left">
+				<img src="../imgs/push/cancel.png" />	
+			</div>		
+			<h1 class="mui-title" id="header_title">每日推送</h1>
+		</header>
+		<div id="content" class="mui-content">
+			<div id="content-box">
+				<!--<div class="content-box">
+					<div class="imgBox">
+						<img id="content-img" src="../imgs/push/push1.png" />
+					</div>					
+				<p class="concrete">
+					往后余生：<br />
+					风雪是你，平淡是你；<br />
+					清贫是你，荣华是你；<br />
+					心底温柔是你；<br />
+					目光所及也是你。<br />
+					<strong>今日话题：说说你的男朋友都做过哪些让你少女心爆棚的事？</strong>
+				</p>
+				</div>-->
+			</div>
+			
+			<div id="comment">
+				<!--<div class="personal-information">
+					<div class="personal-head">
+						<div class="head-icon">
+							<img src="../imgs/comment/tree1.png" />
+						</div>
+						<div class="head-content">
+							<div class="head-title">匪我思存</div>
+							<div class="head-time">11-24 17:07</div>
+						</div>
+						
+					</div>
+					<div class="personal-content">
+						好感动，动物其实有时比人还重情重义，我以前养过一只猫，小猫最后被车撞死了，从此我再也没有养过猫了。
+					</div>
+					<hr />
+				</div>-->
+			</div>
+		</div>
+		<div class="foot-flex" id="foot-flex">
+			<img src="../imgs/push/pen.png" />
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					swipeup: true, //默认为true 向上滑动
+					swipedown:true//向下滑动
+				},
+				preloadPages: [{
+					url: '../login/loginChil.html',
+					id: 'loginChil.html'
+				}]		
+			});
+			mui.plusReady(function () {
+			    plus.storage.setItem("IsFrist", "true");
+				var self = plus.webview.currentWebview();
+			    self.setStyle({
+					scrollIndicator: 'none'
+				});
+				//评论
+				publishComment();
+				//获取数据
+				upData();
+			});
+						//评论树洞刷新
+			window.addEventListener('refrpush2',function(event){
+			  	gainComment();
+			});
+			
+			var pid = null;
+				//滚动到底部监听
+			window.onscroll=function(){
+			var clientHeight =window.screen.height;
+			var scrollTop = document.documentElement.scrollTop==0? document.body.scrollTop : document.documentElement.scrollTop;
+			var scrollHeight = document.getElementById("content").scrollHeight;		
+			if(clientHeight + scrollTop > scrollHeight){
+				document.getElementById("foot-flex").style.display = 'none';			
+			}else{
+				document.getElementById("foot-flex").style.display = 'block';
+			}
+		}
+
+			document.getElementById("header-left").addEventListener('tap',function(){
+				mui.back();
+			});
+			
+		//获取数据
+		var upData = function(){
+			var content_box = document.getElementById('content-box');
+			mui.ajax('http://112.74.215.22:5000/api/dailyPush',{
+				data:'id=590325531022672993250dd3',
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					console.log(data)
+					pid = dataobj.user.treehole[0]._id;
+					content_box.appendChild(createlist(dataobj));
+					gainComment();
+				},
+				error:function(xhr,type,errorThrown){
+					console.log('获取数据失败'+type);
+					mui.toast('获取数据失败！')
+				}
+			});
+		}
+		
+				//获取评论
+		var gainComment = function (){
+			var comments = document.getElementById("comment");
+			mui.ajax('http://112.74.215.22:5000/api/getComment',{
+				data:'article_ID='+pid,
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){				
+					var data = JSON.stringify(data);
+					var dataobj = eval("(" + data + ")");
+					if(dataobj.success == true){
+						if(dataobj.article == null){
+//							mui.toast("暂无评论!");
+						}else{
+							var childs = comments.childNodes;
+							for(var i = childs.length - 1; i >= 0; i--) { 
+							  comments.removeChild(childs[i]); 
+							}
+							comments.appendChild(createDiv(dataobj));
+						}
+					}
+				},
+				error:function(xhr,type,errorThrown){
+//					mui.toast('获取评论失败！')
+					console.log('获取评论失败'+type)
+				}
+			});
+		}
+	
+	
+		var createlist = function(dataobj){
+			var fragment = document.createDocumentFragment();
+			var div;
+			var imgURL = dataobj.user.treehole[0].extra;
+			var text = dataobj.user.treehole[0].text;
+			div = document.createElement('div');
+			div.className = 'content-box';
+			div.innerHTML = '<div class="imgBox"><img id="content-img" src="http://112.74.215.22/'+imgURL+'" /></div><pre class="concrete">'+text+'</pre>';
+			fragment.appendChild(div);
+			return fragment;
+		}
+		//创建渲染DIV
+		var createDiv = function(dataobj){
+			var fragment = document.createDocumentFragment();
+			for (var i = 0; i < dataobj.article.length; i++) {
+			var avatar = dataobj.article[i].user.avatar;
+			var nickname = dataobj.article[i].user.nickname;
+			var date = dataobj.article[i].date;
+			var text = dataobj.article[i].text;
+			var pid = dataobj.article[i]._id;
+			div = document.createElement('div');
+			div.setAttribute('data-id',pid);
+			div.className = 'personal-information';
+			div.innerHTML = '<div class="personal-head">'+
+						'<div class="head-icon">'+
+							'<img src="../imgs/comment/tree'+avatar+'.png" />'+
+						'</div>'+
+						'<div class="head-content">'+
+							'<div class="head-title">'+nickname+'</div>'+
+							'<div class="head-time">'+date+'</div>'+
+						'</div>'+						
+					'</div>'+
+					'<div class="personal-content"><pre>'+text+'</pre></div>'+
+					'<hr />';
+			fragment.appendChild(div);
+			}
+			return fragment;
+		}
+			
+	//发表评论
+	var publishComment = function(){
+		document.getElementById("foot-flex").addEventListener('tap',function(){
+			var token = plus.storage.getItem('name_token');			
+			if(token){
+				mui.openWindow({
+					url:'reply.html',
+					id:'reply.html',
+					extras:{
+						token:token,
+						article_ID:pid
+					}
+				})
+			}else{
+				mui.openWindow({
+					url:'../login/loginChil.html',
+					id:'loginChil.html'
+				})
+			}
+			
+		});
+	}
+		</script>
+	</body>
+
+</html>

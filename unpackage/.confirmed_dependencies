@@ -1,0 +1,434 @@
+{
+  "object/main.html": {
+    "resources": [
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "object/hole.html",
+      "imgs/tree.png",
+      "imgs/forest-1.png",
+      "imgs/tree1.png",
+      "imgs/forest.png",
+      "imgs/me.png",
+      "imgs/me1.png",
+      "js/zion.js",
+      "fonts/mui.ttf",
+      "object/forest.html",
+      "object/me.html"
+    ],
+    "refer": [
+      "object/hole.html",
+      "object/me.html",
+      "object/forest.html",
+      "object/reply.html"
+    ]
+  },
+  "object/hole.html": {
+    "resources": [
+      "imgs/arrows.png",
+      "imgs/big-tree.png",
+      "js/immersion.js",
+      "css/animate.css",
+      "css/mui.min.css",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "js/zion.js",
+      "imgs/elf.png"
+    ],
+    "refer": [
+      "object/comment.html",
+      "chat/im-chat.html"
+    ]
+  },
+  "object/me.html": {
+    "resources": [
+      "imgs/me/tree.png",
+      "imgs/me/medal.png",
+      "imgs/me/messagge.png",
+      "js/template.js",
+      "imgs/me/tree0_head.png",
+      "js/immersion.js",
+      "imgs/me/tree2_head.png",
+      "imgs/me/tree4_head.png",
+      "imgs/me/tree1_head.png",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "imgs/me/tree7_head.png",
+      "js/webim.config.js",
+      "js/websdk-1.4.10.js",
+      "js/strophe-1.2.8.min.js",
+      "imgs/me/tree6_head.png",
+      "imgs/me/con-copy.png",
+      "imgs/me/mess.png",
+      "imgs/me/icon2.png",
+      "imgs/me/icon3.png",
+      "imgs/me/arrows.png",
+      "imgs/me/line1.png",
+      "imgs/me/icon4.png",
+      "imgs/me/back.png",
+      "imgs/me/icon1.png",
+      "imgs/trees/tree0.png",
+      "imgs/trees/tree9.png"
+    ],
+    "refer": [
+      "object/head_modification.html",
+      "object/myMess.html",
+      "object/myAttention.html",
+      "login/login.html",
+      "login/loginChil.html"
+    ]
+  },
+  "object/forest.html": {
+    "resources": [
+      "imgs/trees/tree5.png",
+      "imgs/trees/tree7.png",
+      "imgs/trees/4.png",
+      "imgs/trees/1.png",
+      "imgs/trees/tree6.png",
+      "imgs/trees/tree2.png",
+      "imgs/trees/tree3.png",
+      "imgs/trees/tree-big.png",
+      "imgs/trees/tree4.png",
+      "imgs/trees/3.png",
+      "imgs/trees/2.png",
+      "imgs/trees/tree1.png",
+      "imgs/trees/tree9.png",
+      "js/template.js",
+      "imgs/trees/5.png",
+      "imgs/trees/cancel.png",
+      "imgs/trees/tree4-big.png",
+      "imgs/trees/circle.png",
+      "imgs/trees/tree7-big.png",
+      "imgs/trees/tree5-big.png",
+      "imgs/trees/tree6-big.png",
+      "imgs/trees/tree1-big.png",
+      "imgs/trees/tree3-big.png",
+      "imgs/trees/tree2-big.png",
+      "imgs/trees/6.png",
+      "js/immersion.js",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "imgs/trees/0.png",
+      "imgs/trees/tree8.png",
+      "js/zoom/flexible_css.js",
+      "imgs/trees/tree8-big.png",
+      "imgs/trees/tree9-big.png"
+    ],
+    "refer": [
+      "object/comment_message.html"
+    ]
+  },
+  "object/head_modification.html": {
+    "resources": [
+      "imgs/trees/tree8.png",
+      "imgs/trees/tree5.png",
+      "imgs/trees/tree7.png",
+      "imgs/trees/tree6.png",
+      "imgs/trees/tree2.png",
+      "imgs/trees/tree3.png",
+      "css/headerStyle.css",
+      "imgs/trees/tree4.png",
+      "imgs/trees/tree1.png",
+      "imgs/trees/true.png",
+      "js/zoom/flexible.js",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "js/immersion.js",
+      "imgs/trees/tree0.png",
+      "imgs/trees/tree10.png",
+      "imgs/trees/tree9.png"
+    ],
+    "refer": []
+  },
+  "login/login.html": {
+    "resources": [
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "imgs/login/code.png",
+      "imgs/login/phono.png",
+      "imgs/login/bigtree.png",
+      "css/headerStyle.css",
+      "login/loginChil.html"
+    ],
+    "refer": [
+      "login/information.html",
+      "object/main.html",
+      "login/register.html",
+      "login/loginChil.html"
+    ]
+  },
+  "login/information.html": {
+    "resources": [
+      "imgs/login/head.png",
+      "css/mui.min.css",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "fonts/mui.ttf",
+      "imgs/login/code.png",
+      "login/informationChil.html"
+    ],
+    "refer": [
+      "login/login.html",
+      "login/informationChil.html"
+    ]
+  },
+  "object/comment.html": {
+    "resources": [
+      "css/feedback.css",
+      "css/headerStyle.css",
+      "js/feedback.js",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "js/immersion.js",
+      "fonts/mui.ttf",
+      "js/common.js",
+      "imgs/speak.png",
+      "imgs/photo.png",
+      "js/photo.js",
+      "imgs/picture.png",
+      "imgs/Guide-page1.png",
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "css/imageviewer.css",
+      "js/immersed.js",
+      "imgs/comment/bird.png",
+      "imgs/comment/return.png"
+    ],
+    "refer": []
+  },
+  "object/reply.html": {
+    "resources": [
+      "css/feedback.css"
+    ],
+    "refer": []
+  },
+  "object/myMess.html": {
+    "resources": [
+      "imgs/trees/tree5.png",
+      "js/zoom/flexible.js",
+      "imgs/trees/tree2.png",
+      "fonts/mui.ttf",
+      "imgs/trees/tree3.png",
+      "css/headerStyle.css",
+      "imgs/trees/tree4.png",
+      "js/zoom/flexible_css.js",
+      "js/mui.min.js",
+      "imgs/trees/tree6.png",
+      "css/mui.min.css",
+      "js/immersion.js",
+      "imgs/trees/tree1.png",
+      "js/webim.config.js",
+      "js/websdk-1.4.10.js",
+      "js/strophe-1.2.8.min.js",
+      "js/immersed.js",
+      "imgs/mushroom.png"
+    ],
+    "refer": [
+      "object/reply.html",
+      "chat/im_chat.html",
+      "object/single-chat.html",
+      "object/chat.html"
+    ]
+  },
+  "chat/im_chat.html": {
+    "resources": [
+      "js/mui.imageViewer.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/arttmpl.js"
+    ],
+    "refer": []
+  },
+  "object/comment_message.html": {
+    "resources": [
+      "imgs/comment_messgae/arrows.png",
+      "imgs/attention.png",
+      "css/headerStyle.css",
+      "imgs/Guide-page3.png",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "imgs/tree1.png",
+      "js/immersion.js",
+      "imgs/Guide-page2.png",
+      "imgs/trees/tree4.png",
+      "imgs/attSuccess.png",
+      "fonts/mui.ttf",
+      "js/immersed.js",
+      "imgs/trees/tree3.png",
+      "imgs/trees/tree1.png",
+      "js/webim.config.js",
+      "js/websdk-1.4.10.js",
+      "js/strophe-1.2.8.min.js",
+      "imgs/trees/tree7.png",
+      "imgs/comment/tree6.png",
+      "imgs/comment/tree8.png"
+    ],
+    "refer": [
+      "object/reply.html"
+    ]
+  },
+  "object/myAttention.html": {
+    "resources": [
+      "imgs/trees/tree8.png",
+      "imgs/trees/tree5.png",
+      "imgs/trees/tree7.png",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "imgs/trees/tree6.png",
+      "fonts/mui.ttf",
+      "css/headerStyle.css",
+      "css/mui.min.css",
+      "imgs/trees/tree4.png",
+      "js/immersion.js",
+      "imgs/trees/tree9.png",
+      "js/webim.config.js",
+      "imgs/trees/tree2.png",
+      "js/strophe-1.2.8.min.js",
+      "js/websdk-1.4.10.js",
+      "js/immersed.js",
+      "imgs/trees/tree1.png",
+      "imgs/trees/tree3.png"
+    ],
+    "refer": [
+      "object/attention_detail.html"
+    ]
+  },
+  "login/register.html": {
+    "resources": [
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "imgs/login/verify.png",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "imgs/login/phono.png"
+    ],
+    "refer": []
+  },
+  "login/loginChil.html": {
+    "resources": [
+      "css/mui.min.css",
+      "imgs/login/code.png",
+      "imgs/login/phono.png",
+      "imgs/login/bigtree.png",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/headerStyle.css",
+      "fonts/mui.ttf",
+      "js/webim.config.js",
+      "js/websdk-1.4.10.js",
+      "js/strophe-1.2.8.min.js"
+    ],
+    "refer": [
+      "login/informationChil.html"
+    ]
+  },
+  "login/informationChil.html": {
+    "resources": [
+      "imgs/login/head.png",
+      "imgs/login/code.png",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "object/attention_detail.html": {
+    "resources": [
+      "imgs/mess.png",
+      "imgs/trees/tree1.png",
+      "css/mui.min.css",
+      "js/immersion.js",
+      "js/zoom/flexible.js",
+      "js/mui.min.js",
+      "js/zoom/flexible_css.js",
+      "fonts/mui.ttf",
+      "imgs/trees/tree9.png"
+    ],
+    "refer": [
+      "object/single-chat.html",
+      "object/chat.html",
+      "object/comment_message.html"
+    ]
+  },
+  "object/single-chat.html": {
+    "resources": [
+      "js/chatMsg.js",
+      "css/mui.min.css",
+      "imgs/chat/chat-1.png",
+      "js/webim.config.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "js/websdk-1.4.10.js",
+      "js/strophe-1.2.8.min.js"
+    ]
+  },
+  "chat/im-chat.html": {
+    "resources": [
+      "js/mui.imageViewer.js",
+      "fonts/mui.ttf",
+      "js/arttmpl.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "imgs/elf.png",
+      "imgs/trees/tree1.png",
+      "js/immersion.js"
+    ]
+  },
+  "object/chat.html": {
+    "resources": [
+      "js/webim.config.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/websdk-1.4.10.js",
+      "js/strophe-1.2.8.min.js",
+      "imgs/me/tree1_head.png",
+      "imgs/trees/tree6.png",
+      "js/immersion.js"
+    ]
+  },
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/immersed.js"
+    ],
+    "refer": [
+      "object/push.html"
+    ]
+  },
+  "object/push.html": {
+    "resources": [
+      "imgs/me/tree1_head.png",
+      "imgs/push/pen.png",
+      "imgs/push/attention.png",
+      "js/zoom/flexible.js",
+      "imgs/push/pic1.png",
+      "imgs/push/cancel.png"
+    ],
+    "refer": [
+      "object/main.html"
+    ]
+  }
+}

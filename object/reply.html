@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				overflow: hidden;
+				height: 100%;
+				width: 100%;
+				background-color:white !important;
+			}
+			
+			.mui-content {
+				height: 100%;
+				padding-bottom: 0 !important;
+				background-color: white;
+			}
+			
+			.btn-box {
+				width: 10rem;
+				position: relative;
+				background: #FBD940;
+			}
+			
+			.btn-return {
+				position: absolute;
+				width: 0.344444rem;
+				height: 0.638888rem;
+				left: 5%;
+				bottom: 7px;
+			}
+			
+			.btn-return img {
+				width: 80%;
+			}
+			.mui-bar .mui-title{
+				bottom:0px;
+			}
+			
+			.btn-send {
+				width:0.805555rem;
+				height:0.625rem;
+				text-align: center;
+				position: absolute;
+				bottom: 10px;
+				right:5%;
+			}
+			
+			.btn-send img {
+				width: 100%;
+			}
+			
+			.mui-bar-nav {
+				box-shadow: none;
+				background-color: #fbd940;
+			}
+			
+			.mui-input-row {
+				border: none;
+			}
+			
+			#textarea {
+				display: block; 
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav mui-bar-tab">		
+			<div id="btn-return" class="btn-return"><img src="../imgs/comment/return.png" /></div>
+			<h1 class="mui-title">回复</h1>
+			<div id="btn_send" class="btn-send"><img src="../imgs/comment/bird.png"/></div>
+		</header>
+		<div id="content" class="mui-content">
+			<div class="mui-input-row">
+				<textarea id="textarea" rows="5" placeholder="请回复..."></textarea>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script type="text/javascript">
+			//获得列表界面的webview
+			var comment_message;
+			var pushs;
+			var pushs2;
+			mui.init({
+				swipeBack: true, //Boolean(默认false)启用右滑关闭功能
+				beforeback: function() {					
+					//触发列表界面的自定义事件（refresh）,从而进行数据刷新	
+					mui.fire(pushs, 'refrpush');
+					mui.fire(pushs2, 'refrpush2');
+					mui.fire(comment_message, 'refr');
+					
+					console.log('触发界面刷新comment_message');
+					//返回true，继续页面关闭逻辑
+					return true;
+				}
+			});
+			var pid;
+			var token;
+			mui.plusReady(function() {
+				pushs2 = plus.webview.getWebviewById('push2.html');
+				pushs = plus.webview.getWebviewById( 'push.html' );
+				comment_message = plus.webview.getWebviewById('comment_message.html');
+				
+				var self = plus.webview.currentWebview();
+				pid = self.article_ID;
+				token = self.token;
+				//回复评论
+				sendContent();
+				//取消评论
+				returnContent();
+			});
+
+			//回复
+			var sendContent = function() {
+				document.getElementById("btn_send").addEventListener('tap', function() {
+					var w = plus.nativeUI.showWaiting("处理中，请等待...\n", {
+						padlock: true
+					});
+					var content = document.getElementById("textarea");
+					mui.ajax('http://112.74.215.22:5000/api/postComment', {
+						data: {
+							token: token,
+							article_ID: pid,
+							content: content.value
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							var data = JSON.stringify(data);
+							var dataobj = eval("(" + data + ")");
+							console.log(data);
+							init();
+							w.close();
+							mui.back();
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(type);
+							w.close();
+							mui.toast('评论失败，稍后再试！');
+						}
+					});
+				})
+			}
+			//取消
+			var returnContent = function() {
+				document.getElementById("btn-return").addEventListener('tap', function() {
+					init();
+					mui.back();
+				});
+			}
+			var init = function() {
+				document.getElementById("textarea").value = '';
+			}
+		</script>
+	</body>
+
+</html>

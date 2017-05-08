@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body,
+			html {
+				background-color: #FBD940 !important;
+				overflow: hidden;
+			}
+			.mui-content {
+				padding-top: 3.472222rem !important;
+				background: #FBD940;
+			}			
+			.mui-btn {
+				margin: 0 1.277777rem;
+				margin-top: 0.736111rem;
+				width: 75%;
+				border-radius: 15px;
+				color: #a3a3a3 !important;
+				background-color: #535353;
+				border: none;
+			}			
+			.mui-input-group .mui-input-row {
+				height: 1.236111rem;
+			}			
+			.input-icon {
+				width: 0.430555rem;
+			}		
+			.mui-input-row label {
+				width: 10% !important;
+			}		
+			.mui-input-row input {
+				width: 85% !important;
+			}		
+			.mui-input-clear {
+				height: 1.236111rem !important;
+				padding-left: 0.375rem !important;
+			}		
+			.mui-input-group {
+				margin: 0 1.277777rem;
+				border-radius: 15px;
+				margin-top: 0.805555rem;
+			}		
+			.select_btn {
+				width: 100%;
+				margin: 0;
+				border-radius: 0;
+				color: #333333;
+				background-color: white;
+				padding-left: 1.385rem;
+			}		
+			.hint-name {
+				position: absolute;
+				color: #000000;
+				border-radius:10px;
+				background-color: red;
+				right: 10px;
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				top: 11px;
+			}		
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 0;
+			}
+			
+			.iconQues{
+				margin-top:5px;
+			}
+			.mui-input-row .mui-btn{
+				width: 85%;
+				margin-top: 0.113333rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label><img class="input-icon" src="../imgs/login/head.png"/></label>
+					<input id="hint-input" type="text" class="mui-input-clear" placeholder="请输入用户名">
+					<p id="hint-name" class="hint-name" style="display: none;">X</p>
+				</div>
+				<div class="mui-input-row">
+					<label><img class="input-icon" src="../imgs/login/code.png"/></label>
+					<input id="input_password" type="password" class="mui-input-clear" placeholder="请输入您的密码">
+				</div>
+				<div class="mui-input-row">
+					<label><img class="input-icon iconQues" src="../imgs/login/ques.png"/></label>
+					<select id="selct_change" class="mui-btn mui-btn-block select_btn">				
+						<option value="1">你的名字</option>
+						<option value="2">你的生日</option>
+						<option value="3">你的性别</option>
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label><img class="input-icon" src="../imgs/login/code.png"/></label>
+					<input id="input_answer" type="text" class="mui-input-clear" placeholder="请输入您的答案">
+				</div>
+			</form>
+			<button type="button" id="btn_register" class="mui-btn mui-btn-block">提交</button>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/webim.config.js" ></script>
+		<script type="text/javascript" src="../js/strophe-1.2.8.min.js" ></script>
+		<script type="text/javascript" src="../js/websdk-1.4.10.js" ></script>
+		<script type="text/javascript">
+			mui.plusReady(function(){
+				init();
+			});
+			//初始化
+			var conn = new WebIM.connection({
+			    https: WebIM.config.https,
+			    url: WebIM.config.xmppURL,
+			    isAutoLogin: WebIM.config.isAutoLogin,
+			    isMultiLoginSessions: WebIM.config.isMultiLoginSessions
+			});		
+			
+			//注册
+			var hint_name = document.getElementById("hint-name");
+			var btn_register = document.getElementById("btn_register");
+			var hint_input = document.getElementById("hint-input");			
+			var input_password = document.getElementById("input_password");
+			var selct_change = document.getElementById("selct_change");
+			var selct_index=selct_change.selectedIndex;
+			var problem_id = selct_change.options[selct_index].value;
+			var input_answer = document.getElementById("input_answer");
+			var flagIm = null;
+			btn_register.addEventListener('tap',function(){
+				//判断网络连接
+				if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+					return mui.toast("连接网络失败，请稍后再试");
+				}
+
+				if(hint_input.value == '' || input_password.value == ''|| input_answer.value =='') {
+					return mui.toast('账号,密码,答案都不能为空！');
+				}
+				var options = { 
+				    username: hint_input.value,
+				    password: input_password.value,
+				    nickname: '树洞',
+				    appKey: WebIM.config.appkey,
+				    success: function (data) { 
+						console.log('成功回调'+data)
+						flagIm = true;
+				    },
+				    error: function (data) {
+						console.log('失败回调'+data)
+				    },
+				    apiUrl: WebIM.config.apiURL
+				 }; 
+				var w = plus.nativeUI.showWaiting("处理中，请等待...\n", { padlock: true });
+				mui.ajax('http://112.74.215.22:5000/api/register', {
+					data: {
+						username:hint_input.value,
+						password:input_password.value,
+						problem_id:problem_id,
+						answer:input_answer.value
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						console.log(data)
+						if(dataobj.success ==true){
+							conn.registerUser(options);
+								init();
+								w.close();
+								mui.back();						
+						}else{
+							//TODO 获取数据失败
+							w.close();
+							console.log('服务器出错！');
+							mui.toast('获取数据失败，请稍后再试！');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						w.close();
+						mui.toast('获取数据失败，请稍后再试！');
+						console.log(type);
+					}
+				});
+				
+			});
+			var init = function(){
+				hint_name.style.display = 'none';
+				hint_input.value ='';
+				input_password.value = '';
+				input_answer.value = '';
+			}
+			//用户名及时监测			
+			hint_input.addEventListener('blur',function(){
+				console.log(hint_input.value)
+				if(hint_input.value == ''){
+					return mui.toast('用户名不能为空！')
+				}
+				mui.ajax('http://112.74.215.22:5000/api/registerUsername', {
+					data: {
+						username:hint_input.value
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: { 'Content-Type': 'application/json' },
+					success: function(data) {
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						if(dataobj.success == true){
+							console.log('用户名可用')
+						}else if(dataobj.error == "用户名已被注册"){
+							hint_name.style.display = 'block';
+							mui.toast('用户名已被注册');
+						}else{
+							console.log('服务器出错');
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						hint_name.style.display = 'none';
+						//异常处理；
+						console.log(type);
+					}
+				});
+			});
+			hint_input.addEventListener('focus',function(){
+				hint_name.style.display = 'none';
+			});
+			
+			hint_name.addEventListener('tap',function(){
+				hint_input.value = '';
+			});
+		</script>
+	</body>
+
+</html>

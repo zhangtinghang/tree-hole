@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" class="feedback">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/feedback.css" />
+		<link rel="stylesheet" href="../css/imageviewer.css" />
+		<style>
+			html,
+			body {
+				overflow: hidden;
+				height: 100%;
+				width: 100%;
+			}
+			.feedback body{
+				background-color: #FFFFFF;
+			}
+			input::-ms-clear {
+				display: none;
+			}
+			
+			.mui-content {
+				overflow: hidden;
+				background-color: #FFFFFF;
+			}
+			
+			.btn-return {
+				position: absolute;
+				width: 0.344444rem;
+				height: 0.638888rem;
+				left: 5%;
+				bottom:7px;
+			}
+			.btn-return img{
+				width: 80%;
+			}
+			.mui-title{
+				line-height: 52px;
+			}
+			.btn-send {
+				width:0.805555rem;
+				height:0.625rem;
+				text-align: center;
+				position: absolute;
+				bottom: 10px;
+				right:5%;
+			}
+			.btn-send img{
+				width: 100%;
+			}
+			.mui-bar-nav {
+				box-shadow: none;
+				background-color: #fbd940;
+			}
+			
+			.mui-input-row {
+				border: none;
+			}
+			
+			#content_textarea {
+				display: block; 
+			}
+			.feedback textarea{
+				height: 6.055555rem;
+			}
+			
+			#contact {
+				border-radius: 0px;
+				margin: 0;
+				height: 44px;
+				width: 50%;
+				background-color: #FFFFFF;
+			}
+			
+			.nav-footer {
+				background-color: rgba(239, 239, 244, 1) !important;
+				height: 44px;
+				margin: 0 !important;
+				padding: 0 !important;
+				position: fixed !important;
+				bottom: 0;
+				width: 100%;
+				display: flex;
+				border-top: 1px solid #CCCCCC;
+				overflow: hidden;
+			}
+			
+			.function_btn {
+				width: 50%;
+				display: inline-flex;
+				justify-content: space-around;
+				background: #FFFFFF;
+			}
+			
+			.function_btn img {
+				margin-top: 9px;
+				height: 20px !important;
+			}
+			
+			.mui-input-row .mui-input-clear~.mui-icon-clear,
+			.mui-input-row .mui-input-password~.mui-icon-eye,
+			.mui-input-row .mui-input-speech~.mui-icon-speech {
+				display: none !important;
+			}
+			
+			.line {
+				position: relative;
+				display: none;
+			}
+			
+			#imageWidth {
+				margin: 0;
+				width: 70px;
+				height: 70px;
+				background-position: left top;
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				display: block;
+			}
+			
+			.deleteBtn {
+				position: absolute;
+				background-color: rgba(255, 0, 0, 0.8);
+				text-align: center;
+				width: 20px;
+				height: 20px;
+				border-radius: 40px;
+				top: -10px;
+				left: 56px;
+				display: inherit;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav mui-bar-tab">		
+			<div id="btn-return" class="btn-return"><img src="../imgs/comment/return.png" /></div>
+			<h1 class="mui-title">写秘密</h1>
+			<div id="btn_send" class="btn-send"><img src="../imgs/comment/bird.png"/></div>
+		</header>
+		<div id="content" class="mui-content">
+			<div class="mui-input-row">
+				<textarea id="content_textarea"  placeholder="说出你的小秘密..."></textarea>
+			</div>
+			<div id="line" class="line">
+				<img id="imageWidth" data-preview-src="" data-preview-group="1">
+				<div class="deleteBtn">X</div>
+				</img>
+			</div>
+		</div>
+		<div class="mui-input-row nav-footer">
+			<input id='contact' maxlength="6" type="text" class="mui-input-clear contact" placeholder="添加1-6字的关键字" />
+			<div class="function_btn">
+				<a href="javascript:;" id="photo"><img src="../imgs/photo.png" /></a>
+				<a href="javascript:;" id="picture"><img src="../imgs/picture.png" /></a>
+				<a href="javascript:;" id="speak"><img src="../imgs/speak.png" /></a>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersion.js" ></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script>
+		<script type="text/javascript" src="../js/photo.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true, //Boolean(默认false)启用右滑关闭功能
+				beforeback: function(){
+					//获得列表界面的webview
+					var content = plus.webview.getWebviewById('forest.html');
+					//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+					mui.fire(content,'ref',{
+						id:"刷新"
+					});
+					//返回true，继续页面关闭逻辑
+					return true;
+				}
+			});
+			mui.plusReady(function () {
+				// 弹出软键盘时 自动调整Webview窗口大小
+				plus.webview.currentWebview().setStyle({
+				softinputMode: "adjustResize"
+				});
+			});
+			var content_textarea = document.getElementById("content_textarea");
+			document.getElementById('speak').addEventListener('tap', function() {
+				startRecognize();
+			});
+			//语音翻译事件
+			function startRecognize() {
+				if(plus.os.name == 'Android' && navigator.userAgent.indexOf('StreamApp') > 0) {
+					plus.nativeUI.toast('当前环境暂不支持语音识别插件');
+					return;
+				}
+				var options = {};
+				options.engine = 'iFly';
+				options.punctuation = true; // 是否需要标点符号 
+				plus.speech.startRecognize(options, function(s) {
+					content_textarea.value += s;
+				}, function(e) {
+					outSet("语音识别失败：" + e.message);
+				});
+			};
+		</script>
+	</body>
+
+</html>

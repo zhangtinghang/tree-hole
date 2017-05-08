@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script type="text/javascript" src="../js/zoom/flexible.js"></script>
+		<script type="text/javascript" src="../js/zoom/flexible_css.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,body{
+				background-color: white;
+			}
+			a:hover{
+				text-decoration: none;
+			}
+			a{
+				color: black;
+			}
+			
+			.mui-bar{
+				box-shadow: none;
+				-webkit-box-shadow: none;
+				background: #FBD940;
+			}
+			.mess_icon{
+				width: 0.708333rem;
+				position: absolute;
+				right: 0.338888rem;
+				bottom: 10px;
+			}
+			
+			.mui-table-view{
+				margin-top: 0 !important;
+			}
+			.mui-table-view:before{
+				display: none;
+			}
+			.mui-table-view:after{
+				display: none;
+			}
+		
+			.hr{
+				height:1px;
+				width: 90%;
+				margin-left: 10%;
+				background-color:rgba(229,229,229,.3);
+				margin-bottom: 1px;
+			}
+			.media-title {
+				font-size: 18px;
+			}
+			.mui-table-view-cell.mui-active{
+				background-color: white !important;
+			}
+			.mui-table-view-cell:after{
+				display: none;
+			}
+
+			.mui-bar-tab{
+				height: 44px;
+			}
+			.mui-bar-tab~.mui-content{
+				padding-bottom: 0;
+			}
+			.mui-bar-nav.mui-bar .mui-icon{
+				margin-left:0;
+			}
+			
+			.personal-information {
+				padding-bottom: 5px;
+			}
+			hr{
+				color:rgb(229,229,229);
+				border-color:rgba(229,229,229,.1);
+				margin: 0;
+				margin-left: 1.583333rem;
+			}
+			.personal-head {
+				position: relative;
+				height: 1.083333rem;
+			}
+			.head-icon {
+				position: absolute;
+				width: 0.888888rem;
+				height: 0.888888rem;
+				top: 0.305555rem;
+				left: 0.416666rem;
+			}
+			
+			.head-icon img {
+				width: 100%;
+			}
+			.head-content{
+				position: absolute;
+				top: 0.444444rem;
+				width: 80%;
+				left: 1.583333rem;
+				display: flex;
+			}
+			.head-title {
+				font-size: 0.405555rem;
+				color: #929292;
+			}
+			
+			.head-time {
+				font-size: 0.322222rem;
+				color: #929292;
+				padding-left: 3%;
+			}
+			.personal-content {
+				margin-left:1.583333rem;
+				font-size: 0.388888rem;
+				padding-top: 0.079444rem;
+				padding-bottom: 0.211111rem;
+				padding-right: 2%;
+				color: #3f3f3f;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav mui-bar-tab">			
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="headerTitle"></h1>
+			<img id="msg_im" class="mess_icon" src="../imgs/mess.png" />
+		</header>
+		<div id="content" class="mui-content">
+			<ul class="mui-table-view" id="list">
+				<!--<div class="personal-information">
+					<div class="personal-head">
+						<div class="head-icon">
+							<img src="../imgs/comment/tree1.png" />
+						</div>
+						<div class="head-content">
+							<div class="head-title">匪我思存</div>
+							<div class="head-time">11-24 17:07</div>
+						</div>
+						
+					</div>
+					<div class="personal-content">
+						好感动，动物其实有时比人还重情重义，我以前养过一只猫，小猫最后被车撞死了，从此我再也没有养过猫了。
+					</div>
+					<hr />
+				</div>-->
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/immersed.js" ></script>
+		<script type="text/javascript">
+			var pid = null;
+			mui.plusReady(function () {
+			    var self = plus.webview.currentWebview();
+			    self.setStyle({
+					scrollIndicator: 'none'
+				});
+			    pid = self.pid; //用户id
+			   	var titlename = self.nickname;
+			   	document.getElementById("headerTitle").innerHTML = titlename;
+			    upData();
+			    chatPage = mui.preload({
+				url:'chat.html',
+			    id:'chat'
+				});
+			})
+			var upData = function(){
+				var w=plus.nativeUI.showWaiting("加载中...", {style:"black",color:"#929292",background:"rgba(0,0,0,0)",loading:{display:"inline"}});
+				var list = document.getElementById("list");
+				var token = plus.storage.getItem('name_token');
+				mui.ajax('http://112.74.215.22:5000/api/getOtherUser',{
+					data:'token='+token+'&id='+pid,
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						w.close();
+						var data = JSON.stringify(data);
+						var dataobj = eval("(" + data + ")");
+						if(dataobj.success == true){
+							if(dataobj.user.treehole.length>0){
+								nickname = dataobj.user.nickname;
+								username = dataobj.user.username;
+								var childs = list.childNodes;
+								for(var i = childs.length - 1; i >= 0; i--) { 
+								  list.removeChild(childs[i]); 
+								}
+								list.appendChild(creatData(dataobj));
+							}else{
+								//TODO 没有数据
+							}						
+						}else{
+							console.log("服务器出错!");
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						w.close();
+						mui.toast("获取用户信息失败！");
+						console.log('获取用户信息失败'+type);
+					}
+				});
+			}
+			
+			function creatData(dataobj){
+				var fragment = document.createDocumentFragment();
+				var li;
+				for(var i = 0;i<dataobj.user.treehole.length;i++){
+					avatar = dataobj.user.avatar;
+					var treeId = dataobj.user.treehole[i]._id;
+					var userId = dataobj.user._id;
+					var time = dataobj.user.treehole[i].date;
+					var text = dataobj.user.treehole[i].text;
+					var imgURL = dataobj.user.treehole[i].extra[0];
+					li = document.createElement('div');
+					li.setAttribute('data-id',treeId);
+					li.setAttribute('data-userId',userId);
+					li.setAttribute('data-text',text);
+					li.setAttribute('data-imgURL',imgURL);
+					li.className = 'personal-information';
+					li.innerHTML = '<div class="personal-head">'+
+						'<div class="head-icon">'+
+							'<img src="../imgs/comment/tree'+avatar+'.png" />'+
+						'</div>'+
+						'<div class="head-content">'+
+							'<div class="head-title">'+nickname+'</div>'+
+							'<div class="head-time">'+time+'</div>'+
+						'</div>'+					
+					'</div>'+
+					'<div class="personal-content mui-ellipsis">'+text+'</div>'+
+					'<hr />';
+					fragment.appendChild(li);
+				}
+			return fragment;
+			}
+			
+			mui('#list').on('tap','.personal-information',function(){
+				var treeId = this.getAttribute('data-id'); //这是用户id
+				var userId = this.getAttribute('data-userId');
+				var text = this.getAttribute('data-text');
+				var imgURL = this.getAttribute('data-imgURL');
+				mui.openWindow({
+					url:'comment_message.html',
+					id:'comment_message',
+					style:{
+						bounce:'vertical'
+					},
+					extras:{
+				      	pid:treeId,
+						text:text,
+						nickname:nickname,
+						userid:userId,
+						imgURL:imgURL,
+						username:username
+				   },
+				   show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				})
+			});
+			
+			var msg_im = document.getElementById("msg_im");
+			msg_im.addEventListener('tap',function(){
+				mui.fire(chatPage,'chat',{
+					chatname: nickname,
+					username:username,
+					avatar:avatar
+				})
+				mui.openWindow({
+				    id:'chat',
+				    show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				  });
+			})
+		</script>
+	</body>
+
+</html>
